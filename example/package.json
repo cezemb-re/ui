@@ -20,6 +20,7 @@
     "url": ""
   },
   "dependencies": {
+    "@cezembre/forms": "^1.5.3",
     "@cezembre/ui": "file:../",
     "axios": "^0.19.2",
     "node-sass": "^4.14.1",

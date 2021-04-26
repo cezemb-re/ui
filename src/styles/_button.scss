@@ -13,7 +13,11 @@
   margin: 0;
   background: transparent;
   position: relative;
-  transition: background linear 100ms, border linear 100ms;
+  transition: background linear 200ms, border linear 200ms;
+
+  &.square {
+    border-radius: 10px;
+  }
 
   > .container {
     width: 100%;
@@ -39,7 +43,6 @@
 
       > span {
         @include JetBrainsMono(.9em, $color-lead, bold);
-        padding: 5px 10px;
         align-self: center;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -47,7 +50,6 @@
         flex-shrink: 2;
 
         @include screen-laptop() {
-          padding: 4px 8px;
           font-size: .8em;
         }
 
@@ -78,6 +80,7 @@
     justify-content: center;
     align-items: center;
     background: $color-lead;
+    border-radius: 10px;
     display: flex;
     visibility: hidden;
     opacity: 0;
@@ -85,8 +88,64 @@
 
   }
 
+  &.small {
+    height: 32px;
+
+    &.round {
+      border-radius: 16px;
+    }
+
+    > .container {
+      padding: 0 8px;
+    }
+
+  }
+
+  &.medium {
+    height: 36px;
+
+    &.round {
+      border-radius: 18px;
+    }
+
+    > .container {
+      padding: 0 10px;
+    }
+  }
+
+  &.large {
+    height: 40px;
+
+    &.round {
+      border-radius: 20px;
+    }
+
+    > .container {
+      padding: 0 20px;
+    }
+  }
+
+  &.filled {
+    background: $color-lead;
+
+    > .container > .body > span {
+      color: $color-lead-light;
+    }
+
+    &:hover {
+      background: $color-alternative;
+    }
+
+  }
+
+  &.outlined {
+    border: solid $color-lead 1px;
+
+  }
+
   &.disabled {
     pointer-events: none;
+    background: rgba(black, .1);
 
     > .container > .body {
 
@@ -105,68 +164,6 @@
   &.pending > .pending {
     visibility: visible;
     opacity: 1;
-  }
-
-  &.small {
-    height: 30px;
-
-    &.round {
-      border-radius: 15px;
-    }
-
-    &.square {
-      border-radius: 5px;
-    }
-
-    > .container {
-      padding: 0 10px;
-    }
-
-  }
-
-  &.medium {
-    height: 35px;
-
-    &.round {
-      border-radius: 18px;
-    }
-
-    &.square {
-      border-radius: 8px;
-    }
-
-    > .container {
-      padding: 0 15px;
-    }
-  }
-
-  &.large {
-    height: 40px;
-
-    &.round {
-      border-radius: 20px;
-    }
-
-    &.square {
-      border-radius: 10px;
-    }
-
-    > .container {
-      padding: 0 20px;
-    }
-  }
-
-  &.filled {
-    background: $color-lead;
-
-    > .container > .body > span {
-      color: $color-lead-light;
-    }
-  }
-
-  &.outlined {
-    border: solid $color-lead 1px;
-
   }
 
 }

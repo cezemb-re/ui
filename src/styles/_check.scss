@@ -1,0 +1,47 @@
+.ui-check {
+  width: 30px;
+  height: 30px;
+  background: rgba(black, .1);
+  border: solid rgba(black, .4) 1px;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all cubic-bezier(0.215, 0.61, 0.355, 1) 400ms;
+  border-radius: 2px;
+
+  &.tag {
+    width: auto;
+    padding: 0 10px;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba($color-lead, .3);
+  }
+
+  > svg {
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset cubic-bezier(0.215, 0.61, 0.355, 1) 400ms;
+  }
+
+  > span {
+    @include JetBrainsMono(1em, black);
+  }
+
+  &[aria-pressed=true] {
+    border: solid $color-lead 1px;
+    background: white;
+
+    > svg {
+      stroke-dashoffset: 0;
+    }
+
+    > span {
+      color: $color-lead;
+    }
+  }
+
+}

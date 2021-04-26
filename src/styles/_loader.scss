@@ -1,0 +1,16 @@
+.cezembre-ui-loader {
+  border-style: solid;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+
+  &.light {
+    border-color: $color-lead-light transparent transparent transparent;
+
+  }
+
+  &.dark {
+    border-color: $color-lead transparent transparent transparent;
+
+  }
+
+}

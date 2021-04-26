@@ -1,0 +1,150 @@
+.cezembre-ui-fields-input {
+  width: 100%;
+  transition: width linear 100ms;
+
+  > label {
+    @include JetBrainsMono(.9em, $color-lead);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    padding-left: 12px;
+    display: inline-block;
+
+  }
+
+  > .container {
+    transition: border linear 100ms;
+    background: white;
+    border: solid rgba(black, .1) 1px;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    &:hover {
+      border-color: rgba(black, .2);
+    }
+
+    > .left-icon {
+      padding-left: 15px;
+    }
+
+    input, input:active, input:focus {
+      border: none;
+      outline: none;
+      text-decoration: none;
+      background: transparent;
+
+    }
+
+    > input {
+      @include JetBrainsMono();
+      flex: 1;
+      padding: 8px 12px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+
+      &::placeholder {
+        color: rgba($color-lead, .3);
+        font-style: italic;
+      }
+
+    }
+
+    > .suggestions {
+      overflow: hidden;
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      background: white;
+      width: 100%;
+      top: 100%;
+      transition: opacity linear 100ms;
+      @include modal-layout();
+
+      > .suggestion {
+        display: block;
+        text-align: left;
+        width: 100%;
+        border: none;
+        cursor: pointer;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        flex-shrink: 0;
+        border-top: solid $color-lead-light 1px;
+        background: white;
+        transition: background linear 100ms;
+
+        &:first-child {
+          border: none;
+        }
+
+        &:hover, &.selected {
+          background: $color-lead-light;
+        }
+
+      }
+
+    }
+  }
+
+  &.active {
+    > .container {
+      border-color: $color-lead;
+    }
+  }
+
+  &.suggestions-active {
+    > .container > .suggestions {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  > .instructions {
+    @include JetBrainsMono(1em, black);
+    margin-top: 10px;
+
+    @include screen-tablet() {
+      font-size: .9em;
+    }
+  }
+
+  > .error, > .warning {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 15px;
+
+    @include screen-tablet() {
+      margin-top: 10px;
+    }
+
+    > span {
+      @include JetBrainsMono(.9em, $color-error);
+      margin-left: 10px;
+
+      @include screen-tablet() {
+        font-size: .9em;
+      }
+
+    }
+
+  }
+
+  > .warning {
+
+    > span {
+      color: $color-warning;
+    }
+
+  }
+
+}

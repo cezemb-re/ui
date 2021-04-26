@@ -2,7 +2,7 @@
 
 $jet_brains_mono: 'JetBrains Mono';
 
-@mixin JetBrainsMono($size: 1em, $color: $color-lead, $weight: normal) {
+@mixin JetBrainsMono($size: 1em, $color: rgba(black, .7), $weight: normal) {
   font-family: $jet_brains_mono,
     -apple-system,
     BlinkMacSystemFont,

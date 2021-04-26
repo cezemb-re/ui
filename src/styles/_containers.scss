@@ -8,18 +8,6 @@ $break-point-mobile-L: 425px;
 $break-point-mobile-M: 375px;
 $break-point-mobile-S: 320px;
 
-:export {
-  BREAK_POINT_4K: $break-point-4K;
-  BREAK_POINT_DESKTOP: $break-point-desktop;
-  BREAK_POINT_LAPTOP_L: $break-point-laptop-L;
-  BREAK_POINT_LAPTOP: $break-point-laptop;
-  BREAK_POINT_TABLET: $break-point-tablet;
-  BREAK_POINT_TABLET_S: $break-point-tablet-S;
-  BREAK_POINT_MOBILE_L: $break-point-mobile-L;
-  BREAK_POINT_MOBILE_M: $break-point-mobile-M;
-  BREAK_POINT_MOBILE_S: $break-point-mobile-S;
-}
-
 $width: $break-point-4K - 200px;
 $width-4k: $break-point-desktop - 180px;
 $width-desktop: $break-point-laptop-L - 160px;

@@ -1,0 +1,34 @@
+.ui-fields-day {
+
+  > .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > label {
+      @include JetBrainsMono(.9em, $color-lead, bold);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    > .time-slots {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      > .time-slot {
+        margin-left: 10px;
+
+        &:first-child {
+          margin: 0;
+        }
+
+      }
+
+    }
+  }
+
+
+
+}

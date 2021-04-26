@@ -1,0 +1,58 @@
+.ui-fields-time-picker {
+  height: 300px;
+
+  > .container {
+    display: flex;
+    height: 100%;
+
+    > ul  {
+      border-left: solid rgba($color-lead, .1) 1px;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: auto;
+      list-style: none;
+
+      &:first-child {
+        border-left: none;
+      }
+
+      > li {
+        margin: 0;
+        padding: 0;
+        display: list-item;
+
+        > button {
+          width: 100%;
+          @include JetBrainsMono(1em);
+          margin: 0;
+          background: none;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          padding: 5px 25px 5px 15px;
+
+          &:hover {
+            background: rgba($color-lead, .1);
+          }
+
+          &.selected {
+            background: $color-lead;
+            color: $color-lead-light;
+
+            &:hover {
+              background: $color-lead;
+              color: $color-lead-light;
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}

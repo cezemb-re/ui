@@ -1,0 +1,59 @@
+.ui-fields-switch {
+
+  > .container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    > .button {
+      width: 50px;
+      height: 30px;
+      padding: 2px;
+      background: rgba(black, .1);
+      border: solid rgba(black, .4) 1px;
+      cursor: pointer;
+      outline: none;
+      position: relative;
+      border-radius: 15px;
+
+      > .status {
+        transition: transform cubic-bezier(0.215, 0.61, 0.355, 1) 400ms;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: black;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &[aria-pressed=true] {
+        border: solid $color-lead 1px;
+        background: white;
+
+        > .status {
+          transform: translateX(20px);
+          background: $color-lead;
+
+        }
+
+      }
+    }
+
+    >label {
+      @include JetBrainsMono(.9em, $color-lead, bold);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-left: 20px;
+
+      @include screen-tablet() {
+        font-size: .8em;
+        margin-left: 15px;
+      }
+
+    }
+  }
+
+}

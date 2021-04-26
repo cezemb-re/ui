@@ -1,0 +1,114 @@
+.ui-fields-select {
+  width: 100%;
+
+  > label {
+    @include JetBrainsMono(.9em, $color-lead, bold);
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    display: inline-block;
+
+    @include screen-tablet() {
+      padding-bottom: 8px;
+      font-size: .8em;
+    }
+
+  }
+
+  > .container {
+    position: relative;
+
+    > .options {
+      visibility: hidden;
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      background: $color-lead-light;
+      border: solid $color-lead 1px;
+      border-top: none;
+      opacity: 0;
+      transition: opacity linear 100ms;
+      @include modal-layout();
+
+      > .option {
+        width: 100%;
+        border-top: solid $color-lead 1px;
+
+        &:first-child {
+          border: none;
+        }
+
+        > span {
+          @include JetBrainsMono()
+
+        }
+
+      }
+
+    }
+
+  }
+
+  > .instructions {
+    @include JetBrainsMono(1em, black);
+    margin-top: 10px;
+  }
+
+  &.active {
+    > .container {
+      > .options {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+
+  &.flat {
+    > .container {
+      > .button {
+        display: none;
+        visibility: hidden;
+      }
+
+      > .options {
+        visibility: visible;
+        position: relative;
+        opacity: 1;
+        border-top: solid $color-lead 1px;
+        @include page-layout();
+
+      }
+    }
+  }
+
+  > .error, > .warning {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 15px;
+
+    @include screen-tablet() {
+      margin-top: 10px;
+    }
+
+    > span {
+      @include JetBrainsMono(.9em, $color-error);
+      margin-left: 10px;
+
+      @include screen-tablet() {
+        font-size: .9em;
+      }
+
+    }
+
+  }
+
+  > .warning {
+
+    > span {
+      color: $color-lead;
+    }
+
+  }
+
+}

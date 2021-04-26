@@ -1,0 +1,140 @@
+.ui-fields-textarea {
+  width: 100%;
+  transition: width linear 100ms;
+
+  > label {
+    @include JetBrainsMono(.9em, $color-lead, bold);
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    display: inline-block;
+
+    @include screen-tablet() {
+      padding-bottom: 8px;
+      font-size: .8em;
+    }
+
+  }
+
+  textarea, textarea:active, textarea:focus {
+    border: none;
+    outline: none;
+    text-decoration: none;
+    background: transparent;
+
+  }
+
+  > .container {
+    transition: background linear 100ms;
+    background: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    @keyframes Appear {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes Disappear {
+      from {
+        width: 100%;
+      }
+
+      to {
+        width: 0;
+      }
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 3px;
+      background: $color-lead;
+      animation-duration: 400ms;
+      animation-timing-function: cubic-bezier(.215,.61,.355,1);
+      animation-fill-mode: forwards;
+    }
+
+    >textarea {
+      @include JetBrainsMono(1em, $color-lead, normal);
+      flex: 1;
+      padding: 10px 15px;
+
+      &::placeholder {
+        color: rgba($color-lead, .3);
+        font-style: italic;
+      }
+
+    }
+
+  }
+
+  &.visited {
+    > .container {
+      &:after {
+        animation-name: Disappear;
+      }
+    }
+  }
+
+  &.active {
+    > .container {
+      &:after {
+        left: 0;
+        animation-name: Appear;
+      }
+    }
+  }
+
+  > .instructions {
+    @include JetBrainsMono(1em, black);
+    margin-top: 10px;
+
+    @include screen-tablet() {
+      font-size: .9em;
+    }
+  }
+
+  > .error, > .warning {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 15px;
+
+    @include screen-tablet() {
+      margin-top: 10px;
+    }
+
+    > span {
+      @include JetBrainsMono(.9em, $color-error);
+      margin-left: 10px;
+
+      @include screen-tablet() {
+        font-size: .9em;
+      }
+
+    }
+
+  }
+
+  > .warning {
+
+    > span {
+      color: $color-lead;
+    }
+
+  }
+
+}

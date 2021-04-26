@@ -6,6 +6,7 @@ import React, {
   useCallback,
   useEffect,
   useState,
+  CSSProperties,
 } from 'react';
 import { NavLink } from 'react-router-dom';
 import Loader from './loader';
@@ -27,6 +28,7 @@ export interface Props {
   errored?: boolean;
   leftIcon?: ReactNode | string;
   rightIcon?: ReactNode | string;
+  style?: CSSProperties;
 }
 
 function Wrapper({
@@ -44,6 +46,7 @@ function Wrapper({
   active = false,
   success = false,
   errored = false,
+  style = {},
 }: Props): ReactElement {
   const [autoPending, setAutoPending] = useState<boolean>(false);
   const [autoErrored, setAutoErrored] = useState<boolean>(false);
@@ -117,7 +120,12 @@ function Wrapper({
 
   if (!disabled && !pending && !autoPending && href && href.length) {
     return (
-      <a className={className.join(' ')} href={href} onFocus={onFocus}>
+      <a
+        className={className.join(' ')}
+        href={href}
+        onFocus={onFocus}
+        style={style}
+      >
         {children}
       </a>
     );
@@ -125,7 +133,13 @@ function Wrapper({
 
   if (!disabled && !pending && !autoPending && to && to.length) {
     return (
-      <NavLink className={className.join(' ')} to={to} exact onFocus={onFocus}>
+      <NavLink
+        className={className.join(' ')}
+        to={to}
+        exact
+        onFocus={onFocus}
+        style={style}
+      >
         {children}
       </NavLink>
     );
@@ -138,6 +152,7 @@ function Wrapper({
       onFocus={onFocus}
       type={type}
       disabled={(disabled || pending || autoPending) as boolean}
+      style={style}
     >
       {children}
     </button>
@@ -160,6 +175,7 @@ export default function Button({
   disabled = false,
   leftIcon = undefined,
   rightIcon = undefined,
+  style = {},
 }: Props): ReactElement {
   return (
     <Wrapper
@@ -175,6 +191,7 @@ export default function Button({
       active={active}
       success={success}
       errored={errored}
+      style={style}
     >
       <div className="container">
         <div className="body">
@@ -203,7 +220,7 @@ export default function Button({
       </div>
 
       <div className="pending">
-        <Loader size={17} color="white" />
+        <Loader size={15} />
       </div>
 
       {/* <div className="error"> */}
