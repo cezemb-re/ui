@@ -19,7 +19,8 @@
   "scripts": {
     "build-scripts": "tsc --build",
     "build-styles": "sass ./src/style.scss ./lib/style.css && cp -r src/styles lib/ && cp src/style.scss lib/",
-    "watch": "nodemon --watch src -e ts,tsx,scss --exec 'npm run build-scripts && npm run build-styles'",
+    "build": "npm run build-scripts && npm run build-styles",
+    "watch": "nodemon --watch src -e ts,tsx,scss --exec 'npm run build'",
     "test": "echo 'No tests written",
     "lint": "eslint",
     "prepare": "npm run lint && npm run build",
