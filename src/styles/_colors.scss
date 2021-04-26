@@ -1,0 +1,20 @@
+$color-lead: #0D1DFF;
+$color-lead-light: #E5F2FF;
+
+$color-alternative: #5800E8;
+$color-alternative-light: #FFCBE3;
+
+$color-accent: #FFC84D;
+
+$color-warning: #eaa63b;
+$color-error: #e35656;
+
+:export {
+  LEAD: $color-lead;
+  LEAD_LIGHT: $color-lead-light;
+  ALTERNATIVE: $color-alternative;
+  ALTERNATIVE_LIGHT: $color-alternative-light;
+  ACCENT: $color-accent;
+  WARNING: $color-warning;
+  ERROR: $color-error;
+}
