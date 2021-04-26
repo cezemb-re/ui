@@ -8,7 +8,6 @@ import React, {
   useState,
   CSSProperties,
 } from 'react';
-import { NavLink } from 'react-router-dom';
 import Loader from './loader';
 
 export interface Props {
@@ -16,7 +15,6 @@ export interface Props {
   href?: string | null;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => Promise<void> | void;
   onFocus?: (event: FocusEvent<HTMLElement>) => void;
-  to?: string | null;
   type?: 'submit' | 'reset' | 'button';
   shape?: 'round' | 'square';
   size?: 'small' | 'medium' | 'large';
@@ -36,8 +34,7 @@ function Wrapper({
   href = null,
   onClick = undefined,
   onFocus = undefined,
-  to = null,
-  shape = 'round',
+  shape = 'square',
   size = 'medium',
   buttonStyle = 'filled',
   type = 'button',
@@ -131,20 +128,6 @@ function Wrapper({
     );
   }
 
-  if (!disabled && !pending && !autoPending && to && to.length) {
-    return (
-      <NavLink
-        className={className.join(' ')}
-        to={to}
-        exact
-        onFocus={onFocus}
-        style={style}
-      >
-        {children}
-      </NavLink>
-    );
-  }
-
   return (
     <button
       className={className.join(' ')}
@@ -163,8 +146,7 @@ export default function Button({
   children = null,
   href = null,
   onClick = undefined,
-  to = null,
-  shape = 'round',
+  shape = 'square',
   size = 'medium',
   buttonStyle = 'filled',
   type = 'button',
@@ -181,7 +163,6 @@ export default function Button({
     <Wrapper
       href={href}
       onClick={onClick}
-      to={to}
       pending={pending}
       disabled={disabled}
       type={type}

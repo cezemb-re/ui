@@ -42,7 +42,7 @@
       }
 
       > span {
-        @include JetBrainsMono(.9em, $color-lead, bold);
+        @include JetBrainsMono(.9em, $color-lead, 700);
         align-self: center;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -96,7 +96,7 @@
     }
 
     > .container {
-      padding: 0 8px;
+      padding: 0 10px;
     }
 
   }
@@ -109,7 +109,7 @@
     }
 
     > .container {
-      padding: 0 10px;
+      padding: 0 15px;
     }
   }
 

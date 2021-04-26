@@ -11,21 +11,6 @@ body {
         justify-content: center;
         font-size: 14px;
 
-        > .form {
-            > .fields {
-                margin-top: 20px;
-
-                &:first-child {
-                    margin: 0;
-                }
-
-            }
-
-            > .submit {
-                margin-top: 30px;
-            }
-        }
-
     }
 
 }

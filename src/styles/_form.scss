@@ -1,0 +1,13 @@
+.cezembre-ui-form {
+  > .field {
+    margin-top: 20px;
+
+    &:first-child {
+      margin: 0;
+    }
+  }
+
+  > .submit {
+    margin-top: 30px;
+  }
+}

@@ -11,24 +11,15 @@ import Select from './fields/select';
 import Switch from './fields/switch';
 import Textarea from './fields/textarea';
 
-export {
-  Loader,
-  Check,
-  Button,
-  CheckBox,
-  DateTimePicker,
-  DatePicker,
-  TimePicker,
-  Switch,
-  Input,
-  Textarea,
-  Select,
-};
+/**
+ * Components
+ */
+export { Loader, Check, Button };
 
-export default {
-  Loader,
-  Check,
-  Button,
+/**
+ * Fields
+ */
+export {
   CheckBox,
   DateTimePicker,
   DatePicker,

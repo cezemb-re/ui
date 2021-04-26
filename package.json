@@ -8,7 +8,8 @@
   "keywords": [
     "react",
     "ui",
-    "components"
+    "components",
+    "cezembre"
   ],
   "files": [
     "lib"
@@ -27,7 +28,9 @@
     "release": "release-it"
   },
   "peerDependencies": {
-    "react": ">=16.8.0"
+    "react": ">=16.8.0",
+    "@cezembre/forms": ">=1.5.3",
+    "luxon": ">=1.26.0"
   },
   "husky": {
     "hooks": {
@@ -41,6 +44,7 @@
     "trailingComma": "es5"
   },
   "devDependencies": {
+    "@cezembre/forms": "^1.5.3",
     "@release-it/conventional-changelog": "^2.0.1",
     "@types/lodash.isequal": "^4.5.5",
     "@types/luxon": "^1.26.4",
@@ -64,16 +68,12 @@
     "nodemon": "^2.0.7",
     "prettier": "2.0.5",
     "release-it": "^14.2.2",
+    "sass": "^1.32.11",
     "size-limit": "^4.10.1",
     "typescript": "^4.2.3"
   },
   "dependencies": {
-    "@cezembre/forms": "^1.5.3",
     "feather-icons": "^4.28.0",
-    "lodash": "^4.17.21",
-    "lodash.isequal": "^4.5.0",
-    "luxon": "^1.26.0",
-    "react-router-dom": "^5.2.0",
-    "sass": "^1.32.11"
+    "lodash": "^4.17.21"
   }
 }

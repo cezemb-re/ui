@@ -3,7 +3,7 @@
   transition: width linear 100ms;
 
   > label {
-    @include JetBrainsMono(.9em, $color-lead);
+    @include JetBrainsMono(.8em, $color-lead);
     letter-spacing: .12em;
     text-transform: uppercase;
     padding-bottom: 8px;
