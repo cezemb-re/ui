@@ -8,12 +8,14 @@ import React, {
   useState,
   CSSProperties,
 } from 'react';
+import { NavLink } from 'react-router-dom';
 import Loader from './loader';
 import Icon, { IconName } from './icon';
 
 export interface Props {
   children?: ReactNode;
-  href?: string | null;
+  href?: string;
+  to?: string;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => Promise<void> | void;
   onFocus?: (event: FocusEvent<HTMLElement>) => void;
   type?: 'submit' | 'reset' | 'button';
@@ -33,7 +35,8 @@ export interface Props {
 
 function Wrapper({
   children,
-  href = null,
+  href = undefined,
+  to = undefined,
   onClick = undefined,
   onFocus = undefined,
   shape = 'square',
@@ -135,6 +138,20 @@ function Wrapper({
     );
   }
 
+  if (!disabled && !pending && !autoPending && to && to.length) {
+    return (
+      <NavLink
+        className={className.join(' ')}
+        to={to}
+        style={style || {}}
+        exact
+        onFocus={onFocus}
+      >
+        {children}
+      </NavLink>
+    );
+  }
+
   return (
     <button
       className={className.join(' ')}
@@ -151,7 +168,8 @@ function Wrapper({
 
 export default function Button({
   children = null,
-  href = null,
+  href = undefined,
+  to = undefined,
   onClick = undefined,
   shape = 'square',
   size = 'medium',
@@ -170,6 +188,7 @@ export default function Button({
   return (
     <Wrapper
       href={href}
+      to={to}
       onClick={onClick}
       pending={pending}
       disabled={disabled}

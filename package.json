@@ -30,7 +30,8 @@
   "peerDependencies": {
     "react": ">=16.8.0",
     "@cezembre/forms": ">=1.5.3",
-    "luxon": ">=1.26.0"
+    "luxon": ">=1.26.0",
+    "react-router-dom": ">=5.2.0"
   },
   "husky": {
     "hooks": {
