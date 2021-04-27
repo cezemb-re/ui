@@ -145,16 +145,16 @@
 
   &.disabled {
     pointer-events: none;
-    background: rgba(black, .1);
+    background: $color-background-grey;
 
     > .container > .body {
 
       > .left-icon svg, > .right-icon svg {
-        fill: rgba(black, .2);
+        fill: $color-placeholder-grey;
       }
 
       > span {
-        color: rgba(black, .2);
+        color: $color-placeholder-grey;
       }
 
     }

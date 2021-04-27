@@ -2,6 +2,7 @@ import 'feather-icons';
 import Loader from './components/loader';
 import Check from './components/check';
 import Button from './components/button';
+import Avatar from './components/avatar';
 import CheckBox from './fields/checkbox';
 import DatePicker from './fields/datePicker';
 import TimePicker from './fields/timePicker';
@@ -14,7 +15,7 @@ import Textarea from './fields/textarea';
 /**
  * Components
  */
-export { Loader, Check, Button };
+export { Loader, Check, Button, Avatar };
 
 /**
  * Fields

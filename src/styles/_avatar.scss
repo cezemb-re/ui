@@ -1,0 +1,100 @@
+.cezembre-ui-avatar {
+  position: relative;
+
+  > .main {
+    @include JetBrainsMono(1em);
+    background: $color-placeholder-grey;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  > .badge {
+    @include JetBrainsMono(.8em);
+    background: $color-placeholder-grey;
+    border-radius: 50%;
+    border: solid white 2px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate3d(30%, 30%, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.profile {
+    > .main {
+      border-radius: 50%;
+    }
+  }
+
+  &.project {
+    > .main {
+      border-radius: 20%;
+    }
+  }
+
+  &.tiny {
+    > .main {
+      width: 30px;
+      height: 30px;
+
+    }
+
+    > .badge {
+      width: 15px;
+      height: 15px;
+
+    }
+  }
+
+  &.small {
+    > .main {
+      font-size: 1.5em;
+      width: 40px;
+      height: 40px;
+
+    }
+
+    > .badge {
+      width: 20px;
+      height: 20px;
+
+    }
+  }
+
+  &.medium {
+    > .main {
+      font-size: 2em;
+      width: 60px;
+      height: 60px;
+
+    }
+
+    > .badge {
+      font-size: 1.1em;
+      width: 30px;
+      height: 30px;
+
+    }
+  }
+
+  &.large {
+    > .main {
+      font-size: 2.2em;
+      width: 80px;
+      height: 80px;
+
+    }
+
+    > .badge {
+      font-size: 1.5em;
+      width: 40px;
+      height: 40px;
+
+    }
+  }
+}

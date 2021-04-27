@@ -15,7 +15,7 @@
   > .container {
     transition: border linear 100ms;
     background: white;
-    border: solid rgba(black, .1) 1px;
+    border: solid $color-background-grey 1px;
     border-radius: 8px;
     width: 100%;
     display: flex;
@@ -24,7 +24,7 @@
     position: relative;
 
     &:hover {
-      border-color: rgba(black, .2);
+      border-color: $color-placeholder-grey;
     }
 
     > .left-icon {
