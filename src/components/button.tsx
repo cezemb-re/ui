@@ -9,6 +9,7 @@ import React, {
   CSSProperties,
 } from 'react';
 import Loader from './loader';
+import Icon, { IconName } from './icon';
 
 export interface Props {
   children?: ReactNode;
@@ -19,13 +20,14 @@ export interface Props {
   shape?: 'round' | 'square';
   size?: 'small' | 'medium' | 'large';
   buttonStyle?: 'filled' | 'outlined' | 'text';
+  theme?: 'dark' | 'light';
   disabled?: boolean;
   pending?: boolean;
   active?: boolean;
   success?: boolean;
   errored?: boolean;
-  leftIcon?: ReactNode | string;
-  rightIcon?: ReactNode | string;
+  leftIcon?: ReactNode | IconName;
+  rightIcon?: ReactNode | IconName;
   style?: CSSProperties;
 }
 
@@ -37,6 +39,7 @@ function Wrapper({
   shape = 'square',
   size = 'medium',
   buttonStyle = 'filled',
+  theme = 'dark',
   type = 'button',
   disabled = false,
   pending = false,
@@ -50,10 +53,13 @@ function Wrapper({
   const [className, setClassName] = useState<string[]>([
     'cezembre-ui-button',
     shape,
+    size,
+    buttonStyle,
+    theme,
   ]);
 
   useEffect(() => {
-    const nextClasses = ['cezembre-ui-button', shape, size, buttonStyle];
+    const nextClasses = ['cezembre-ui-button', shape, size, buttonStyle, theme];
 
     if (active) {
       nextClasses.push('active');
@@ -87,6 +93,7 @@ function Wrapper({
     pending,
     autoPending,
     autoErrored,
+    theme,
   ]);
 
   const onButtonClick = useCallback(
@@ -150,6 +157,7 @@ export default function Button({
   size = 'medium',
   buttonStyle = 'filled',
   type = 'button',
+  theme = 'dark',
   active = false,
   pending = false,
   success = false,
@@ -168,6 +176,7 @@ export default function Button({
       type={type}
       shape={shape}
       size={size}
+      theme={theme}
       buttonStyle={buttonStyle}
       active={active}
       success={success}
@@ -179,7 +188,7 @@ export default function Button({
           {leftIcon ? (
             <div className="left-icon">
               {typeof leftIcon === 'string' ? (
-                <i data-feather={leftIcon} />
+                <Icon name={leftIcon as IconName} size={20} />
               ) : (
                 leftIcon
               )}
@@ -192,7 +201,7 @@ export default function Button({
         {rightIcon ? (
           <div className="right-icon">
             {typeof rightIcon === 'string' ? (
-              <i data-feather={rightIcon} />
+              <Icon name={rightIcon as IconName} size={17} />
             ) : (
               rightIcon
             )}

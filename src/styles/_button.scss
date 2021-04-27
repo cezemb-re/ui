@@ -9,8 +9,8 @@
   user-select: none;
   border: none;
   flex-shrink: 0;
-  padding: 0;
   margin: 0;
+  padding: 0 15px;
   background: transparent;
   position: relative;
   transition: background linear 200ms, border linear 200ms;
@@ -37,17 +37,17 @@
 
       > .left-icon {
         align-self: center;
-        padding: 5px;
         flex-shrink: 0;
       }
 
       > span {
-        @include JetBrainsMono(.9em, $color-lead, 700);
+        @include JetBrainsMono(.9em, $color-lead, bold);
         align-self: center;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
         flex-shrink: 2;
+        padding: 0 15px;
 
         @include screen-laptop() {
           font-size: .8em;
@@ -63,7 +63,6 @@
 
     > .right-icon {
       align-self: center;
-      padding: 5px 10px;
       flex-shrink: 0;
 
     }
@@ -95,7 +94,7 @@
       border-radius: 16px;
     }
 
-    > .container {
+    > .container > .body > span {
       padding: 0 10px;
     }
 
@@ -108,9 +107,6 @@
       border-radius: 18px;
     }
 
-    > .container {
-      padding: 0 15px;
-    }
   }
 
   &.large {
@@ -120,19 +116,23 @@
       border-radius: 20px;
     }
 
-    > .container {
-      padding: 0 20px;
-    }
   }
 
   &.filled {
     background: $color-lead;
 
-    > .container > .body > span {
-      color: $color-lead-light;
+    > .container > .body {
+
+      svg {
+        fill: $color-lead-light;
+      }
+
+      > span {
+        color: $color-lead-light;
+      }
     }
 
-    &:hover {
+    &:hover, &.active {
       background: $color-alternative;
     }
 
@@ -141,20 +141,114 @@
   &.outlined {
     border: solid $color-lead 1px;
 
+    svg {
+      fill: $color-lead;
+    }
+
+    &:hover, &.active {
+      background: $color-lead;
+
+      svg {
+        fill: $color-lead-light;
+      }
+
+      > .container > .body > span {
+        color: $color-lead-light;
+      }
+
+
+    }
+
+  }
+
+  &.text {
+
+    svg {
+      fill: $color-lead;
+    }
+
+    &:hover, &.active {
+      background: $color-lead;
+
+      svg {
+        fill: $color-lead-light;
+      }
+
+      > .container > .body > span {
+        color: $color-lead-light;
+      }
+
+    }
+
+  }
+
+  &.light {
+
+    &.text {
+      svg {
+        fill: $color-text-light;
+      }
+
+      > .container > .body > span {
+        color: $color-text-light;
+      }
+
+      &:hover, &.active {
+        background: $color-lead;
+
+        svg {
+          fill: $color-lead-light;
+        }
+
+        > .container > .body > span {
+          color: $color-lead-light;
+        }
+
+
+      }
+
+      &:hover {
+        background: none;
+
+        svg {
+          fill: $color-text-medium;
+        }
+
+        > .container > .body > span {
+          color: $color-text-medium;
+        }
+
+      }
+
+      &.active {
+        background: rgba(black, .05);
+
+        svg {
+          fill: $color-lead;
+        }
+
+        > .container > .body > span {
+          color: $color-lead;
+        }
+
+      }
+
+    }
+
   }
 
   &.disabled {
     pointer-events: none;
-    background: $color-background-grey;
+    background: $color-background;
 
     > .container > .body {
 
       > .left-icon svg, > .right-icon svg {
-        fill: $color-placeholder-grey;
+        fill: $color-placeholder;
       }
 
       > span {
-        color: $color-placeholder-grey;
+        color: $color-placeholder;
       }
 
     }
