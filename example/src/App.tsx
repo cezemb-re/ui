@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import './App.scss';
-import { Table } from '@cezembre/ui';
+import { Table, Button } from '@cezembre/ui';
 
 interface Article {
   id: string;
@@ -39,6 +39,10 @@ const articles: Article[] = [
 export default function App(): ReactElement {
   return (
     <div className="App">
+      <div className="header">
+        <Button buttonStyle="text">Oui</Button>
+      </div>
+
       <Table<Article>
         columns={[
           {
