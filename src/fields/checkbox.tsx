@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FieldComponentProps } from '@cezembre/forms';
-import Check from '../components/check';
+import Check from '../general/check';
 
 export interface Props extends FieldComponentProps {
   label?: string | null;

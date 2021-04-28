@@ -10,7 +10,7 @@ import { FieldComponentProps } from '@cezembre/forms';
 import { DateTime } from 'luxon';
 import useClickOutside from '../helpers/clickOutside';
 import { formatRelativeDate } from '../helpers/time';
-import Button from '../components/button';
+import Button from '../general/button';
 
 export interface Props extends FieldComponentProps<DateTime | null> {
   placeholder?: string;

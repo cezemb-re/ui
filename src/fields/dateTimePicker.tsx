@@ -11,7 +11,7 @@ import DatePicker from './datePicker';
 import TimePicker from './timePicker';
 import { formatRelativeDateTime } from '../helpers/time';
 import useClickOutside from '../helpers/clickOutside';
-import Button from '../components/button';
+import Button from '../general/button';
 
 export interface Props extends FieldComponentProps<DateTime | null> {
   placeholder?: string;

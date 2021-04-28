@@ -1,0 +1,78 @@
+table.cezembre-ui-table {
+  width: 100%;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 20px;
+
+  > thead {
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+
+    > tr {
+      border: none;
+      outline: none;
+      margin: 0;
+      padding: 0;
+
+      > th {
+        @include JetBrainsMono(.9em, $color-text-light, bold);
+        padding: 10px;
+        border: none;
+        outline: none;
+        text-align: left;
+
+      }
+
+    }
+
+  }
+
+  > tbody {
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+
+    > tr {
+      border: none;
+      outline: none;
+      margin: 0;
+      padding: 0;
+      transition: background linear 100ms;
+
+      > td {
+        @include JetBrainsMono(.9em, $color-text);
+        padding: 10px;
+        border: none;
+        outline: none;
+
+        &:first-child {
+          border-bottom-left-radius: 10px;
+          border-top-left-radius: 10px;
+        }
+
+        &:last-child {
+          border-bottom-right-radius: 10px;
+          border-top-right-radius: 10px;
+        }
+
+      }
+
+    }
+  }
+
+  &.clickable {
+    > tbody > tr {
+      cursor: pointer;
+
+      &:hover {
+        background: $color-lead-light;
+      }
+    }
+
+  }
+
+}

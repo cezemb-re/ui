@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import _ from 'lodash';
 import { FieldComponentProps } from '@cezembre/forms';
-import Button from '../components/button';
+import Button from '../general/button';
 import useClickOutside from '../helpers/clickOutside';
 
 export enum Type {
