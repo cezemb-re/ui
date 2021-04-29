@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FieldComponentProps } from '@cezembre/forms';
+import Icon, { IconName } from '../general/icon';
 
 export interface Props {
   label?: string | null;
@@ -25,11 +26,11 @@ function Textarea({
   spellCheck = true,
 }: FieldComponentProps & Props): React.ReactElement {
   const [classNames, setClassNames] = useState<string[]>([
-    'ui-fields-textarea',
+    'cezembre-ui-fields-textarea',
   ]);
 
   useEffect(() => {
-    const nextClassNames = ['ui-fields-textarea'];
+    const nextClassNames = ['cezembre-ui-fields-textarea'];
 
     if (visited) {
       nextClassNames.push('visited');
@@ -50,30 +51,28 @@ function Textarea({
     <div className={classNames.join(' ')}>
       {label ? <label htmlFor={name}>{label}</label> : null}
 
-      <div className="container">
-        <textarea
-          name={name}
-          value={value || ''}
-          placeholder={placeholder || ''}
-          onFocus={onFocus}
-          onChange={onChange}
-          onBlur={onBlur}
-          spellCheck={spellCheck}
-        />
-      </div>
+      <textarea
+        name={name}
+        value={value || ''}
+        placeholder={placeholder || ''}
+        onFocus={onFocus}
+        onChange={onChange}
+        onBlur={onBlur}
+        spellCheck={spellCheck}
+      />
 
       {instructions ? <p className="instructions">{instructions}</p> : null}
 
       {(visited || submitted) && !isActive && error ? (
         <div className="error">
-          <i data-feather="alert" />
+          <Icon name={IconName.ALERT} />
           <span>{error}</span>
         </div>
       ) : null}
 
       {warning ? (
         <div className="warning">
-          <i data-feather="alert" />
+          <Icon name={IconName.ALERT} />
           <span>{warning}</span>
         </div>
       ) : null}

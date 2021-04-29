@@ -1,6 +1,7 @@
 import React, { ReactElement, useState } from 'react';
 import './App.scss';
-import { Table, Button, Overlay, IconName, UploadImage } from '@cezembre/ui';
+import { Table, Button, Overlay, IconName, UploadImage, Input, Textarea } from '@cezembre/ui';
+import { Field, Form } from '@cezembre/forms';
 
 interface Article {
   id: string;
@@ -80,6 +81,11 @@ export default function App(): ReactElement {
         data={articles}
         onClickItem={() => null}
       />
+
+      <Form>
+        <Field name="title" label="Titre" component={Input} />
+        <Field name="description" label="Description" component={Textarea} />
+      </Form>
 
       <UploadImage />
     </div>
