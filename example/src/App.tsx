@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import './App.scss';
-import { Table, Button, Overlay, IconName } from '@cezembre/ui';
+import { Table, Button, Overlay, IconName, UploadImage } from '@cezembre/ui';
 
 interface Article {
   id: string;
@@ -39,6 +39,7 @@ const articles: Article[] = [
 export default function App(): ReactElement {
   const [visible, setVisible] = useState(false);
   const [closed, setClosed] = useState(false);
+
   return (
     <div className="App">
       <div className="header">
@@ -79,6 +80,8 @@ export default function App(): ReactElement {
         data={articles}
         onClickItem={() => null}
       />
+
+      <UploadImage />
     </div>
   );
 }

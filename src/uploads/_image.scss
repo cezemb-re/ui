@@ -1,0 +1,50 @@
+.cezembre-ui-upload-image {
+  position: relative;
+  background: $color-placeholder;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border: none;
+    box-shadow: 0 0 5px rgba($color-lead, .3);
+  }
+
+  > input[type=file] {
+    display: none;
+    visibility: hidden;
+  }
+
+  > .image {
+    background: $color-placeholder;
+  }
+
+  > .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($color-lead, .5);
+    opacity: 0;
+    transition: opacity linear 100ms;
+
+    > .error {
+      @include JetBrainsMono(1em, white);
+      background: $color-error;
+      padding: 5px 10px;
+    }
+
+  }
+
+  &:hover, &.empty, &.active {
+    > .overlay {
+      opacity: 1;
+    }
+  }
+
+}
