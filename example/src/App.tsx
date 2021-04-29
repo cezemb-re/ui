@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import './App.scss';
-import { Table, Button } from '@cezembre/ui';
+import { Table, Button, Overlay } from '@cezembre/ui';
 
 interface Article {
   id: string;
@@ -37,10 +37,32 @@ const articles: Article[] = [
 ];
 
 export default function App(): ReactElement {
+  const [visible, setVisible] = useState(false);
+  const [closed, setClosed] = useState(false);
   return (
     <div className="App">
       <div className="header">
-        <Button buttonStyle="text">Oui</Button>
+        <Button
+          buttonStyle="text"
+          onClick={() => {
+            setVisible(true);
+            setClosed(false);
+          }}>
+          Oui
+        </Button>
+      </div>
+
+      <div style={{ position: 'relative' }}>
+        <Overlay visible={visible} closed={closed}>
+          <Button
+            buttonStyle="text"
+            onClick={() => {
+              setVisible(false);
+              setClosed(true);
+            }}>
+            Close
+          </Button>
+        </Overlay>
       </div>
 
       <Table<Article>

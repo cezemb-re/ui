@@ -45,7 +45,7 @@
     }
 
     &.expandable {
-      @include popup-layout();
+      @include layout-popup();
       border: solid rgba($color-lead, .1) 1px;
       box-shadow: 0 0 10px rgba($color-lead, .2);
       position: absolute;

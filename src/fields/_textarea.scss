@@ -89,15 +89,6 @@
     }
   }
 
-  &.active {
-    > .container {
-      &:after {
-        left: 0;
-        animation-name: Appear;
-      }
-    }
-  }
-
   > .instructions {
     @include JetBrainsMono(1em, black);
     margin-top: 10px;

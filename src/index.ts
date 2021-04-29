@@ -16,6 +16,7 @@ import Model from './data/model';
 import Type from './data/types';
 import Table, { Column } from './data/table';
 import Cell from './data/cell';
+import Overlay from './navigation/overlay';
 
 /**
  * Genral
@@ -42,3 +43,8 @@ export {
 export { Table, Cell };
 
 export type { Column, Model, Type };
+
+/**
+ * Navigation
+ */
+export { Overlay };

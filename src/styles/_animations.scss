@@ -7,22 +7,26 @@
   }
 }
 
-@keyframes Appear {
+@keyframes appear {
   from {
-    width: 0;
+    opacity: 0;
+    visibility: hidden;
   }
 
   to {
-    width: 100%;
+    opacity: 1;
+    visibility: visible;
   }
 }
 
-@keyframes Disappear {
+@keyframes disappear {
   from {
-    width: 100%;
+    opacity: 1;
+    visibility: visible;
   }
 
   to {
-    width: 0;
+    opacity: 0;
+    visibility: hidden;
   }
 }
