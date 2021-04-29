@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import './App.scss';
-import { Table, Button, Overlay } from '@cezembre/ui';
+import { Table, Button, Overlay, IconName } from '@cezembre/ui';
 
 interface Article {
   id: string;
@@ -44,6 +44,8 @@ export default function App(): ReactElement {
       <div className="header">
         <Button
           buttonStyle="text"
+          leftIcon={IconName.ARROW}
+          leftIconRotation={180}
           onClick={() => {
             setVisible(true);
             setClosed(false);

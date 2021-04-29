@@ -14,7 +14,7 @@ export default function AppleStore({
   color3 = '#a6a6a6',
 }: Props): ReactElement<SVGElement> {
   return (
-    <svg viewBox="0 0 126.50751 40" height={size}>
+    <svg viewBox="0 0 126.50751 40" width={size}>
       <title>Apple Store</title>
       <path
         fill={color3 as string}

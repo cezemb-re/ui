@@ -29,7 +29,11 @@ export interface Props {
   success?: boolean;
   errored?: boolean;
   leftIcon?: ReactNode | IconName;
+  leftIconSize?: number;
+  leftIconRotation?: number;
   rightIcon?: ReactNode | IconName;
+  rightIconSize?: number;
+  rightIconRotation?: number;
   style?: CSSProperties;
 }
 
@@ -182,7 +186,11 @@ export default function Button({
   errored = false,
   disabled = false,
   leftIcon = undefined,
+  leftIconSize = 20,
+  leftIconRotation = 0,
   rightIcon = undefined,
+  rightIconSize = 20,
+  rightIconRotation = 0,
   style = {},
 }: Props): ReactElement {
   return (
@@ -207,7 +215,11 @@ export default function Button({
           {leftIcon ? (
             <div className="left-icon">
               {typeof leftIcon === 'string' ? (
-                <Icon name={leftIcon as IconName} size={20} />
+                <Icon
+                  name={leftIcon as IconName}
+                  size={leftIconSize}
+                  rotate={leftIconRotation}
+                />
               ) : (
                 leftIcon
               )}
@@ -220,7 +232,11 @@ export default function Button({
         {rightIcon ? (
           <div className="right-icon">
             {typeof rightIcon === 'string' ? (
-              <Icon name={rightIcon as IconName} size={17} />
+              <Icon
+                name={rightIcon as IconName}
+                size={rightIconSize}
+                rotate={rightIconRotation}
+              />
             ) : (
               rightIcon
             )}

@@ -1,4 +1,7 @@
 .cezembre-ui-icon {
+  margin: 0;
+  padding: 0;
+  display: block;
 
   > svg {
     transition: fill linear 100ms, height linear 100ms, width linear 100ms;

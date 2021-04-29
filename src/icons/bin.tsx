@@ -10,7 +10,7 @@ export default function Bin({
   color,
 }: Props): ReactElement<SVGElement> {
   return (
-    <svg viewBox="-40 0 427 427.00131" height={size} fill={color as string}>
+    <svg viewBox="-40 0 427 427.00131" width={size} fill={color as string}>
       <title>Bin</title>
       <path d="m232.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0" />
       <path d="m114.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0" />

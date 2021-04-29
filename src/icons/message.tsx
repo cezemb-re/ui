@@ -10,7 +10,7 @@ export default function Message({
   size = 20,
 }: Props): ReactElement<SVGElement> {
   return (
-    <svg viewBox="0 0 512 512" height={size} fill={color as string}>
+    <svg viewBox="0 0 512 512" width={size} fill={color as string}>
       <title>Message</title>
       <path d="m181.718 133.843h148.564c8.284 0 15-6.716 15-15s-6.716-15-15-15h-148.564c-8.284 0-15 6.716-15 15s6.716 15 15 15z" />
       <path d="m181.718 205.396h148.564c8.284 0 15-6.716 15-15s-6.716-15-15-15h-148.564c-8.284 0-15 6.716-15 15s6.716 15 15 15z" />

@@ -10,7 +10,7 @@ export default function Phone({
   size = 20,
 }: Props): ReactElement<SVGElement> {
   return (
-    <svg viewBox="0 0 384 384" height={size} fill={color as string}>
+    <svg viewBox="0 0 384 384" width={size} fill={color as string}>
       <title>Phone</title>
       <path
         d="M353.188,252.052c-23.51,0-46.594-3.677-68.469-10.906c-10.719-3.656-23.896-0.302-30.438,6.417l-43.177,32.594
