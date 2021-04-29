@@ -21,7 +21,7 @@ export interface Props {
   type?: 'submit' | 'reset' | 'button';
   shape?: 'round' | 'square';
   size?: 'small' | 'medium' | 'large';
-  buttonStyle?: 'filled' | 'outlined' | 'text';
+  buttonStyle?: 'filled' | 'outlined' | 'text' | 'link';
   theme?: 'dark' | 'light';
   disabled?: boolean;
   pending?: boolean;

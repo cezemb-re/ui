@@ -43,7 +43,7 @@ export default function App(): ReactElement {
     <div className="App">
       <div className="header">
         <Button
-          buttonStyle="text"
+          buttonStyle="link"
           leftIcon={IconName.ARROW}
           leftIconRotation={180}
           onClick={() => {

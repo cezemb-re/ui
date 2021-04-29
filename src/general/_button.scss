@@ -123,13 +123,13 @@
   &.filled {
     background: $color-lead;
 
-    > .container > .body {
+    > .container {
 
       svg {
         fill: $color-lead-light;
       }
 
-      > span {
+      > .body > span {
         color: $color-lead-light;
       }
     }
@@ -143,21 +143,26 @@
   &.outlined {
     border: solid $color-lead 1px;
 
-    svg {
-      fill: $color-lead;
+    > .container {
+      svg {
+        fill: $color-lead;
+      }
     }
 
     &:hover, &.active {
       background: $color-lead;
 
-      svg {
-        fill: $color-lead-light;
-      }
+      > .container {
 
-      > .container > .body > span {
-        color: $color-lead-light;
-      }
+        svg {
+          fill: $color-lead-light;
+        }
 
+        > .body > span {
+          color: $color-lead-light;
+        }
+
+      }
 
     }
 
@@ -165,19 +170,70 @@
 
   &.text {
 
-    svg {
-      fill: $color-lead;
+    > .container {
+
+      svg {
+        fill: $color-lead;
+      }
+
     }
 
     &:hover, &.active {
       background: $color-lead;
 
-      svg {
-        fill: $color-lead-light;
+      > .container {
+
+        svg {
+          fill: $color-lead-light;
+        }
+
+        > .container > .body > span {
+          color: $color-lead-light;
+        }
+
       }
 
-      > .container > .body > span {
-        color: $color-lead-light;
+    }
+
+  }
+
+  &.link {
+    padding: 0;
+
+    > .container {
+      svg {
+        fill: $color-text-light;
+      }
+
+      > .body > span {
+        color: $color-text-light;
+      }
+    }
+
+    &:hover {
+
+      > .container {
+        svg {
+          fill: $color-text;
+        }
+
+        > .body > span {
+          color: $color-text;
+        }
+      }
+
+    }
+
+    &.active {
+
+      > .container {
+        svg {
+          fill: $color-lead;
+        }
+
+        > .body > span {
+          color: $color-lead;
+        }
       }
 
     }
