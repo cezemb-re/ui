@@ -291,18 +291,6 @@ export default function Input<Value = string>({
     setTimeout(() => setSuggestionsActive(false), 200);
   }, [onBlur]);
 
-  const [resolvedValue, setResolvedValue] = useState<string | number>('');
-
-  useEffect(() => {
-    if (resolver) {
-      setResolvedValue(resolver(value));
-    } else if (typeof value === 'string' || typeof value === 'number') {
-      setResolvedValue(value);
-    } else {
-      setResolvedValue('');
-    }
-  }, [value, resolver]);
-
   return (
     <div className={classNames.join(' ')}>
       {label ? <label htmlFor={name}>{label}</label> : null}
@@ -313,7 +301,14 @@ export default function Input<Value = string>({
         <input
           ref={inputRef}
           name={name}
-          value={resolvedValue}
+          value={
+            // eslint-disable-next-line no-nested-ternary
+            resolver
+              ? resolver(value)
+              : typeof value === 'string' || typeof value === 'number'
+              ? value
+              : ''
+          }
           type={type || Type.TEXT}
           placeholder={placeholder || ''}
           autoComplete={autoComplete || AutoComplete.OFF}
