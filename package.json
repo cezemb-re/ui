@@ -1,7 +1,7 @@
 {
   "name": "@cezembre/ui",
   "author": "Lucien Perouze",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "license": "MIT",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
