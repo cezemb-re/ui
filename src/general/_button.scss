@@ -52,11 +52,11 @@
         padding: 0 15px;
 
         @include screen-laptop() {
-          font-size: .8em;
+          font-size: .85em;
         }
 
         @include screen-tablet() {
-          font-size: .7em;
+          font-size: .8em;
         }
 
       }
@@ -251,20 +251,6 @@
         color: $color-text-light;
       }
 
-      &:hover, &.active {
-        background: $color-lead;
-
-        svg {
-          fill: $color-lead-light;
-        }
-
-        > .container > .body > span {
-          color: $color-lead-light;
-        }
-
-
-      }
-
       &:hover {
         background: none;
 
@@ -279,7 +265,7 @@
       }
 
       &.active {
-        background: rgba(black, .05);
+        background: none;
 
         svg {
           fill: $color-lead;

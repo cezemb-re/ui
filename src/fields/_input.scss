@@ -2,29 +2,16 @@
   width: 100%;
 
   > label {
-    @include JetBrainsMono(.8em, $color-lead);
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    padding-bottom: 8px;
-    padding-left: 12px;
-    display: inline-block;
+    @include CezembreLabel();
 
   }
 
   > .container {
-    transition: border linear 100ms;
-    background: white;
-    border: solid $color-border 1px;
-    border-radius: 8px;
-    width: 100%;
+    @include CezembreField();
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: relative;
-
-    &:hover {
-      border-color: $color-placeholder;
-    }
 
     > .left-icon {
       padding-left: 15px;

@@ -1,16 +1,20 @@
 @import "node_modules/@cezembre/ui/lib/style";
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
 
     .App {
         font-size: 14px;
-        background: $color-background;
 
         > .header {
+            background: $color-background;
             width: 100%;
             padding: 20px;
-            border-bottom: solid $color-border 2px;
+            @include border();
         }
 
     }
