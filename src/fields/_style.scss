@@ -1,26 +1,26 @@
 @mixin CezembreLabel {
   @include JetBrainsMono(.9em);
-  letter-spacing: .12em;
-  text-transform: uppercase;
   padding-bottom: 8px;
   padding-left: 12px;
   display: inline-block;
 }
 
 @mixin CezembreField {
-  transition: border linear 100ms;
-  border: solid $color-border 1px;
-  background: white;
+  transition: border linear 100ms, background linear 100ms, box-shadow linear 100ms;
+  border: solid $color-placeholder 1px;
+  background: $color-placeholder;
+  box-shadow: 0 0 5px rgba($color-lead-dark, 0);
   border-radius: 5px;
   width: 100%;
-  position: relative;
 
   &:hover {
-    border-color: $color-placeholder;
+    box-shadow: 0 0 5px rgba($color-lead-dark, .15);
+    border-color: $color-border;
   }
 
-  &:focus {
-    border-color: $color-lead;
+  &:focus, &.active {
+    background: white;
+    border-color: $color-border;
   }
 
 }

@@ -295,7 +295,7 @@ export default function Input<Value = string>({
     <div className={classNames.join(' ')}>
       {label ? <label htmlFor={name}>{label}</label> : null}
 
-      <div className="container">
+      <div className={`container${isActive ? ' active' : ''}`}>
         {leftIcon ? <div className="left-icon">{leftIcon}</div> : null}
 
         <input

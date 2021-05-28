@@ -7,8 +7,8 @@
   }
 
   > textarea {
-    @include CezembreField();
     @include JetBrainsMono();
+    @include CezembreField();
     display: block;
     flex: 1;
     padding: 8px 12px;

@@ -1,0 +1,11 @@
+.cezembre-ui-datetime {
+  @include JetBrainsMono(.9em);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  > .time {
+    color: $color-text-medium;
+
+  }
+}

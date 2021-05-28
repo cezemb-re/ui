@@ -1,5 +1,6 @@
 table.cezembre-ui-table {
   width: 100%;
+  table-layout: fixed;
   border: none;
   outline: none;
   margin: 0;
@@ -44,19 +45,33 @@ table.cezembre-ui-table {
       transition: background linear 100ms;
 
       > td {
-        @include JetBrainsMono(.9em, $color-text);
-        padding: 10px;
+        margin: 0;
         border: none;
         outline: none;
+        padding: 10px;
 
         &:first-child {
-          border-bottom-left-radius: 10px;
-          border-top-left-radius: 10px;
+          border-bottom-left-radius: 5px;
+          border-top-left-radius: 5px;
         }
 
         &:last-child {
-          border-bottom-right-radius: 10px;
-          border-top-right-radius: 10px;
+          border-bottom-right-radius: 5px;
+          border-top-right-radius: 5px;
+        }
+
+        > p {
+          @include JetBrainsMono(.9em, $color-text);
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+
+          &.boolean {
+            svg {
+              fill: $color-text;
+            }
+          }
+
         }
 
       }

@@ -34,7 +34,7 @@
       }
 
       &::placeholder {
-        color: rgba($color-lead, .3);
+        color: rgba($color-text-medium, .3);
         font-style: italic;
       }
 
@@ -78,12 +78,6 @@
 
       }
 
-    }
-  }
-
-  &.active {
-    > .container {
-      border-color: $color-lead;
     }
   }
 

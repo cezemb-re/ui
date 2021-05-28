@@ -1,33 +1,32 @@
 import React, { ReactElement } from 'react';
-import {
-  Dashboard,
-  Alert,
-  AppleStore,
-  Arrow,
-  Bouquet,
-  Delivery,
-  Marker,
-  Mastercard,
-  Plus,
-  Search,
-  Shop,
-  Time,
-  User,
-  Visa,
-  Download,
-  Cart,
-  Check,
-  Chevron,
-  Camera,
-  Sides,
-  Bin,
-  Edit,
-  Refresh,
-  Phone,
-  Info,
-  Message,
-  Calendar,
-} from '../icons';
+import Dashboard from '../icons/dashboard';
+import Alert from '../icons/alert';
+import AppleStore from '../icons/appleStore';
+import Arrow from '../icons/arrow';
+import Bouquet from '../icons/bouquet';
+import Delivery from '../icons/delivery';
+import Marker from '../icons/marker';
+import Mastercard from '../icons/mastercard';
+import Plus from '../icons/plus';
+import Search from '../icons/search';
+import Shop from '../icons/shop';
+import Time from '../icons/time';
+import User from '../icons/user';
+import Visa from '../icons/visa';
+import Download from '../icons/download';
+import Cart from '../icons/cart';
+import Check from '../icons/check';
+import Chevron from '../icons/chevron';
+import Camera from '../icons/camera';
+import Sides from '../icons/sides';
+import Bin from '../icons/bin';
+import Edit from '../icons/edit';
+import Refresh from '../icons/refresh';
+import Phone from '../icons/phone';
+import Info from '../icons/info';
+import Message from '../icons/message';
+import Calendar from '../icons/calendar';
+import Cross from '../icons/cross';
 
 export enum IconName {
   DASHBOARD = 'dashboard',
@@ -57,6 +56,7 @@ export enum IconName {
   INFO = 'info',
   MESSAGE = 'message',
   CALENDAR = 'calendar',
+  CROSS = 'cross',
 }
 
 export interface Props {
@@ -163,6 +163,9 @@ export default function Icon({
       break;
     case IconName.CALENDAR:
       Svg = <Calendar size={size} color={color} />;
+      break;
+    case IconName.CROSS:
+      Svg = <Cross size={size} color={color} />;
       break;
     default:
       Svg = null;

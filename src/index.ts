@@ -4,6 +4,7 @@ import Check from './general/check';
 import Button from './general/button';
 import Image from './general/image';
 import Avatar from './general/avatar';
+import SelectionModal from './modals/selection';
 import CheckBox from './fields/checkbox';
 import DatePicker from './fields/datePicker';
 import TimePicker from './fields/timePicker';
@@ -12,8 +13,9 @@ import Input from './fields/input';
 import Select from './fields/select';
 import Switch from './fields/switch';
 import Textarea from './fields/textarea';
+import Wysiwyg from './fields/wysiwyg';
 import Model from './data/model';
-import Type from './data/types';
+import DataType from './data/types';
 import Table, { Column } from './data/table';
 import Cell from './data/cell';
 import Overlay from './navigation/overlay';
@@ -23,6 +25,11 @@ import UploadImage from './uploads/image';
  * Genral
  */
 export { Icon, IconName, Loader, Check, Button, Image, Avatar };
+
+/**
+ * Modals
+ */
+export { SelectionModal };
 
 /**
  * Fields
@@ -36,14 +43,15 @@ export {
   Input,
   Textarea,
   Select,
+  Wysiwyg,
 };
 
 /**
  * Data
  */
-export { Table, Cell };
+export { Table, Cell, DataType };
 
-export type { Column, Model, Type };
+export type { Column, Model };
 
 /**
  * Navigation

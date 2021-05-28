@@ -1,3 +1,138 @@
 .cezembre-ui-fields-wysiwyg {
+  width: 100%;
+
+  > label {
+    @include CezembreLabel();
+
+  }
+
+  > .container {
+    cursor: text;
+
+    > .DraftEditor-root {
+
+      > .public-DraftEditorPlaceholder-root {
+        @include JetBrainsMono(1em, rgba($color-text, .5));
+        font-style: italic;
+        position: absolute;
+        pointer-events: none;
+      }
+
+      > .DraftEditor-editorContainer {
+        @include JetBrainsMono();
+
+      }
+
+    }
+
+    .contextual-menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+
+      &::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid $color-lead-dark;
+        transform: translateY(-1px);
+      }
+
+      > .sections {
+        background: $color-lead-dark;
+        border-radius: 5px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        > .section {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &::before {
+            content: "";
+            display: block;
+            width: 1px;
+            height: 15px;
+            background: $color-lead-light;
+            margin: 0 8px;
+          }
+
+          &:first-child {
+            &::before {
+              display: none;
+            }
+          }
+
+          > button {
+            @include JetBrainsMono(1em, white);
+            cursor: pointer;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border: none;
+            outline: none;
+            text-decoration: none;
+            flex-shrink: 0;
+            margin: 0;
+            padding: 10px;
+            background: transparent;
+
+            &.bold {
+              font-weight: bold;
+            }
+
+            &.italic {
+              font-style: italic;
+            }
+
+            &.underline {
+              text-decoration: underline;
+            }
+
+            &.header-one {
+              font-size: 1.2em;
+            }
+
+            &.header-two {
+              font-size: 1.1em;
+            }
+
+            &.blockquote {
+              font-family: "Times New Roman";
+            }
+
+            &.active {
+              color: $color-accent;
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  &.field > .container {
+    @include CezembreField();
+    padding: 20px;
+
+  }
+
+  &.paragraph > .container > .DraftEditor-root  {
+    font-size: 1.3em;
+  }
 
 }
