@@ -7,7 +7,6 @@
   }
 
   > .container {
-    @include CezembreField();
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -125,6 +124,15 @@
       color: $color-warning;
     }
 
+  }
+
+  &.field > .container {
+    @include CezembreField();
+
+  }
+
+  &.inline > .container > input::placeholder {
+    color: rgba($color-text, .5);
   }
 
 }

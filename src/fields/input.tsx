@@ -92,12 +92,14 @@ function Suggestion({ suggestion }: SuggestionProps): React.ReactElement {
   );
 }
 
+export type InputStyle = 'field' | 'inline';
+
 export interface Props<Value = string, Suggestion = any>
   extends FieldComponentProps<Value> {
   adapter?: Adapter<Value>;
   resolver?: Resolver<Value>;
   type?: Type | string | null;
-  inputStyle?: 'default';
+  inputStyle?: InputStyle;
   label?: string | null;
   placeholder?: string | null;
   instructions?: string | null;
@@ -129,7 +131,7 @@ export default function Input<Value = string>({
   type = Type.TEXT,
   adapter = undefined,
   resolver = undefined,
-  inputStyle = 'default',
+  inputStyle = 'field',
   label = null,
   placeholder = null,
   instructions = null,

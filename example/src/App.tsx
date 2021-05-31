@@ -99,91 +99,23 @@ export default function App(): ReactElement {
       />
 
       <Form className="form cezembre-ui-form">
-        <div className="field">
-          <Field name="title" label="Titre" component={Input} />
+        <div className="field title">
+          <Field name="title" placeholder="Titre ..." component={Input} inputStyle="inline" />
         </div>
 
         <div className="field">
           <Field name="description" label="Description" component={Textarea} />
         </div>
 
-        <div className="field">
-          <Field name="composition" label="Composition" component={Wysiwyg} type="paragraph" />
+        <div className="field composition">
+          <Field
+            name="composition"
+            component={Wysiwyg}
+            type="paragraph"
+            placeholder="Composition ..."
+          />
         </div>
       </Form>
-
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </div>
   );
 }
