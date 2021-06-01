@@ -40,6 +40,7 @@
       > .left-icon {
         align-self: center;
         flex-shrink: 0;
+        margin-right: 15px;
       }
 
       > span {
@@ -49,7 +50,6 @@
         white-space: nowrap;
         overflow: hidden;
         flex-shrink: 2;
-        padding: 0 15px;
 
         @include screen-laptop() {
           font-size: .85em;
@@ -66,6 +66,7 @@
     > .right-icon {
       align-self: center;
       flex-shrink: 0;
+      margin-left: 15px;
 
     }
   }
@@ -214,11 +215,11 @@
 
       > .container {
         svg {
-          fill: rgba($color-lead, .4);
+          fill: rgba($color-text, .4);
         }
 
         > .body > span {
-          color: rgba($color-lead, .4);
+          color: rgba($color-text, .4);
         }
       }
 

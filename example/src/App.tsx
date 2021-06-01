@@ -115,6 +115,8 @@ export default function App(): ReactElement {
           />
         </div>
       </Form>
+
+      <Button buttonStyle="link">Oui</Button>
     </div>
   );
 }
