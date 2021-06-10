@@ -5,7 +5,8 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import useImageDimensions, {
+import {
+  useImageDimensions,
   AspectRatio,
   calcHeight,
   calcWidth,
@@ -13,8 +14,8 @@ import useImageDimensions, {
   PlaceholderCategory,
   placeIMG,
   resolveRatio,
-} from '../helpers/images';
-import useMeasure from '../helpers/measure';
+  useMeasure,
+} from '@cezembre/fronts';
 
 export interface Props {
   src?: string | null;

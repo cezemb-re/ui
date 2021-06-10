@@ -8,10 +8,10 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { AspectRatio, Mode } from '@cezembre/fronts';
 import Loader from '../general/loader';
 import Icon, { IconName } from '../general/icon';
 import Image, { Props as ImageProps } from '../general/image';
-import { AspectRatio, Mode } from '../helpers/images';
 
 const reader = new FileReader();
 

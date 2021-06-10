@@ -20,7 +20,7 @@
   },
   "scripts": {
     "build-scripts": "tsc --build",
-    "build-styles": "sass ./src/style.scss ./lib/style.css && rsync -av --include='*/' --include='**/*.scss' --exclude='*' ./src/ ./lib/",
+    "build-styles": "sass --load-path=node_modules/ ./src/style.scss ./lib/style.css && rsync -av --include='*/' --include='**/*.scss' --exclude='*' ./src/ ./lib/",
     "build": "npm run build-scripts && npm run build-styles",
     "watch": "nodemon --watch src -e ts,tsx,scss --exec 'npm run build'",
     "test": "echo 'No tests written",
@@ -30,7 +30,7 @@
   },
   "peerDependencies": {
     "react": ">=16.8.0",
-    "@cezembre/fronts": ">=0.1.1",
+    "@cezembre/fronts": ">=0.1.3",
     "@cezembre/forms": ">=1.5.3",
     "luxon": ">=1.26.0",
     "react-router-dom": ">=5.2.0"
@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@cezembre/forms": "^1.5.3",
-    "@cezembre/fronts": "^0.1.1",
+    "@cezembre/fronts": "^0.1.3",
     "@release-it/conventional-changelog": "^2.0.1",
     "@types/draft-js": "^0.11.3",
     "@types/lodash.isequal": "^4.5.5",
