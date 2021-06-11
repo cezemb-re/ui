@@ -34,6 +34,7 @@ export interface Props
   label?: string;
   placeholder?: string;
   type?: Type;
+  debounce?: number;
 }
 
 export default function Wysiwyg({
@@ -48,6 +49,7 @@ export default function Wysiwyg({
   label,
   placeholder = 'Votre texte ici ...',
   type = Type.FIELD,
+  debounce = 1000,
 }: Props): ReactElement {
   const editor = useRef<Editor | null>(null);
 
@@ -77,11 +79,17 @@ export default function Wysiwyg({
     [onChange]
   );
 
-  const computeEditorState = useRef(_.debounce(dispatchChange, 1000));
+  const debouncedDispatchChange = useRef(_.debounce(dispatchChange, debounce));
 
-  useEffect(() => {
-    computeEditorState.current(editorState);
-  }, [editorState]);
+  const changeEditorState = useCallback(
+    (state: EditorState) => {
+      setEditorState(state);
+      if (editorState.getCurrentContent() !== state.getCurrentContent()) {
+        debouncedDispatchChange.current(state);
+      }
+    },
+    [editorState]
+  );
 
   const [bold, setBold] = useState<boolean>(false);
   const [italic, setItalic] = useState<boolean>(false);
@@ -95,12 +103,13 @@ export default function Wysiwyg({
     setUnderline(inlineStyle.has('UNDERLINE'));
   }, [editorState]);
 
-  const toggleInlineStyle = useCallback((event, inlineStyle: InlineStyle) => {
-    event.preventDefault();
-    setEditorState((state: EditorState) =>
-      RichUtils.toggleInlineStyle(state, inlineStyle)
-    );
-  }, []);
+  const toggleInlineStyle = useCallback(
+    (event, inlineStyle: InlineStyle) => {
+      event.preventDefault();
+      changeEditorState(RichUtils.toggleInlineStyle(editorState, inlineStyle));
+    },
+    [changeEditorState, editorState]
+  );
 
   const [currentBlockType, setCurrentBlockType] = useState<BlockType>(
     'unstyled'
@@ -111,12 +120,13 @@ export default function Wysiwyg({
     setCurrentBlockType(RichUtils.getCurrentBlockType(editorState));
   }, [editorState]);
 
-  const switchBlockType = useCallback((event, blockType: BlockType) => {
-    event.preventDefault();
-    setEditorState((state: EditorState) =>
-      RichUtils.toggleBlockType(state, blockType)
-    );
-  }, []);
+  const switchBlockType = useCallback(
+    (event, blockType: BlockType) => {
+      event.preventDefault();
+      changeEditorState(RichUtils.toggleBlockType(editorState, blockType));
+    },
+    [changeEditorState, editorState]
+  );
 
   const [classNames, setClassNames] = useState<string[]>([
     'cezembre-ui-fields-wysiwyg',
@@ -172,7 +182,7 @@ export default function Wysiwyg({
         <Editor
           ref={editor}
           editorState={editorState}
-          onChange={setEditorState}
+          onChange={changeEditorState}
           onFocus={onFocus}
           onBlur={onBlur}
           placeholder={placeholder}

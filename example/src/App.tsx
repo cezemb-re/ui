@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useCallback, useState } from 'react';
 import './App.scss';
 import { Table, Button, Overlay, IconName, Input, Textarea, DataType, Wysiwyg } from '@cezembre/ui';
 import { Field, Form } from '@cezembre/forms';
@@ -52,6 +52,10 @@ export default function App(): ReactElement {
   const [visible, setVisible] = useState(false);
   const [closed, setClosed] = useState(false);
 
+  const onChange = useCallback((fields, changes) => {
+    console.log('Change !', changes);
+  }, []);
+
   return (
     <div className="App">
       <div className="header">
@@ -97,7 +101,7 @@ export default function App(): ReactElement {
         onClickItem={() => null}
       />
 
-      <Form className="form cezembre-ui-form">
+      <Form className="form cezembre-ui-form" onChange={onChange}>
         <div className="field title">
           <Field name="title" placeholder="Titre ..." component={Input} inputStyle="inline" />
         </div>
