@@ -118,6 +118,10 @@ export default function App(): ReactElement {
             placeholder="Composition ..."
           />
         </div>
+
+        <div className="field composition">
+          <Field name="other" component={Wysiwyg} type="paragraph" placeholder="Autre ..." />
+        </div>
       </Form>
 
       <Button buttonStyle="link">Oui</Button>

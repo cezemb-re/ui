@@ -36,6 +36,8 @@ export default function Selection({ children, filter }: Props): ReactElement {
             });
             setIsActive(true);
           }
+        } else {
+          setIsActive(false);
         }
       } else {
         setIsActive(false);

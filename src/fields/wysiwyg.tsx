@@ -51,6 +51,7 @@ export default function Wysiwyg({
   type = Type.FIELD,
   debounce = 1000,
 }: Props): ReactElement {
+  const key = useRef<string>(Math.random().toString(36).substr(2, 10));
   const editor = useRef<Editor | null>(null);
 
   const getInitialEditorState = useCallback((): EditorState => {
@@ -159,7 +160,9 @@ export default function Wysiwyg({
       if (
         'getAttribute' in node &&
         (node as Element).getAttribute &&
-        (node as Element).getAttribute('data-block') === 'true'
+        (node as Element).getAttribute('class')?.substr(0, 26) ===
+          'cezembre-ui-fields-wysiwyg' &&
+        (node as Element).getAttribute('data-key') === key.current
       ) {
         return true;
       }
@@ -169,7 +172,7 @@ export default function Wysiwyg({
   }, []);
 
   return (
-    <div className={classNames.join(' ')}>
+    <div className={classNames.join(' ')} data-key={key.current}>
       {label ? <label htmlFor={name}>{label}</label> : null}
 
       <div
@@ -180,6 +183,7 @@ export default function Wysiwyg({
         onKeyUp={() => undefined}
       >
         <Editor
+          editorKey={name}
           ref={editor}
           editorState={editorState}
           onChange={changeEditorState}
