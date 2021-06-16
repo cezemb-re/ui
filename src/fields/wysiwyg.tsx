@@ -4,6 +4,7 @@ import React, {
   useRef,
   useCallback,
   ReactElement,
+  KeyboardEvent,
 } from 'react';
 import {
   Editor,
@@ -15,6 +16,8 @@ import {
   RawDraftContentState,
   DraftBlockType,
   DraftInlineStyleType,
+  getDefaultKeyBinding,
+  DraftHandleValue,
 } from 'draft-js';
 import _ from 'lodash';
 import { FieldComponentProps } from '@cezembre/forms';
@@ -35,6 +38,7 @@ export interface Props
   placeholder?: string;
   type?: Type;
   debounce?: number;
+  onDelete?: () => void;
 }
 
 export default function Wysiwyg({
@@ -47,6 +51,7 @@ export default function Wysiwyg({
   warning,
   error,
   label,
+  onDelete,
   placeholder = 'Votre texte ici ...',
   type = Type.FIELD,
   debounce = 1000,
@@ -171,6 +176,30 @@ export default function Wysiwyg({
     return false;
   }, []);
 
+  const keyBindingFn = useCallback(
+    (event: KeyboardEvent): string | null => {
+      if (
+        event.nativeEvent.code === 'Backspace' &&
+        !editorState.getCurrentContent().hasText()
+      ) {
+        return 'delete';
+      }
+      return getDefaultKeyBinding(event);
+    },
+    [editorState]
+  );
+
+  const handleKeyCommand = useCallback(
+    (command: string): DraftHandleValue => {
+      if (command === 'delete' && onDelete) {
+        onDelete();
+        return 'handled';
+      }
+      return 'not-handled';
+    },
+    [onDelete]
+  );
+
   return (
     <div className={classNames.join(' ')} data-key={key.current}>
       {label ? <label htmlFor={name}>{label}</label> : null}
@@ -190,6 +219,8 @@ export default function Wysiwyg({
           onFocus={onFocus}
           onBlur={onBlur}
           placeholder={placeholder}
+          keyBindingFn={keyBindingFn}
+          handleKeyCommand={handleKeyCommand}
         />
 
         <SelectionModal filter={filterSelection}>
