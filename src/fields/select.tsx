@@ -1,11 +1,4 @@
-import React, {
-  ReactNode,
-  ReactElement,
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-} from 'react';
+import { ReactNode, ReactElement, useState, useEffect, useCallback, useRef } from 'react';
 import _ from 'lodash';
 import { FieldComponentProps } from '@cezembre/forms';
 import { useClickOutside } from '@cezembre/fronts';

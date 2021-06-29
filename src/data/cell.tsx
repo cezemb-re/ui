@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { DateTime } from 'luxon';
 import Model from './model';
 import Type from './types';

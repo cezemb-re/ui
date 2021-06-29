@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useState } from 'react';
+import { ReactElement, useCallback, useState } from 'react';
 import './App.scss';
 import { Table, Button, Overlay, IconName, Input, Textarea, DataType, Wysiwyg } from '@cezembre/ui';
 import { Field, Form } from '@cezembre/forms';

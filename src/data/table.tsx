@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback } from 'react';
+import { ReactElement, useCallback } from 'react';
 import Model from './model';
 import Cell from './cell';
 import Type from './types';

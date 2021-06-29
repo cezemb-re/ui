@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import Dashboard from '../icons/dashboard';
 import Alert from '../icons/alert';
 import AppleStore from '../icons/appleStore';

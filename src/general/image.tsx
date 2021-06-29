@@ -1,10 +1,4 @@
-import React, {
-  ReactElement,
-  CSSProperties,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { ReactElement, CSSProperties, useEffect, useRef, useState } from 'react';
 import {
   useImageDimensions,
   AspectRatio,

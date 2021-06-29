@@ -1,4 +1,4 @@
-import React, {
+import {
   useCallback,
   useEffect,
   useRef,
@@ -9,6 +9,8 @@ import React, {
   FC,
   ReactNode,
 } from 'react';
+
+import * as React from 'react';
 import { FieldComponentProps } from '@cezembre/forms';
 
 export enum Type {
@@ -78,7 +80,9 @@ export enum AutoComplete {
 }
 
 export type Adapter<Value = any> = (value: string | number) => Value;
-export type Resolver<Value = any> = (value: Value) => string | number;
+export type Resolver<Value = any> = (
+  value: Value | undefined
+) => string | number;
 
 export interface SuggestionProps {
   suggestion: ReactNode;
@@ -218,7 +222,7 @@ export default function Input<Value = string>({
       if (adapter) {
         onChange(adapter(event.target.value));
       } else {
-        onChange((event.target.value as never) as Value);
+        onChange(event.target.value as never as Value);
       }
       setSelectedSuggestion(null);
     },
