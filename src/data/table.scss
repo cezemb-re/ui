@@ -61,7 +61,7 @@ table.cezembre-ui-table {
         }
 
         > p {
-          @include JetBrainsMono(.9em, colors.$text);
+          @include fonts.JetBrainsMono(.9em, colors.$text);
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;
