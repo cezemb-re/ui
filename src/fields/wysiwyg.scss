@@ -119,8 +119,13 @@
     }
   }
 
-  @include forms.error();
-  @include forms.warning();
+  >.error {
+    @include forms.error();
+  }
+
+  > .warning {
+    @include forms.warning();
+  }
 
   &.field > .container {
     @include forms.input();
