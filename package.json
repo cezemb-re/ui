@@ -18,7 +18,7 @@
     "cezembre"
   ],
   "files": [
-    "lib"
+    "dist"
   ],
   "engines": {
     "node": ">=10"
