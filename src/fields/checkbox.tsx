@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import * as React from 'react';
 import { FieldComponentProps } from '@cezembre/forms';
 import Check from '../general/check';
+import Icon from '../general/icon';
 
 export interface Props extends FieldComponentProps {
   label?: string;
@@ -50,14 +51,14 @@ export default function Checkbox({
 
       {error ? (
         <div className="error">
-          <i data-feather="alert" />
+          <Icon name="alert" />
           <span>{error}</span>
         </div>
       ) : null}
 
       {warning ? (
         <div className="warning">
-          <i data-feather="alert" />
+          <Icon name="alert" />
           <span>{warning}</span>
         </div>
       ) : null}

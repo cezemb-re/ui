@@ -337,14 +337,14 @@ export default function Input<Value = string>({
 
       {(visited || submitted) && !isActive && error ? (
         <div className="error">
-          <i data-feather="alert" />
+          <Icon name="alert" />
           <span>{error}</span>
         </div>
       ) : null}
 
       {warning ? (
         <div className="warning">
-          <i data-feather="alert" />
+          <Icon name="alert" />
           <span>{warning}</span>
         </div>
       ) : null}

@@ -3,6 +3,7 @@ import { FieldComponentProps } from '@cezembre/forms';
 import { DateTime } from 'luxon';
 import { useClickOutside, formatRelativeDate } from '@cezembre/fronts';
 import Button from '../general/button';
+import Icon from '../general/icon';
 
 export interface Props extends FieldComponentProps<DateTime | null> {
   placeholder?: string;
@@ -110,13 +111,13 @@ export default function DatePicker({
       <div className={`picker${!expanded ? ' expandable' : ''}${isExpanded ? ' expanded' : ''}`}>
         <div className="month">
           <button onClick={previousMonth}>
-            <i data-feather="arrow" />
+            <Icon name="arrow" />
           </button>
 
           <span>{month.toFormat('LLLL yyyy')}</span>
 
           <button onClick={nextMonth}>
-            <i data-feather="arrow" />
+            <Icon name="arrow" />
           </button>
         </div>
 

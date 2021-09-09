@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { FieldComponentProps } from '@cezembre/forms';
 import { useClickOutside } from '@cezembre/fronts';
 import Button from '../general/button';
-import { IconName } from '../general/icon';
+import Icon, { IconName } from '../general/icon';
 
 export enum Type {
   DROPDOWN = 'dropdown',
@@ -142,14 +142,14 @@ export default function Select({
 
       {error ? (
         <div className="error">
-          <i data-feather="alert" />
+          <Icon name="alert" />
           <span>{error}</span>
         </div>
       ) : null}
 
       {warning ? (
         <div className="warning">
-          <i data-feather="alert" />
+          <Icon name="alert" />
           <span>{warning}</span>
         </div>
       ) : null}
