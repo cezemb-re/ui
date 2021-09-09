@@ -1,6 +1,7 @@
 @use '~@cezembre/fronts/dist/layouts';
 @use '../styles/colors';
 @use '../styles/fonts';
+@use "../styles/forms";
 
 .cezembre-ui-fields-date-time-picker {
   position: relative;
@@ -62,4 +63,7 @@
       opacity: 1;
     }
   }
+
+  @include forms.error();
+  @include forms.warning();
 }

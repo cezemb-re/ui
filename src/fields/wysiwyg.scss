@@ -119,6 +119,9 @@
     }
   }
 
+  @include forms.error();
+  @include forms.warning();
+
   &.field > .container {
     @include forms.input();
     padding: 20px;

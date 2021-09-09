@@ -36,9 +36,35 @@
 }
 
 @mixin error {
-  @include fonts.JetBrainsMono(.9em, colors.$error);
-  text-align: center;
-  margin-top: 20px;
+  @include fonts.JetBrainsMono(1em, colors.$error);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 15px;
+
+  > svg {
+    fill: colors.$error;
+  }
+
+  > span {
+    margin-left: 10px;
+  }
+}
+
+@mixin warning {
+  @include fonts.JetBrainsMono(1em, colors.$warning);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 15px;
+
+  > svg {
+    fill: colors.$warning;
+  }
+
+  > span {
+    margin-left: 10px;
+  }
 }
 
 @mixin submit {
@@ -51,6 +77,10 @@
   }
 
   > .error {
+    @include error;
+  }
+
+  > .warning {
     @include error;
   }
 

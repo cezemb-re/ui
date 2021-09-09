@@ -1,5 +1,6 @@
 @use "../styles/fonts";
 @use "../styles/colors";
+@use "../styles/forms";
 
 .cezembre-ui-fields-time-picker {
   height: 300px;
@@ -52,4 +53,7 @@
       }
     }
   }
+
+  @include forms.error();
+  @include forms.warning();
 }

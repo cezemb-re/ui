@@ -39,29 +39,6 @@
     }
   }
 
-  > .error, > .warning {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: 15px;
-
-    @include screens.tablet() {
-      margin-top: 10px;
-    }
-
-    > span {
-      @include fonts.JetBrainsMono(.9em, colors.$error);
-      margin-left: 10px;
-
-      @include screens.tablet() {
-        font-size: .9em;
-      }
-    }
-  }
-
-  > .warning {
-    > span {
-      color: colors.$lead;
-    }
-  }
+  @include forms.error();
+  @include forms.warning();
 }

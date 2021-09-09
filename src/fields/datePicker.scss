@@ -1,6 +1,7 @@
 @use '~@cezembre/fronts/dist/layouts';
 @use '../styles/colors';
 @use '../styles/fonts';
+@use "../styles/forms";
 
 .cezembre-ui-fields-date-picker {
   position: relative;
@@ -108,4 +109,7 @@
       }
     }
   }
+
+  @include forms.error();
+  @include forms.warning();
 }
