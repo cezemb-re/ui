@@ -1,16 +1,13 @@
 import { ReactElement } from 'react';
-
-export interface Props {
-  size?: number;
-  color?: string;
-}
+import colors from '../styles/_colors.scss';
+import IconProps from './props';
 
 export default function Download({
-  color,
-  size = 20,
-}: Props): ReactElement<SVGElement> {
+  size = 15,
+  color = colors.TEXT,
+}: IconProps): ReactElement<SVGElement> {
   return (
-    <svg viewBox="0 0 341.92 500" width={size} fill={color as string}>
+    <svg viewBox="0 0 341.92 500" width={size} fill={color}>
       <title>Download</title>
       <path
         d="M304.16,0H37.82A37.83,37.83,0,0,0,0,37.79V462.21A37.83,37.83,0,0,0,37.82,500H304.16A37.83,37.83,0,0,0,342,462.21V37.79A37.83,37.83,0,0,0,304.16,0Zm11.49,462.21a11.5,11.5,0,0,1-11.49,11.49H37.82a11.51,11.51,0,0,1-11.49-11.49V37.79A11.51,11.51,0,0,1,37.82,26.3H304.16a11.5,11.5,0,0,1,11.49,11.49Z"

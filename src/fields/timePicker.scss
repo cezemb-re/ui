@@ -1,4 +1,7 @@
-.ui-fields-time-picker {
+@use "../styles/fonts";
+@use "../styles/colors";
+
+.cezembre-ui-fields-time-picker {
   height: 300px;
 
   > .container {
@@ -6,7 +9,7 @@
     height: 100%;
 
     > ul  {
-      border-left: solid rgba($color-lead, .1) 1px;
+      border-left: solid rgba(colors.$lead, .1) 1px;
       height: 100%;
       margin: 0;
       padding: 0;
@@ -24,7 +27,7 @@
 
         > button {
           width: 100%;
-          @include JetBrainsMono(1em);
+          @include fonts.JetBrainsMono(1em);
           margin: 0;
           background: none;
           border: none;
@@ -33,26 +36,20 @@
           padding: 5px 25px 5px 15px;
 
           &:hover {
-            background: rgba($color-lead, .1);
+            background: rgba(colors.$lead, .1);
           }
 
           &.selected {
-            background: $color-lead;
-            color: $color-lead-light;
+            background: colors.$lead;
+            color: colors.$lead-light;
 
             &:hover {
-              background: $color-lead;
-              color: $color-lead-light;
+              background: colors.$lead;
+              color: colors.$lead-light;
             }
-
           }
-
         }
-
       }
-
     }
-
   }
-
 }

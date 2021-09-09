@@ -52,18 +52,14 @@ export default function DateTimePicker({
   }, [format, placeholder, value]);
 
   return (
-    <div ref={picker} className="ui-fields-date-time-picker">
+    <div ref={picker} className="cezembre-ui-fields-date-time-picker">
       {!expanded ? (
         <Button style={buttonStyle} onClick={() => setIsExpanded(true)}>
           {getLabel()}
         </Button>
       ) : null}
 
-      <div
-        className={`picker${!expanded ? ' expandable' : ''}${
-          isExpanded ? ' expanded' : ''
-        }`}
-      >
+      <div className={`picker${!expanded ? ' expandable' : ''}${isExpanded ? ' expanded' : ''}`}>
         <div className="date">
           <DatePicker
             value={value}

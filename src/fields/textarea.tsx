@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import * as React from 'react';
+import { ReactElement } from 'react';
 import { FieldComponentProps } from '@cezembre/forms';
-import Icon, { IconName } from '../general/icon';
+import Icon from '../general/icon';
 
 export interface Props {
   label?: string | null;
@@ -10,7 +10,7 @@ export interface Props {
   spellCheck?: boolean;
 }
 
-function Textarea({
+export default function Textarea({
   value,
   error,
   warning,
@@ -25,10 +25,8 @@ function Textarea({
   placeholder = null,
   instructions = null,
   spellCheck = true,
-}: FieldComponentProps & Props): React.ReactElement {
-  const [classNames, setClassNames] = useState<string[]>([
-    'cezembre-ui-fields-textarea',
-  ]);
+}: FieldComponentProps & Props): ReactElement {
+  const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-fields-textarea']);
 
   useEffect(() => {
     const nextClassNames = ['cezembre-ui-fields-textarea'];
@@ -66,19 +64,17 @@ function Textarea({
 
       {(visited || submitted) && !isActive && error ? (
         <div className="error">
-          <Icon name={IconName.ALERT} />
+          <Icon name="alert" />
           <span>{error}</span>
         </div>
       ) : null}
 
       {warning ? (
         <div className="warning">
-          <Icon name={IconName.ALERT} />
+          <Icon name="alert" />
           <span>{warning}</span>
         </div>
       ) : null}
     </div>
   );
 }
-
-export default Textarea;

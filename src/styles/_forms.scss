@@ -1,24 +1,60 @@
-@mixin Form {
-  > .field {
-    margin-top: 20px;
+@use 'colors';
+@use 'fonts';
 
-    &:first-child {
-      margin: 0;
-    }
+@mixin label {
+  @include fonts.JetBrainsMono(.9em);
+  padding-bottom: 8px;
+  padding-left: 12px;
+  display: inline-block;
+}
+
+@mixin input {
+  transition: border linear 100ms, background linear 100ms, box-shadow linear 100ms;
+  border: solid colors.$placeholder 1px;
+  background: colors.$placeholder;
+  box-shadow: 0 0 5px rgba(colors.$lead-dark, 0);
+  border-radius: 5px;
+  width: 100%;
+
+  &:hover {
+    box-shadow: 0 0 5px rgba(colors.$lead-dark, .15);
+    border-color: colors.$border;
   }
 
-  > .error {
-    @include JetBrainsMono(.9em, $color-error);
-    text-align: center;
-    margin-top: 20px;
-  }
-
-  > .submit {
-    margin-top: 30px;
+  &:focus, &.active {
+    background: white;
+    border-color: colors.$border;
   }
 }
 
-.cezembre-ui-form {
-  @include Form;
+@mixin field {
+  margin-top: 20px;
 
+  &:first-child {
+    margin: 0;
+  }
+}
+
+@mixin error {
+  @include fonts.JetBrainsMono(.9em, colors.$error);
+  text-align: center;
+  margin-top: 20px;
+}
+
+@mixin submit {
+  margin-top: 30px;
+}
+
+@mixin form {
+  > .field {
+    @include field;
+  }
+
+  > .error {
+    @include error;
+  }
+
+  > .submit {
+    @include submit;
+  }
 }

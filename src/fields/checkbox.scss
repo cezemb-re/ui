@@ -1,23 +1,24 @@
-.ui-fields-checkbox {
+@use '~@cezembre/fronts/dist/screens';
+@use '../styles/colors';
+@use '../styles/fonts';
 
+.cezembre-ui-fields-checkbox {
   > .container {
     display: flex;
     align-items: center;
     justify-content: flex-start;
 
     >label {
-      @include JetBrainsMono(.9em, $color-lead, bold);
+      @include fonts.JetBrainsMono(.9em, colors.$lead, bold);
       letter-spacing: .05em;
       text-transform: uppercase;
       display: inline-block;
       margin-left: 20px;
 
-      @include screen-tablet() {
+      @include screens.tablet() {
         font-size: .8em;
         margin-left: 15px;
       }
-
     }
   }
-
 }

@@ -1,16 +1,13 @@
 import { ReactElement } from 'react';
-
-export interface Props {
-  size?: number;
-  color?: string;
-}
+import colors from '../styles/_colors.scss';
+import IconProps from './props';
 
 export default function Info({
-  color,
-  size = 20,
-}: Props): ReactElement<SVGElement> {
+  size = 15,
+  color = colors.TEXT,
+}: IconProps): ReactElement<SVGElement> {
   return (
-    <svg viewBox="0 0 111.577 111.577" width={size} fill={color as string}>
+    <svg viewBox="0 0 111.577 111.577" width={size} fill={color}>
       <title>Info</title>
       <path
         d="M78.962,99.536l-1.559,6.373c-4.677,1.846-8.413,3.251-11.195,4.217c-2.785,0.969-6.021,1.451-9.708,1.451

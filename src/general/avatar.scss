@@ -1,9 +1,12 @@
+@use "../styles/fonts";
+@use "../styles/colors";
+
 .cezembre-ui-avatar {
   position: relative;
 
   > .main {
-    @include JetBrainsMono(1em);
-    background: $color-placeholder;
+    @include fonts.JetBrainsMono(1em);
+    background: colors.$placeholder;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -11,8 +14,8 @@
   }
 
   > .badge {
-    @include JetBrainsMono(.8em);
-    background: $color-placeholder;
+    @include fonts.JetBrainsMono(.8em);
+    background: colors.$placeholder;
     border-radius: 50%;
     border: solid white 2px;
     overflow: hidden;
@@ -41,13 +44,11 @@
     > .main {
       width: 30px;
       height: 30px;
-
     }
 
     > .badge {
       width: 15px;
       height: 15px;
-
     }
   }
 
@@ -56,13 +57,11 @@
       font-size: 1.5em;
       width: 40px;
       height: 40px;
-
     }
 
     > .badge {
       width: 20px;
       height: 20px;
-
     }
   }
 
@@ -71,14 +70,12 @@
       font-size: 2em;
       width: 60px;
       height: 60px;
-
     }
 
     > .badge {
       font-size: 1.1em;
       width: 30px;
       height: 30px;
-
     }
   }
 
@@ -87,14 +84,12 @@
       font-size: 2.2em;
       width: 80px;
       height: 80px;
-
     }
 
     > .badge {
       font-size: 1.5em;
       width: 40px;
       height: 40px;
-
     }
   }
 }

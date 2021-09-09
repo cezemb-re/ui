@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import * as React from 'react';
+import { ReactElement } from 'react';
 import { FieldComponentProps } from '@cezembre/forms';
 
 export interface Props {
@@ -18,11 +18,11 @@ export default function Switch({
   onBlur,
   label = null,
   instructions = null,
-}: FieldComponentProps & Props): React.ReactElement {
-  const [classNames, setClassNames] = useState<string[]>(['ui-fields-switch']);
+}: FieldComponentProps & Props): ReactElement {
+  const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-fields-switch']);
 
   useEffect(() => {
-    const nextClassNames = ['ui-fields-switch'];
+    const nextClassNames = ['cezembre-ui-fields-switch'];
 
     if (isActive) {
       nextClassNames.push('active');
@@ -51,7 +51,7 @@ export default function Switch({
         onChange(!isActive);
       }
     },
-    [isActive, onChange]
+    [isActive, onChange],
   );
 
   return (
@@ -65,8 +65,7 @@ export default function Switch({
           onClick={onClick}
           onFocus={onFocus}
           onBlur={onBlur}
-          tabIndex={0}
-        >
+          tabIndex={0}>
           <div className="status" />
         </div>
         {label ? <label htmlFor={name}>{label}</label> : null}

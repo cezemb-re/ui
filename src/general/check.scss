@@ -1,8 +1,11 @@
-.ui-check {
+@use "../styles/fonts";
+@use "../styles/colors";
+
+.cezembre-ui-check {
   width: 30px;
   height: 30px;
-  background: $color-background;
-  border: solid $color-border 1px;
+  background: colors.$background;
+  border: solid colors.$border 1px;
   cursor: pointer;
   outline: none;
   display: flex;
@@ -19,7 +22,7 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 5px rgba($color-lead, .3);
+    box-shadow: 0 0 5px rgba(colors.$lead, .3);
   }
 
   > svg {
@@ -28,11 +31,11 @@
   }
 
   > span {
-    @include JetBrainsMono(1em, black);
+    @include fonts.JetBrainsMono(1em, black);
   }
 
   &[aria-pressed=true] {
-    border: solid $color-lead 1px;
+    border: solid colors.$lead 1px;
     background: white;
 
     > svg {
@@ -40,8 +43,7 @@
     }
 
     > span {
-      color: $color-lead;
+      color: colors.$lead;
     }
   }
-
 }

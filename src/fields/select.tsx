@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { FieldComponentProps } from '@cezembre/forms';
 import { useClickOutside } from '@cezembre/fronts';
 import Button from '../general/button';
+import { IconName } from '../general/icon';
 
 export enum Type {
   DROPDOWN = 'dropdown',
@@ -12,7 +13,7 @@ export enum Type {
 export interface Option<Value = any> {
   value: Value;
   label: string;
-  icon?: ReactNode | string;
+  icon?: IconName;
 }
 
 export interface Props {
@@ -21,11 +22,11 @@ export interface Props {
   options?: Option[];
   placeholder?: string | null;
   instructions?: ReactNode | null;
-  icon?: ReactNode | string;
+  icon?: IconName;
   iconSize?: number;
 }
 
-function Select({
+export default function Select({
   value,
   error,
   warning,
@@ -42,11 +43,8 @@ function Select({
   icon = undefined,
   iconSize = undefined,
 }: FieldComponentProps & Props): ReactElement {
-  const [classNames, setClassNames] = useState<string[]>([
-    'cezembre-ui-fields-select',
-    type,
-  ]);
-  const [currentIcon, setCurrentIcon] = useState<ReactNode | string>(icon);
+  const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-fields-select', type]);
+  const [currentIcon, setCurrentIcon] = useState<IconName | undefined>(icon);
 
   useEffect(() => {
     const nextClassNames = ['cezembre-ui-fields-select', type];
@@ -96,7 +94,7 @@ function Select({
       onChange(_value);
       onBlur();
     },
-    [onBlur, onChange, options]
+    [onBlur, onChange, options],
   );
 
   const selectRef = useRef<HTMLDivElement>(null);
@@ -119,8 +117,7 @@ function Select({
             style={{ width: '100%' }}
             onClick={toggleFocus}
             rightIcon="arrow"
-            leftIcon={currentIcon}
-          >
+            leftIcon={currentIcon}>
             {selectedOptionIndex !== -1
               ? options[selectedOptionIndex].label
               : placeholder || 'Choisissez une option'}
@@ -133,12 +130,7 @@ function Select({
               <Button
                 onClick={() => selectOption(index, option.value)}
                 style={{ width: '100%' }}
-                rightIcon={
-                  index === selectedOptionIndex ? (
-                    <i data-feather="check" />
-                  ) : null
-                }
-              >
+                rightIcon={index === selectedOptionIndex ? 'check' : undefined}>
                 {option.label}
               </Button>
             </div>
@@ -164,5 +156,3 @@ function Select({
     </div>
   );
 }
-
-export default Select;

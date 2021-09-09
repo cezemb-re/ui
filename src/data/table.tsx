@@ -10,12 +10,7 @@ export interface Column<M extends Model = Model> {
   width?: string | number;
   sorted?: 'asc' | 'desc';
   onSort?: () => void;
-  Cell?: (props: {
-    value: any;
-    item: M;
-    type?: Type;
-    options?: any;
-  }) => ReactElement;
+  Cell?: (props: { value: any; item: M; type?: Type; options?: any }) => ReactElement;
 }
 
 export interface Props<M extends Model = Model> {
@@ -35,7 +30,7 @@ export default function Table<M extends Model = Model>({
         onClickItem(item);
       }
     },
-    [onClickItem]
+    [onClickItem],
   );
 
   if (!columns) {
@@ -46,8 +41,7 @@ export default function Table<M extends Model = Model>({
     <table
       className={`cezembre-ui-table${onClickItem ? ' clickable' : ''}`}
       cellSpacing="0"
-      cellPadding="0"
-    >
+      cellPadding="0">
       <thead>
         {columns.length ? (
           <tr>

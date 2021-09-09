@@ -18,11 +18,7 @@ export default function Datetime({
     <p className="cezembre-ui-datetime">
       {date ? value.toLocaleString(DateTime.DATE_MED) : null}
       {date && time ? <br /> : null}
-      {time ? (
-        <span className="time">
-          {value.toLocaleString(DateTime.TIME_SIMPLE)}
-        </span>
-      ) : null}
+      {time ? <span className="time">{value.toLocaleString(DateTime.TIME_SIMPLE)}</span> : null}
     </p>
   );
 }

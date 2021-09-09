@@ -1,19 +1,41 @@
-$color-lead-dark: #01066a;
-$color-lead: #0D1DFF;
-$color-lead-light: #E5F2FF;
+$lead-dark: #01066a;
+$lead: #0D1DFF;
+$lead-light: #E5F2FF;
 
-$color-alternative: #5800E8;
-$color-alternative-light: #FFCBE3;
+$alternative: #5800E8;
+$alternative-light: #FFCBE3;
 
-$color-accent: #FFC84D;
+$accent: #FFC84D;
 
-$color-warning: #eaa63b;
-$color-error: #e35656;
+$warning: #eaa63b;
+$error: #e35656;
 
-$color-background: #f3f6ff;
-$color-border: #d4d4e0;
-$color-placeholder: #eceef6;
+$background: #f3f6ff;
+$border: #d4d4e0;
+$placeholder: #eceef6;
 
-$color-text: #1f2265;
-$color-text-medium: #777ab1;
-$color-text-light: #cacad5;
+$text: #1f2265;
+$text-medium: #777ab1;
+$text-light: #cacad5;
+
+:export {
+  LEAD_DARK: $lead-dark;
+  LEAD: $lead;
+  LEAD_LIGHT: $lead-light;
+
+  ALTERNATIVE: $alternative;
+  ALTERNATIVE_LIGHT: $alternative-light;
+
+  ACCENT: $accent;
+
+  WARNING: $warning;
+  ERROR: $error;
+
+  BACKGROUND: $background;
+  BORDER: $border;
+  PLACEHOLDER: $placeholder;
+
+  TEXT: $text;
+  TEXT_MEDIUM: $text-medium;
+  TEXT_LIGHT: $text-light;
+}

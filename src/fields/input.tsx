@@ -12,6 +12,7 @@ import {
 
 import * as React from 'react';
 import { FieldComponentProps } from '@cezembre/forms';
+import Icon, { IconName } from '../general/icon';
 
 export enum Type {
   TEXT = 'text',
@@ -80,9 +81,7 @@ export enum AutoComplete {
 }
 
 export type Adapter<Value = any> = (value: string | number) => Value;
-export type Resolver<Value = any> = (
-  value: Value | undefined
-) => string | number;
+export type Resolver<Value = any> = (value: Value | undefined) => string | number;
 
 export interface SuggestionProps {
   suggestion: ReactNode;
@@ -98,8 +97,7 @@ function Suggestion({ suggestion }: SuggestionProps): React.ReactElement {
 
 export type InputStyle = 'field' | 'inline';
 
-export interface Props<Value = string, Suggestion = any>
-  extends FieldComponentProps<Value> {
+export interface Props<Value = string, Suggestion = any> extends FieldComponentProps<Value> {
   adapter?: Adapter<Value>;
   resolver?: Resolver<Value>;
   type?: Type | string | null;
@@ -115,7 +113,7 @@ export interface Props<Value = string, Suggestion = any>
   suggestionsHeader?: ReactNode | null;
   suggestionsFooter?: ReactNode | null;
   onSelectSuggestion?: ((suggestion: Suggestion) => void) | null;
-  leftIcon?: ReactNode | string;
+  leftIcon?: IconName;
   autoCorrect?: boolean;
   autoCapitalize?: string;
 }
@@ -147,7 +145,7 @@ export default function Input<Value = string>({
   suggestionsHeader = null,
   suggestionsFooter = null,
   onSelectSuggestion = null,
-  leftIcon = null,
+  leftIcon = undefined,
   autoCorrect = true,
   autoCapitalize = 'off',
 }: Props<Value>): ReactElement {
@@ -159,11 +157,7 @@ export default function Input<Value = string>({
   const [suggestionsActive, setSuggestionsActive] = useState<boolean>(false);
 
   useEffect(() => {
-    if (
-      autoComplete === AutoComplete.OFF &&
-      window.MutationObserver &&
-      inputRef.current
-    ) {
+    if (autoComplete === AutoComplete.OFF && window.MutationObserver && inputRef.current) {
       const observerHack = new MutationObserver(() => {
         observerHack.disconnect();
         if (inputRef.current) {
@@ -213,9 +207,7 @@ export default function Input<Value = string>({
     suggestions.length,
   ]);
 
-  const [selectedSuggestion, setSelectedSuggestion] = useState<number | null>(
-    null
-  );
+  const [selectedSuggestion, setSelectedSuggestion] = useState<number | null>(null);
 
   const change = useCallback(
     (event: ChangeEvent<{ value: string }>) => {
@@ -226,7 +218,7 @@ export default function Input<Value = string>({
       }
       setSelectedSuggestion(null);
     },
-    [adapter, onChange]
+    [adapter, onChange],
   );
 
   const onKeyDown = useCallback(
@@ -235,27 +227,20 @@ export default function Input<Value = string>({
         if (suggestions && suggestions.length) {
           event.preventDefault();
           setSelectedSuggestion((sPrediction: number | null) =>
-            sPrediction !== null && sPrediction < suggestions.length - 1
-              ? sPrediction + 1
-              : 0
+            sPrediction !== null && sPrediction < suggestions.length - 1 ? sPrediction + 1 : 0,
           );
         }
       } else if (event.key === 'ArrowUp') {
         if (suggestions && suggestions.length) {
           event.preventDefault();
           setSelectedSuggestion((sPrediction: number | null) =>
-            sPrediction !== null && sPrediction > 0
-              ? sPrediction - 1
-              : suggestions.length - 1
+            sPrediction !== null && sPrediction > 0 ? sPrediction - 1 : suggestions.length - 1,
           );
         }
       } else if (event.key === 'Enter') {
         if (suggestions && suggestions.length) {
           event.preventDefault();
-          if (
-            selectedSuggestion !== null &&
-            suggestions.length > selectedSuggestion
-          ) {
+          if (selectedSuggestion !== null && suggestions.length > selectedSuggestion) {
             if (onSelectSuggestion) {
               onSelectSuggestion(suggestions[selectedSuggestion]);
             } else {
@@ -268,7 +253,7 @@ export default function Input<Value = string>({
         }
       }
     },
-    [change, onSelectSuggestion, selectedSuggestion, suggestions]
+    [change, onSelectSuggestion, selectedSuggestion, suggestions],
   );
 
   const selectSuggestion = useCallback(
@@ -279,7 +264,7 @@ export default function Input<Value = string>({
         onChange(suggestion);
       }
     },
-    [onChange, onSelectSuggestion]
+    [onChange, onSelectSuggestion],
   );
 
   const focus = useCallback(() => {
@@ -302,7 +287,11 @@ export default function Input<Value = string>({
       {label ? <label htmlFor={name}>{label}</label> : null}
 
       <div className={`container${isActive ? ' active' : ''}`}>
-        {leftIcon ? <div className="left-icon">{leftIcon}</div> : null}
+        {leftIcon ? (
+          <div className="left-icon">
+            <Icon name={leftIcon} />
+          </div>
+        ) : null}
 
         <input
           ref={inputRef}
@@ -334,11 +323,8 @@ export default function Input<Value = string>({
                 <button
                   type="button"
                   key={suggestionsKeyExtractor(suggestion)}
-                  className={`suggestion${
-                    selectedSuggestion === index ? ' selected' : ''
-                  }`}
-                  onClick={(event) => selectSuggestion(event, suggestion)}
-                >
+                  className={`suggestion${selectedSuggestion === index ? ' selected' : ''}`}
+                  onClick={(event) => selectSuggestion(event, suggestion)}>
                   <SuggestionItem suggestion={suggestion} />
                 </button>
               ))

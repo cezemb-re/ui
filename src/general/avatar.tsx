@@ -31,12 +31,7 @@ export default function Avatar({
       {badgeName || badgeImage ? (
         <span className="badge">
           {badgeImage ? (
-            <Image
-              src={badgeImage}
-              width="100%"
-              height="100%"
-              alt={badgeName}
-            />
+            <Image src={badgeImage} width="100%" height="100%" alt={badgeName} />
           ) : (
             badgeName?.substr(0, 1)
           )}

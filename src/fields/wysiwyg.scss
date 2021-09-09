@@ -1,28 +1,28 @@
+@use "../styles/forms";
+@use "../styles/fonts";
+@use "../styles/colors";
+
 .cezembre-ui-fields-wysiwyg {
   width: 100%;
 
   > label {
-    @include CezembreLabel();
-
+    @include forms.label();
   }
 
   > .container {
     cursor: text;
 
     > .DraftEditor-root {
-
       > .public-DraftEditorPlaceholder-root {
-        @include JetBrainsMono(1em, rgba($color-text, .5));
+        @include fonts.JetBrainsMono(1em, rgba(colors.$text, .5));
         font-style: italic;
         position: absolute;
         pointer-events: none;
       }
 
       > .DraftEditor-editorContainer {
-        @include JetBrainsMono();
-
+        @include fonts.JetBrainsMono();
       }
-
     }
 
     .contextual-menu {
@@ -38,12 +38,12 @@
         height: 0;
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
-        border-top: 8px solid $color-lead-dark;
+        border-top: 8px solid colors.$lead-dark;
         transform: translateY(-1px);
       }
 
       > .sections {
-        background: $color-lead-dark;
+        background: colors.$lead-dark;
         border-radius: 5px;
         padding: 0 10px;
         display: flex;
@@ -60,7 +60,7 @@
             display: block;
             width: 1px;
             height: 15px;
-            background: $color-lead-light;
+            background: colors.$lead-light;
             margin: 0 8px;
           }
 
@@ -71,11 +71,10 @@
           }
 
           > button {
-            @include JetBrainsMono(1em, white);
+            @include fonts.JetBrainsMono(1em, white);
             cursor: pointer;
             -webkit-touch-callout: none;
             -webkit-user-select: none;
-            -khtml-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
@@ -108,27 +107,20 @@
             }
 
             &.blockquote {
-              font-family: "Times New Roman";
+              font-family: Times New Roman;
             }
 
             &.active {
-              color: $color-accent;
+              color: colors.$accent;
             }
-
           }
-
         }
-
       }
-
     }
-
   }
 
   &.field > .container {
-    @include CezembreField();
+    @include forms.input();
     padding: 20px;
-
   }
-
 }

@@ -3,18 +3,13 @@ import { DateTime } from 'luxon';
 import Model from './model';
 import Type from './types';
 import Datetime from '../general/datetime';
-import Icon, { IconName } from '../general/icon';
+import Icon from '../general/icon';
 
 export interface Props<M extends Model = Model> {
   value: any;
   item: M;
   type?: Type;
-  Component?: (props: {
-    value: any;
-    item: M;
-    type?: Type;
-    options?: any;
-  }) => ReactElement;
+  Component?: (props: { value: any; item: M; type?: Type; options?: any }) => ReactElement;
 }
 
 /**
@@ -71,11 +66,7 @@ export default function Cell<M extends Model = Model>({
       if (typeof value === 'string') {
         text = value;
       } else if (typeof value === 'object') {
-        if (
-          'toString' in value &&
-          typeof value.toString === 'function' &&
-          value.toString
-        ) {
+        if ('toString' in value && typeof value.toString === 'function' && value.toString) {
           text = value.toString();
         } else {
           return null;
@@ -108,23 +99,15 @@ export default function Cell<M extends Model = Model>({
         <span className="date">
           <Datetime
             value={datetime}
-            date={[
-              Type.DATE,
-              Type.RELATIVE_DATE,
-              Type.DATETIME,
-              Type.RELATIVE_DATETIME,
-            ].includes(resolvedType)}
-            time={[
-              Type.TIME,
-              Type.RELATIVE_TIME,
-              Type.DATETIME,
-              Type.RELATIVE_DATETIME,
-            ].includes(resolvedType)}
-            relative={[
-              Type.RELATIVE_DATE,
-              Type.RELATIVE_TIME,
-              Type.RELATIVE_DATETIME,
-            ].includes(resolvedType)}
+            date={[Type.DATE, Type.RELATIVE_DATE, Type.DATETIME, Type.RELATIVE_DATETIME].includes(
+              resolvedType,
+            )}
+            time={[Type.TIME, Type.RELATIVE_TIME, Type.DATETIME, Type.RELATIVE_DATETIME].includes(
+              resolvedType,
+            )}
+            relative={[Type.RELATIVE_DATE, Type.RELATIVE_TIME, Type.RELATIVE_DATETIME].includes(
+              resolvedType,
+            )}
           />
         </span>
       );
@@ -132,11 +115,7 @@ export default function Cell<M extends Model = Model>({
     case Type.BOOLEAN:
       return (
         <p className="boolean">
-          {value ? (
-            <Icon name={IconName.CHECK} size={15} />
-          ) : (
-            <Icon name={IconName.CROSS} size={12} />
-          )}
+          {value ? <Icon name="check" size={15} /> : <Icon name="cross" size={12} />}
         </p>
       );
 

@@ -1,4 +1,8 @@
-.ui-fields-date-picker {
+@use '~@cezembre/fronts/dist/layouts';
+@use '../styles/colors';
+@use '../styles/fonts';
+
+.cezembre-ui-fields-date-picker {
   position: relative;
 
   > .picker {
@@ -11,17 +15,16 @@
     justify-content: space-between;
 
     &.expandable {
-      @include layout-popup();
-      border: solid rgba($color-lead, .1) 1px;
-      box-shadow: 0 0 10px rgba($color-lead, .2);
+      @include layouts.popup();
+      border: solid rgba(colors.$lead, .1) 1px;
+      box-shadow: 0 0 10px rgba(colors.$lead, .2);
       position: absolute;
-      background: $color-lead-light;
+      background: colors.$lead-light;
       top: calc(100% + 5px);
       left: 0;
       opacity: 0;
       visibility: hidden;
       transition: opacity linear 100ms;
-
     }
 
     &.expanded {
@@ -45,9 +48,8 @@
       }
 
       > span {
-        @include JetBrainsMono(1em);
+        @include fonts.JetBrainsMono(1em);
       }
-
     }
 
     > .days-of-week {
@@ -57,10 +59,9 @@
       justify-content: space-around;
 
       > span {
-        @include JetBrainsMono(.9em);
+        @include fonts.JetBrainsMono(.9em);
         text-transform: uppercase;
       }
-
     }
 
     > .days {
@@ -71,7 +72,7 @@
       align-items: center;
 
       > .day {
-        @include JetBrainsMono(1em);
+        @include fonts.JetBrainsMono(1em);
         background: none;
         border: none;
         outline: none;
@@ -83,7 +84,7 @@
         height: 35px;
 
         &:hover {
-          background: rgba($color-lead, .1);
+          background: rgba(colors.$lead, .1);
         }
 
         &:disabled {
@@ -93,22 +94,18 @@
           &:hover {
             background: none;
           }
-
         }
 
         &.selected {
-          background: $color-lead;
-          color: $color-lead-light;
+          background: colors.$lead;
+          color: colors.$lead-light;
         }
-
       }
 
       > .placeholder {
         width: 35px;
         height: 35px;
       }
-
     }
   }
-
 }

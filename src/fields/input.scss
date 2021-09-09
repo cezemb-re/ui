@@ -1,9 +1,14 @@
+@use '~@cezembre/fronts/dist/layouts';
+@use '~@cezembre/fronts/dist/screens';
+@use "../styles/fonts";
+@use "../styles/forms";
+@use "../styles/colors";
+
 .cezembre-ui-fields-input {
   width: 100%;
 
   > label {
-    @include CezembreLabel();
-
+    @include forms.label();
   }
 
   > .container {
@@ -17,7 +22,7 @@
     }
 
     > input {
-      @include JetBrainsMono();
+      @include fonts.JetBrainsMono();
       flex: 1;
       padding: 8px 12px;
       text-overflow: ellipsis;
@@ -29,14 +34,12 @@
         outline: none;
         text-decoration: none;
         background: transparent;
-
       }
 
       &::placeholder {
-        color: rgba($color-text-medium, .3);
+        color: rgba(colors.$text-medium, .3);
         font-style: italic;
       }
-
     }
 
     > .suggestions {
@@ -48,7 +51,7 @@
       width: 100%;
       top: 100%;
       transition: opacity linear 100ms;
-      @include layout-modal();
+      @include layouts.modal();
 
       > .suggestion {
         display: block;
@@ -58,12 +61,11 @@
         cursor: pointer;
         -webkit-touch-callout: none;
         -webkit-user-select: none;
-        -khtml-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
         flex-shrink: 0;
-        border-top: solid $color-lead-light 1px;
+        border-top: solid colors.$lead-light 1px;
         background: white;
         transition: background linear 100ms;
 
@@ -72,11 +74,9 @@
         }
 
         &:hover, &.selected {
-          background: $color-lead-light;
+          background: colors.$lead-light;
         }
-
       }
-
     }
   }
 
@@ -88,10 +88,10 @@
   }
 
   > .instructions {
-    @include JetBrainsMono(1em, black);
+    @include fonts.JetBrainsMono(1em, black);
     margin-top: 10px;
 
-    @include screen-tablet() {
+    @include screens.tablet() {
       font-size: .9em;
     }
   }
@@ -102,37 +102,31 @@
     justify-content: flex-start;
     margin-top: 15px;
 
-    @include screen-tablet() {
+    @include screens.tablet() {
       margin-top: 10px;
     }
 
     > span {
-      @include JetBrainsMono(.9em, $color-error);
+      @include fonts.JetBrainsMono(.9em, colors.$error);
       margin-left: 10px;
 
-      @include screen-tablet() {
+      @include screens.tablet() {
         font-size: .9em;
       }
-
     }
-
   }
 
   > .warning {
-
     > span {
-      color: $color-warning;
+      color: colors.$warning;
     }
-
   }
 
   &.field > .container {
-    @include CezembreField();
-
+    @include forms.input();
   }
 
   &.inline > .container > input::placeholder {
-    color: rgba($color-text, .5);
+    color: rgba(colors.$text, .5);
   }
-
 }

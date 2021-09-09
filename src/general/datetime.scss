@@ -1,0 +1,13 @@
+@use "../styles/fonts";
+@use "../styles/colors";
+
+.cezembre-ui-datetime {
+  @include fonts.JetBrainsMono(.9em);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  > .time {
+    color: colors.$text-medium;
+  }
+}

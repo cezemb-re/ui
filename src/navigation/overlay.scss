@@ -1,5 +1,7 @@
+@use "~@cezembre/fronts/dist/layouts";
+
 .cezembre-ui-overlay {
-  @include layout-modal();
+  @include layouts.modal();
   position: fixed;
   top: 0;
   bottom: 0;
@@ -20,5 +22,4 @@
   &.closed {
     animation-name: disappear;
   }
-
 }

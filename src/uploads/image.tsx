@@ -10,7 +10,7 @@ import {
 } from 'react';
 import { AspectRatio, Mode } from '@cezembre/fronts';
 import Loader from '../general/loader';
-import Icon, { IconName } from '../general/icon';
+import Icon from '../general/icon';
 import Image, { Props as ImageProps } from '../general/image';
 
 const reader = new FileReader();
@@ -67,7 +67,7 @@ export default function UploadImage({
           await onUpload(event.target.files[0]);
           setPending(false);
         } catch (e) {
-          setError(e);
+          setError(e as Error);
         }
       }
     }
@@ -79,9 +79,7 @@ export default function UploadImage({
     }
   }, []);
 
-  const [classNames, setClassNames] = useState<string[]>([
-    'cezembre-ui-upload-image',
-  ]);
+  const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-upload-image']);
 
   useEffect(() => {
     const nextClassNames = ['cezembre-ui-upload-image'];
@@ -105,8 +103,7 @@ export default function UploadImage({
       onBlur={onBlur}
       onClick={() => (input.current ? input.current.click() : null)}
       tabIndex={tabIndex}
-      onKeyDown={onKeyDown}
-    >
+      onKeyDown={onKeyDown}>
       <input type="file" onChange={onChange} ref={input} />
 
       <div className="image">
@@ -124,9 +121,7 @@ export default function UploadImage({
       <div className="overlay">
         {error ? <p className="error">{error.message}</p> : null}
         {pending ? <Loader size={40} /> : null}
-        {!error && !pending ? (
-          <Icon name={IconName.CAMERA} color="white" size={40} />
-        ) : null}
+        {!error && !pending ? <Icon name="camera" color="white" size={40} /> : null}
       </div>
     </div>
   );

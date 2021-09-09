@@ -1,14 +1,18 @@
+@use '~@cezembre/fronts/dist/screens';
+@use "../styles/forms";
+@use "../styles/fonts";
+@use "../styles/colors";
+
 .cezembre-ui-fields-textarea {
   width: 100%;
 
   > label {
-    @include CezembreLabel();
-
+    @include forms.label();
   }
 
   > textarea {
-    @include JetBrainsMono();
-    @include CezembreField();
+    @include fonts.JetBrainsMono();
+    @include forms.input();
     display: block;
     flex: 1;
     padding: 8px 12px;
@@ -18,21 +22,19 @@
     &:active, &:focus {
       outline: none;
       text-decoration: none;
-
     }
 
     &::placeholder {
-      color: rgba($color-lead, .3);
+      color: rgba(colors.$lead, .3);
       font-style: italic;
     }
-
   }
 
   > .instructions {
-    @include JetBrainsMono();
+    @include fonts.JetBrainsMono();
     margin-top: 10px;
 
-    @include screen-tablet() {
+    @include screens.tablet() {
       font-size: .9em;
     }
   }
@@ -43,28 +45,23 @@
     justify-content: flex-start;
     margin-top: 15px;
 
-    @include screen-tablet() {
+    @include screens.tablet() {
       margin-top: 10px;
     }
 
     > span {
-      @include JetBrainsMono(.9em, $color-error);
+      @include fonts.JetBrainsMono(.9em, colors.$error);
       margin-left: 10px;
 
-      @include screen-tablet() {
+      @include screens.tablet() {
         font-size: .9em;
       }
-
     }
-
   }
 
   > .warning {
-
     > span {
-      color: $color-lead;
+      color: colors.$lead;
     }
-
   }
-
 }

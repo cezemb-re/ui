@@ -25,8 +25,7 @@ export type BlockType = 'custom' | DraftBlockType;
 
 export type InlineStyle = 'CUSTOM' | DraftInlineStyleType;
 
-export interface Props
-  extends FieldComponentProps<RawDraftContentState | string> {
+export interface Props extends FieldComponentProps<RawDraftContentState | string> {
   label?: string;
   placeholder?: string;
   type?: Type;
@@ -67,15 +66,13 @@ export default function Wysiwyg({
     return EditorState.createWithContent(contentState);
   }, [initialValue]);
 
-  const [editorState, setEditorState] = useState<EditorState>(
-    getInitialEditorState()
-  );
+  const [editorState, setEditorState] = useState<EditorState>(getInitialEditorState());
 
   const dispatchChange = useCallback(
     (state: EditorState) => {
       onChange(convertToRaw(state.getCurrentContent()));
     },
-    [onChange]
+    [onChange],
   );
 
   const debouncedDispatchChange = useRef(_.debounce(dispatchChange, debounce));
@@ -87,7 +84,7 @@ export default function Wysiwyg({
         debouncedDispatchChange.current(state);
       }
     },
-    [editorState]
+    [editorState],
   );
 
   const [bold, setBold] = useState<boolean>(false);
@@ -107,12 +104,10 @@ export default function Wysiwyg({
       event.preventDefault();
       changeEditorState(RichUtils.toggleInlineStyle(editorState, inlineStyle));
     },
-    [changeEditorState, editorState]
+    [changeEditorState, editorState],
   );
 
-  const [currentBlockType, setCurrentBlockType] = useState<BlockType>(
-    'unstyled'
-  );
+  const [currentBlockType, setCurrentBlockType] = useState<BlockType>('unstyled');
 
   useEffect(() => {
     // Inline styles
@@ -124,13 +119,10 @@ export default function Wysiwyg({
       event.preventDefault();
       changeEditorState(RichUtils.toggleBlockType(editorState, blockType));
     },
-    [changeEditorState, editorState]
+    [changeEditorState, editorState],
   );
 
-  const [classNames, setClassNames] = useState<string[]>([
-    'cezembre-ui-fields-wysiwyg',
-    type,
-  ]);
+  const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-fields-wysiwyg', type]);
 
   useEffect(() => {
     const nextClassNames = ['cezembre-ui-fields-wysiwyg', type];
@@ -149,7 +141,7 @@ export default function Wysiwyg({
         editor.current?.focus();
       }
     },
-    [isActive]
+    [isActive],
   );
 
   const filterSelection = useCallback((anchor: Node): boolean => {
@@ -158,8 +150,7 @@ export default function Wysiwyg({
       if (
         'getAttribute' in node &&
         (node as Element).getAttribute &&
-        (node as Element).getAttribute('class')?.substr(0, 26) ===
-          'cezembre-ui-fields-wysiwyg' &&
+        (node as Element).getAttribute('class')?.substr(0, 26) === 'cezembre-ui-fields-wysiwyg' &&
         (node as Element).getAttribute('data-key') === key.current
       ) {
         return true;
@@ -171,15 +162,12 @@ export default function Wysiwyg({
 
   const keyBindingFn = useCallback(
     (event: KeyboardEvent): string | null => {
-      if (
-        event.nativeEvent.code === 'Backspace' &&
-        !editorState.getCurrentContent().hasText()
-      ) {
+      if (event.nativeEvent.code === 'Backspace' && !editorState.getCurrentContent().hasText()) {
         return 'delete';
       }
       return getDefaultKeyBinding(event);
     },
-    [editorState]
+    [editorState],
   );
 
   const handleKeyCommand = useCallback(
@@ -190,7 +178,7 @@ export default function Wysiwyg({
       }
       return 'not-handled';
     },
-    [onDelete]
+    [onDelete],
   );
 
   return (
@@ -202,8 +190,7 @@ export default function Wysiwyg({
         onClick={focus}
         role="button"
         tabIndex={0}
-        onKeyUp={() => undefined}
-      >
+        onKeyUp={() => undefined}>
         <Editor
           editorKey={name}
           ref={editor}
@@ -225,8 +212,7 @@ export default function Wysiwyg({
                   className={`bold${bold ? ' active' : ''}`}
                   onClick={(event) => toggleInlineStyle(event, 'BOLD')}
                   onMouseDown={(e) => e.preventDefault()}
-                  onMouseUp={(e) => e.preventDefault()}
-                >
+                  onMouseUp={(e) => e.preventDefault()}>
                   G
                 </button>
 
@@ -235,8 +221,7 @@ export default function Wysiwyg({
                   className={`italic${italic ? ' active' : ''}`}
                   onClick={(event) => toggleInlineStyle(event, 'ITALIC')}
                   onMouseDown={(e) => e.preventDefault()}
-                  onMouseUp={(e) => e.preventDefault()}
-                >
+                  onMouseUp={(e) => e.preventDefault()}>
                   I
                 </button>
 
@@ -245,8 +230,7 @@ export default function Wysiwyg({
                   className={`underline${underline ? ' active' : ''}`}
                   onClick={(event) => toggleInlineStyle(event, 'UNDERLINE')}
                   onMouseDown={(e) => e.preventDefault()}
-                  onMouseUp={(e) => e.preventDefault()}
-                >
+                  onMouseUp={(e) => e.preventDefault()}>
                   S
                 </button>
               </div>
@@ -254,37 +238,28 @@ export default function Wysiwyg({
               <div className="section">
                 <button
                   type="button"
-                  className={`header-one${
-                    currentBlockType === 'header-one' ? ' active' : ''
-                  }`}
+                  className={`header-one${currentBlockType === 'header-one' ? ' active' : ''}`}
                   onClick={(event) => switchBlockType(event, 'header-one')}
                   onMouseDown={(e) => e.preventDefault()}
-                  onMouseUp={(e) => e.preventDefault()}
-                >
+                  onMouseUp={(e) => e.preventDefault()}>
                   T
                 </button>
 
                 <button
                   type="button"
-                  className={`header-two${
-                    currentBlockType === 'header-two' ? ' active' : ''
-                  }`}
+                  className={`header-two${currentBlockType === 'header-two' ? ' active' : ''}`}
                   onClick={(event) => switchBlockType(event, 'header-two')}
                   onMouseDown={(e) => e.preventDefault()}
-                  onMouseUp={(e) => e.preventDefault()}
-                >
+                  onMouseUp={(e) => e.preventDefault()}>
                   T
                 </button>
 
                 <button
                   type="button"
-                  className={`blockquote${
-                    currentBlockType === 'blockquote' ? ' active' : ''
-                  }`}
+                  className={`blockquote${currentBlockType === 'blockquote' ? ' active' : ''}`}
                   onClick={(event) => switchBlockType(event, 'blockquote')}
                   onMouseDown={(e) => e.preventDefault()}
-                  onMouseUp={(e) => e.preventDefault()}
-                >
+                  onMouseUp={(e) => e.preventDefault()}>
                   &quot;
                 </button>
               </div>

@@ -1,3 +1,6 @@
+@use '../styles/colors';
+@use '../styles/fonts';
+
 table.cezembre-ui-table {
   width: 100%;
   table-layout: fixed;
@@ -19,16 +22,13 @@ table.cezembre-ui-table {
       padding: 0;
 
       > th {
-        @include JetBrainsMono(.9em, $color-text-light, bold);
+        @include fonts.JetBrainsMono(.9em, colors.$text-light, bold);
         padding: 10px;
         border: none;
         outline: none;
         text-align: left;
-
       }
-
     }
-
   }
 
   > tbody {
@@ -61,21 +61,18 @@ table.cezembre-ui-table {
         }
 
         > p {
-          @include JetBrainsMono(.9em, $color-text);
+          @include JetBrainsMono(.9em, colors.$text);
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;
 
           &.boolean {
             svg {
-              fill: $color-text;
+              fill: colors.$text;
             }
           }
-
         }
-
       }
-
     }
   }
 
@@ -84,10 +81,8 @@ table.cezembre-ui-table {
       cursor: pointer;
 
       &:hover {
-        background: $color-lead-light;
+        background: colors.$lead-light;
       }
     }
-
   }
-
 }

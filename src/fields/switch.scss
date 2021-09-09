@@ -1,5 +1,8 @@
-.ui-fields-switch {
+@use '~@cezembre/fronts/dist/screens';
+@use "../styles/fonts";
+@use "../styles/colors";
 
+.cezembre-ui-fields-switch {
   > .container {
     display: flex;
     align-items: center;
@@ -9,8 +12,8 @@
       width: 50px;
       height: 30px;
       padding: 2px;
-      background: $color-background;
-      border: solid $color-border 1px;
+      background: colors.$background;
+      border: solid colors.$border 1px;
       cursor: pointer;
       outline: none;
       position: relative;
@@ -29,31 +32,27 @@
       }
 
       &[aria-pressed=true] {
-        border: solid $color-lead 1px;
+        border: solid colors.$lead 1px;
         background: white;
 
         > .status {
           transform: translateX(20px);
-          background: $color-lead;
-
+          background: colors.$lead;
         }
-
       }
     }
 
     >label {
-      @include JetBrainsMono(.9em, $color-lead, bold);
+      @include fonts.JetBrainsMono(.9em, colors.$lead, bold);
       letter-spacing: .05em;
       text-transform: uppercase;
       display: inline-block;
       margin-left: 20px;
 
-      @include screen-tablet() {
+      @include screens.tablet() {
         font-size: .8em;
         margin-left: 15px;
       }
-
     }
   }
-
 }

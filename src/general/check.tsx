@@ -30,20 +30,19 @@ export default function Check({
         onChange(!active);
       }
     },
-    [active, onChange]
+    [active, onChange],
   );
 
   return (
     <div
-      className={`ui-check${children ? ' tag' : ''}`}
+      className={`cezembre-ui-check${children ? ' tag' : ''}`}
       role="button"
       aria-pressed={active}
       onKeyDown={onKeyDown}
       onClick={onClick}
       onFocus={onFocus}
       onBlur={onBlur}
-      tabIndex={tabIndex}
-    >
+      tabIndex={tabIndex}>
       {children ? (
         <span>{children}</span>
       ) : (
@@ -56,8 +55,7 @@ export default function Check({
           stroke="black"
           strokeLinecap="round"
           strokeLinejoin="round"
-          fill="transparent"
-        >
+          fill="transparent">
           <path pathLength={100} d="M0,250L250,500L700,10" />
         </svg>
       )}

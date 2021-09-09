@@ -28,12 +28,10 @@ export interface Props {
   active?: boolean;
   success?: boolean;
   errored?: boolean;
-  leftIcon?: ReactNode | IconName;
+  leftIcon?: IconName;
   leftIconSize?: number;
-  leftIconRotation?: number;
-  rightIcon?: ReactNode | IconName;
+  rightIcon?: IconName;
   rightIconSize?: number;
-  rightIconRotation?: number;
   style?: CSSProperties;
 }
 
@@ -126,17 +124,12 @@ function Wrapper({
         }
       }
     },
-    [onClick]
+    [onClick],
   );
 
   if (!disabled && !pending && !autoPending && href && href.length) {
     return (
-      <a
-        className={className.join(' ')}
-        href={href}
-        onFocus={onFocus}
-        style={style}
-      >
+      <a className={className.join(' ')} href={href} onFocus={onFocus} style={style}>
         {children}
       </a>
     );
@@ -144,13 +137,7 @@ function Wrapper({
 
   if (!disabled && !pending && !autoPending && to && to.length) {
     return (
-      <NavLink
-        className={className.join(' ')}
-        to={to}
-        style={style || {}}
-        exact
-        onFocus={onFocus}
-      >
+      <NavLink className={className.join(' ')} to={to} style={style || {}} exact onFocus={onFocus}>
         {children}
       </NavLink>
     );
@@ -163,8 +150,7 @@ function Wrapper({
       onFocus={onFocus}
       type={type}
       disabled={(disabled || pending || autoPending) as boolean}
-      style={style}
-    >
+      style={style}>
       {children}
     </button>
   );
@@ -186,11 +172,9 @@ export default function Button({
   errored = false,
   disabled = false,
   leftIcon = undefined,
-  leftIconSize = 20,
-  leftIconRotation = 0,
+  leftIconSize = 15,
   rightIcon = undefined,
-  rightIconSize = 20,
-  rightIconRotation = 0,
+  rightIconSize = 15,
   style = {},
 }: Props): ReactElement {
   return (
@@ -208,21 +192,12 @@ export default function Button({
       active={active}
       success={success}
       errored={errored}
-      style={style}
-    >
+      style={style}>
       <div className="container">
         <div className="body">
           {leftIcon ? (
             <div className="left-icon">
-              {typeof leftIcon === 'string' ? (
-                <Icon
-                  name={leftIcon as IconName}
-                  size={leftIconSize}
-                  rotate={leftIconRotation}
-                />
-              ) : (
-                leftIcon
-              )}
+              <Icon name={leftIcon} size={leftIconSize} />
             </div>
           ) : null}
 
@@ -231,15 +206,7 @@ export default function Button({
 
         {rightIcon ? (
           <div className="right-icon">
-            {typeof rightIcon === 'string' ? (
-              <Icon
-                name={rightIcon as IconName}
-                size={rightIconSize}
-                rotate={rightIconRotation}
-              />
-            ) : (
-              rightIcon
-            )}
+            <Icon name={rightIcon} size={rightIconSize} />
           </div>
         ) : null}
       </div>

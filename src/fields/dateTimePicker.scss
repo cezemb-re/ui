@@ -1,4 +1,8 @@
-.ui-fields-date-time-picker {
+@use '~@cezembre/fronts/dist/layouts';
+@use '../styles/colors';
+@use '../styles/fonts';
+
+.cezembre-ui-fields-date-time-picker {
   position: relative;
 
   > .label {
@@ -13,12 +17,11 @@
     cursor: pointer;
 
     > span {
-      @include JetBrainsMono(1.1em);
+      @include fonts.JetBrainsMono(1.1em);
 
       &:first-letter {
         text-transform: uppercase;
       }
-
     }
 
     > .edit {
@@ -26,13 +29,10 @@
     }
 
     &.placeholder {
-
       > span {
         color: black;
       }
-
     }
-
   }
 
   > .picker {
@@ -41,29 +41,25 @@
     justify-content: flex-start;
 
     > .time {
-      border-left: solid rgba($color-lead, .1) 1px;
+      border-left: solid rgba(colors.$lead, .1) 1px;
     }
 
     &.expandable {
-      @include layout-popup();
-      border: solid rgba($color-lead, .1) 1px;
-      box-shadow: 0 0 10px rgba($color-lead, .2);
+      @include layouts.popup();
+      border: solid rgba(colors.$lead, .1) 1px;
+      box-shadow: 0 0 10px rgba(colors.$lead, .2);
       position: absolute;
-      background: $color-lead-light;
+      background: colors.$lead-light;
       top: calc(100% + 5px);
       left: 0;
       opacity: 0;
       visibility: hidden;
       transition: opacity linear 100ms;
-
     }
 
     &.expanded {
       visibility: visible;
       opacity: 1;
     }
-
   }
-
-
 }

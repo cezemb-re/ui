@@ -1,12 +1,15 @@
+@use "../styles/fonts";
+@use "../styles/colors";
+
 .cezembre-ui-upload-image {
   position: relative;
-  background: $color-placeholder;
+  background: colors.$placeholder;
   cursor: pointer;
 
   &:focus {
     outline: none;
     border: none;
-    box-shadow: 0 0 5px rgba($color-lead, .3);
+    box-shadow: 0 0 5px rgba(colors.$lead, .3);
   }
 
   > input[type=file] {
@@ -15,7 +18,7 @@
   }
 
   > .image {
-    background: $color-placeholder;
+    background: colors.$placeholder;
   }
 
   > .overlay {
@@ -29,16 +32,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba($color-lead, .5);
+    background: rgba(colors.$lead, .5);
     opacity: 0;
     transition: opacity linear 100ms;
 
     > .error {
-      @include JetBrainsMono(1em, white);
-      background: $color-error;
+      @include fonts.JetBrainsMono(1em, white);
+      background: colors.$error;
       padding: 5px 10px;
     }
-
   }
 
   &:hover, &.empty, &.active {
@@ -46,5 +48,4 @@
       opacity: 1;
     }
   }
-
 }

@@ -1,9 +1,12 @@
+@use "~@cezembre/fronts/dist/screens";
+@use "../styles/fonts";
+@use "../styles/colors";
+
 .cezembre-ui-button {
   display: block;
   cursor: pointer;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -44,30 +47,27 @@
       }
 
       > span {
-        @include JetBrainsMono(.9em, $color-lead, bold);
+        @include fonts.JetBrainsMono(.9em, colors.$lead, bold);
         align-self: center;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
         flex-shrink: 2;
 
-        @include screen-laptop() {
+        @include screens.laptop() {
           font-size: .85em;
         }
 
-        @include screen-tablet() {
+        @include screens.tablet() {
           font-size: .8em;
         }
-
       }
-
     }
 
     > .right-icon {
       align-self: center;
       flex-shrink: 0;
       margin-left: 15px;
-
     }
   }
 
@@ -87,7 +87,6 @@
     visibility: hidden;
     opacity: 0;
     transition: visibility linear 100ms, opacity linear 100ms;
-
   }
 
   &.small {
@@ -100,7 +99,6 @@
     > .container > .body > span {
       padding: 0 10px;
     }
-
   }
 
   &.medium {
@@ -109,7 +107,6 @@
     &.round {
       border-radius: 18px;
     }
-
   }
 
   &.large {
@@ -118,84 +115,71 @@
     &.round {
       border-radius: 20px;
     }
-
   }
 
   &.filled {
-    background: $color-lead;
+    background: colors.$lead;
 
     > .container {
 
       svg {
-        fill: $color-lead-light;
+        fill: colors.$lead-light;
       }
 
       > .body > span {
-        color: $color-lead-light;
+        color: colors.$lead-light;
       }
     }
 
     &:hover, &.active {
-      background: $color-alternative;
+      background: colors.$alternative;
     }
-
   }
 
   &.outlined {
-    border: solid $color-lead 1px;
+    border: solid colors.$lead 1px;
 
     > .container {
       svg {
-        fill: $color-lead;
+        fill: colors.$lead;
       }
     }
 
     &:hover, &.active {
-      background: $color-lead;
+      background: colors.$lead;
 
       > .container {
-
         svg {
-          fill: $color-lead-light;
+          fill: colors.$lead-light;
         }
 
         > .body > span {
-          color: $color-lead-light;
+          color: colors.$lead-light;
         }
-
       }
-
     }
-
   }
 
   &.text {
-
     > .container {
-
       svg {
-        fill: $color-lead;
+        fill: colors.$lead;
       }
-
     }
 
     &:hover, &.active {
-      background: $color-lead;
+      background: colors.$lead;
 
       > .container {
-
         svg {
-          fill: $color-lead-light;
+          fill: colors.$lead-light;
         }
 
         > .container > .body > span {
-          color: $color-lead-light;
+          color: colors.$lead-light;
         }
-
       }
-
     }
-
   }
 
   &.link {
@@ -203,106 +187,92 @@
 
     > .container {
       svg {
-        fill: $color-text-light;
+        fill: colors.$text-light;
       }
 
       > .body > span {
-        color: $color-text-light;
+        color: colors.$text-light;
       }
     }
 
     &:hover {
-
       > .container {
         svg {
-          fill: rgba($color-text, .4);
+          fill: rgba(colors.$text, .4);
         }
 
         > .body > span {
-          color: rgba($color-text, .4);
+          color: rgba(colors.$text, .4);
         }
       }
-
     }
 
     &.active {
-
       > .container {
         svg {
-          fill: $color-lead;
+          fill: colors.$lead;
         }
 
         > .body > span {
-          color: $color-lead;
+          color: colors.$lead;
         }
       }
-
     }
-
   }
 
   &.light {
-
     &.text {
       svg {
-        fill: $color-text-light;
+        fill: colors.$text-light;
       }
 
       > .container > .body > span {
-        color: $color-text-light;
+        color: colors.$text-light;
       }
 
       &:hover {
         background: none;
 
         svg {
-          fill: $color-text-medium;
+          fill: colors.$text-medium;
         }
 
         > .container > .body > span {
-          color: $color-text-medium;
+          color: colors.$text-medium;
         }
-
       }
 
       &.active {
         background: none;
 
         svg {
-          fill: $color-lead;
+          fill: colors.$lead;
         }
 
         > .container > .body > span {
-          color: $color-lead;
+          color: colors.$lead;
         }
-
       }
-
     }
-
   }
 
   &.disabled {
     pointer-events: none;
-    background: $color-background;
+    background: colors.$background;
 
     > .container > .body {
-
       > .left-icon svg, > .right-icon svg {
-        fill: $color-placeholder;
+        fill: colors.$placeholder;
       }
 
       > span {
-        color: $color-placeholder;
+        color: colors.$placeholder;
       }
-
     }
-
   }
 
   &.pending > .pending {
     visibility: visible;
     opacity: 1;
   }
-
 }

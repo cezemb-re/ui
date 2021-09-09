@@ -1,0 +1,15 @@
+@use "../styles/colors";
+
+.cezembre-ui-loader {
+  border-style: solid;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+
+  &.light {
+    border-color: colors.$lead-light transparent transparent transparent;
+  }
+
+  &.dark {
+    border-color: colors.$lead transparent transparent transparent;
+  }
+}

@@ -1,185 +1,134 @@
 import { ReactElement } from 'react';
-import Dashboard from '../icons/dashboard';
+import IconProps from '../icons/props';
 import Alert from '../icons/alert';
 import AppleStore from '../icons/appleStore';
 import Arrow from '../icons/arrow';
+import Bin from '../icons/bin';
 import Bouquet from '../icons/bouquet';
-import Delivery from '../icons/delivery';
-import Marker from '../icons/marker';
-import Mastercard from '../icons/mastercard';
-import Plus from '../icons/plus';
-import Search from '../icons/search';
-import Shop from '../icons/shop';
-import Time from '../icons/time';
-import User from '../icons/user';
-import Visa from '../icons/visa';
-import Download from '../icons/download';
+import Calendar from '../icons/calendar';
+import Camera from '../icons/camera';
 import Cart from '../icons/cart';
 import Check from '../icons/check';
 import Chevron from '../icons/chevron';
-import Camera from '../icons/camera';
-import Sides from '../icons/sides';
-import Bin from '../icons/bin';
-import Edit from '../icons/edit';
-import Refresh from '../icons/refresh';
-import Phone from '../icons/phone';
-import Info from '../icons/info';
-import Message from '../icons/message';
-import Calendar from '../icons/calendar';
 import Cross from '../icons/cross';
+import Dashboard from '../icons/dashboard';
+import Delivery from '../icons/delivery';
+import Download from '../icons/download';
+import Edit from '../icons/edit';
+import Info from '../icons/info';
+import Marker from '../icons/marker';
+import Mastercard from '../icons/mastercard';
+import Message from '../icons/message';
+import Minus from '../icons/minus';
+import Phone from '../icons/phone';
+import Plus from '../icons/plus';
+import Refresh from '../icons/refresh';
+import Search from '../icons/search';
+import Shop from '../icons/shop';
+import Sides from '../icons/sides';
+import Time from '../icons/time';
+import User from '../icons/user';
+import Visa from '../icons/visa';
 
-export enum IconName {
-  DASHBOARD = 'dashboard',
-  ALERT = 'alert',
-  APPLE_STORE = 'apple-store',
-  ARROW = 'arrow',
-  BOUQUET = 'bouquet',
-  DELIVERY = 'delivery',
-  MARKER = 'marker',
-  MASTERCARD = 'mastercard',
-  PLUS = 'plus',
-  SEARCH = 'search',
-  SHOP = 'shop',
-  TIME = 'time',
-  USER = 'user',
-  VISA = 'visa',
-  DOWNLOAD = 'download',
-  CART = 'cart',
-  CHECK = 'check',
-  CHEVRON = 'chevron',
-  CAMERA = 'camera',
-  SIDES = 'sides',
-  BIN = 'bin',
-  EDIT = 'edit',
-  REFRESH = 'refresh',
-  PHONE = 'phone',
-  INFO = 'info',
-  MESSAGE = 'message',
-  CALENDAR = 'calendar',
-  CROSS = 'cross',
-}
+export type IconName =
+  | 'alert'
+  | 'apple_store'
+  | 'arrow'
+  | 'bin'
+  | 'bouquet'
+  | 'calendar'
+  | 'camera'
+  | 'cart'
+  | 'check'
+  | 'chevron'
+  | 'cross'
+  | 'dashboard'
+  | 'delivery'
+  | 'download'
+  | 'edit'
+  | 'info'
+  | 'marker'
+  | 'mastercard'
+  | 'message'
+  | 'minus'
+  | 'phone'
+  | 'plus'
+  | 'refresh'
+  | 'search'
+  | 'shop'
+  | 'sides'
+  | 'time'
+  | 'user'
+  | 'visa';
 
-export interface Props {
+export interface Props extends IconProps {
   name?: IconName;
-  size?: number;
-  color?: string;
-  color2?: string;
-  color3?: string;
-  color4?: string;
-  color5?: string;
-  rotate?: number;
 }
 
 export default function Icon({
-  name = IconName.ALERT,
-  size = 20,
-  color = undefined,
-  color2 = undefined,
-  color3 = undefined,
-  rotate = 0,
+  name = 'alert',
+  size = 15,
+  color,
 }: Props): ReactElement<SVGElement> {
-  let Svg: ReactElement<SVGElement> | null;
-
   switch (name) {
-    case IconName.DASHBOARD:
-      Svg = <Dashboard size={size} color={color} />;
-      break;
-    case IconName.ALERT:
-      Svg = <Alert size={size} color={color} />;
-      break;
-    case IconName.APPLE_STORE:
-      Svg = (
-        <AppleStore size={size} color={color} color2={color2} color3={color3} />
-      );
-      break;
-    case IconName.ARROW:
-      Svg = <Arrow size={size} color={color} />;
-      break;
-    case IconName.BOUQUET:
-      Svg = <Bouquet size={size} color={color} />;
-      break;
-    case IconName.DELIVERY:
-      Svg = <Delivery size={size} color={color} />;
-      break;
-    case IconName.MARKER:
-      Svg = <Marker size={size} color={color} />;
-      break;
-    case IconName.MASTERCARD:
-      Svg = <Mastercard size={size} color={color} color2={color2} />;
-      break;
-    case IconName.PLUS:
-      Svg = <Plus size={size} color={color} />;
-      break;
-    case IconName.SEARCH:
-      Svg = <Search size={size} color={color} />;
-      break;
-    case IconName.SHOP:
-      Svg = <Shop size={size} color={color} />;
-      break;
-    case IconName.TIME:
-      Svg = <Time size={size} color={color} />;
-      break;
-    case IconName.USER:
-      Svg = <User size={size} color={color} />;
-      break;
-    case IconName.VISA:
-      Svg = <Visa size={size} color={color} color2={color2} />;
-      break;
-    case IconName.DOWNLOAD:
-      Svg = <Download size={size} color={color} />;
-      break;
-    case IconName.CART:
-      Svg = <Cart size={size} color={color} />;
-      break;
-    case IconName.PHONE:
-      Svg = <Phone size={size} color={color} />;
-      break;
-    case IconName.INFO:
-      Svg = <Info size={size} color={color} />;
-      break;
-    case IconName.CHECK:
-      Svg = <Check size={size} color={color} />;
-      break;
-    case IconName.CHEVRON:
-      Svg = <Chevron size={size} color={color} />;
-      break;
-    case IconName.CAMERA:
-      Svg = <Camera size={size} color={color} />;
-      break;
-    case IconName.SIDES:
-      Svg = <Sides size={size} color={color} />;
-      break;
-    case IconName.BIN:
-      Svg = <Bin size={size} color={color} />;
-      break;
-    case IconName.EDIT:
-      Svg = <Edit size={size} color={color} />;
-      break;
-    case IconName.REFRESH:
-      Svg = <Refresh size={size} color={color} />;
-      break;
-    case IconName.MESSAGE:
-      Svg = <Message size={size} color={color} />;
-      break;
-    case IconName.CALENDAR:
-      Svg = <Calendar size={size} color={color} />;
-      break;
-    case IconName.CROSS:
-      Svg = <Cross size={size} color={color} />;
-      break;
     default:
-      Svg = null;
-      break;
+    case 'alert':
+      return <Alert size={size} color={color} />;
+    case 'apple_store':
+      return <AppleStore size={size} color={color} />;
+    case 'arrow':
+      return <Arrow size={size} color={color} />;
+    case 'bin':
+      return <Bin size={size} color={color} />;
+    case 'bouquet':
+      return <Bouquet size={size} color={color} />;
+    case 'calendar':
+      return <Calendar size={size} color={color} />;
+    case 'camera':
+      return <Camera size={size} color={color} />;
+    case 'cart':
+      return <Cart size={size} color={color} />;
+    case 'check':
+      return <Check size={size} color={color} />;
+    case 'chevron':
+      return <Chevron size={size} color={color} />;
+    case 'cross':
+      return <Cross size={size} color={color} />;
+    case 'dashboard':
+      return <Dashboard size={size} color={color} />;
+    case 'delivery':
+      return <Delivery size={size} color={color} />;
+    case 'download':
+      return <Download size={size} color={color} />;
+    case 'edit':
+      return <Edit size={size} color={color} />;
+    case 'info':
+      return <Info size={size} color={color} />;
+    case 'marker':
+      return <Marker size={size} color={color} />;
+    case 'mastercard':
+      return <Mastercard size={size} color={color} />;
+    case 'message':
+      return <Message size={size} color={color} />;
+    case 'minus':
+      return <Minus size={size} color={color} />;
+    case 'phone':
+      return <Phone size={size} color={color} />;
+    case 'plus':
+      return <Plus size={size} color={color} />;
+    case 'refresh':
+      return <Refresh size={size} color={color} />;
+    case 'search':
+      return <Search size={size} color={color} />;
+    case 'shop':
+      return <Shop size={size} color={color} />;
+    case 'sides':
+      return <Sides size={size} color={color} />;
+    case 'time':
+      return <Time size={size} color={color} />;
+    case 'user':
+      return <User size={size} color={color} />;
+    case 'visa':
+      return <Visa size={size} color={color} />;
   }
-
-  return (
-    <i
-      className={`cezembre-ui-icon ${name}`}
-      style={{
-        transform: `rotate(${rotate}deg)`,
-      }}
-    >
-      {Svg}
-    </i>
-  );
 }

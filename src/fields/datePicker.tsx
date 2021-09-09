@@ -29,7 +29,7 @@ export default function DatePicker({
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const picker = useRef<HTMLDivElement>(null);
   const [month, setMonth] = useState<DateTime>(
-    (value && typeof value === 'object' ? value : now).startOf('month')
+    (value && typeof value === 'object' ? value : now).startOf('month'),
   );
   const [daysInMonth, setDaysInMonth] = useState<number>(30);
   const [weekOffset, setWeekOffset] = useState<number>(0);
@@ -37,11 +37,11 @@ export default function DatePicker({
   useClickOutside(picker, () => setIsExpanded(false));
 
   const previousMonth = useCallback(() => {
-    setMonth((_month: DateTime) => _month.minus({ month: 1 }));
+    setMonth((_month: DateTime) => _month.minus({ months: 1 }));
   }, []);
 
   const nextMonth = useCallback(() => {
-    setMonth((_month: DateTime) => _month.plus({ month: 1 }));
+    setMonth((_month: DateTime) => _month.plus({ months: 1 }));
   }, []);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function DatePicker({
 
       onChange(nextValue);
     },
-    [month, onChange, value]
+    [month, onChange, value],
   );
 
   const isDisabled = useCallback((day: number): boolean => {
@@ -100,18 +100,14 @@ export default function DatePicker({
   }, [format, placeholder, value]);
 
   return (
-    <div ref={picker} className="ui-fields-date-picker">
+    <div ref={picker} className="cezembre-ui-fields-date-picker">
       {!expanded ? (
         <Button style={buttonStyle} onClick={() => setIsExpanded(true)}>
           {getLabel()}
         </Button>
       ) : null}
 
-      <div
-        className={`picker${!expanded ? ' expandable' : ''}${
-          isExpanded ? ' expanded' : ''
-        }`}
-      >
+      <div className={`picker${!expanded ? ' expandable' : ''}${isExpanded ? ' expanded' : ''}`}>
         <div className="month">
           <button onClick={previousMonth}>
             <i data-feather="arrow" />
@@ -154,8 +150,7 @@ export default function DatePicker({
                   id={day.toString()}
                   onClick={() => selectDay(day)}
                   disabled={disabled}
-                  className={`day${selected ? ' selected' : ''}`}
-                >
+                  className={`day${selected ? ' selected' : ''}`}>
                   {day}
                 </button>
               );
