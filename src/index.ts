@@ -1,3 +1,4 @@
+import './index.scss';
 import Icon, { IconName } from './general/icon';
 import Loader from './general/loader';
 import Check from './general/check';
