@@ -16,10 +16,10 @@
   animation-fill-mode: forwards;
 
   &.visible {
-    animation-name: appear;
+    animation-name: fade-in;
   }
 
   &.closed {
-    animation-name: disappear;
+    animation-name: fade-out;
   }
 }

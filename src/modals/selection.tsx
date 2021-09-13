@@ -51,10 +51,7 @@ export default function Selection({ children, filter }: Props): ReactElement {
   }, [positionModal]);
 
   return (
-    <div
-      className={`cezembre-ui-modals-selection${isActive ? ' active' : ''}`}
-      style={position}
-    >
+    <div className={`cezembre-ui-modals-selection${isActive ? ' active' : ''}`} style={position}>
       {children}
     </div>
   );

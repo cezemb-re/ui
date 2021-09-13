@@ -9,7 +9,6 @@ import Button from '../general/button';
 export interface Props extends FieldComponentProps<DateTime | null> {
   placeholder?: string;
   format?: string | ((value: DateTime | null) => string);
-  buttonStyle?: CSSProperties;
   expanded?: boolean;
 }
 
@@ -31,7 +30,6 @@ export default function DateTimePicker({
   placeholder,
   format,
   expanded = false,
-  buttonStyle = {},
 }: Props): ReactElement {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const picker = useRef<HTMLDivElement>(null);
@@ -53,11 +51,7 @@ export default function DateTimePicker({
 
   return (
     <div ref={picker} className="cezembre-ui-fields-date-time-picker">
-      {!expanded ? (
-        <Button style={buttonStyle} onClick={() => setIsExpanded(true)}>
-          {getLabel()}
-        </Button>
-      ) : null}
+      {!expanded ? <Button onClick={() => setIsExpanded(true)}>{getLabel()}</Button> : null}
 
       <div className={`picker${!expanded ? ' expandable' : ''}${isExpanded ? ' expanded' : ''}`}>
         <div className="date">

@@ -113,11 +113,7 @@ export default function Select({
 
       <div className="container">
         <div className="button">
-          <Button
-            style={{ width: '100%' }}
-            onClick={toggleFocus}
-            rightIcon="arrow"
-            leftIcon={currentIcon}>
+          <Button onClick={toggleFocus} rightIcon="arrow" leftIcon={currentIcon}>
             {selectedOptionIndex !== -1
               ? options[selectedOptionIndex].label
               : placeholder || 'Choisissez une option'}
@@ -129,7 +125,6 @@ export default function Select({
             <div className="option" key={option.value}>
               <Button
                 onClick={() => selectOption(index, option.value)}
-                style={{ width: '100%' }}
                 rightIcon={index === selectedOptionIndex ? 'check' : undefined}>
                 {option.label}
               </Button>

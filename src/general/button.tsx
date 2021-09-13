@@ -19,10 +19,13 @@ export interface Props {
   onClick?: (event: MouseEvent<HTMLButtonElement>) => Promise<void> | void;
   onFocus?: (event: FocusEvent<HTMLElement>) => void;
   type?: 'submit' | 'reset' | 'button';
-  shape?: 'round' | 'square';
+  shape?: 'square' | 'rounded' | 'round';
   size?: 'small' | 'medium' | 'large';
-  buttonStyle?: 'filled' | 'outlined' | 'text' | 'link';
+  style?: 'filled' | 'outlined' | 'text' | 'link' | 'namespace';
   theme?: 'dark' | 'light';
+  fullWidth?: boolean;
+  centered?: boolean;
+  paddingLeft?: number;
   disabled?: boolean;
   pending?: boolean;
   active?: boolean;
@@ -32,7 +35,7 @@ export interface Props {
   leftIconSize?: number;
   rightIcon?: IconName;
   rightIconSize?: number;
-  style?: CSSProperties;
+  nativeStyle?: CSSProperties;
 }
 
 function Wrapper({
@@ -43,28 +46,37 @@ function Wrapper({
   onFocus = undefined,
   shape = 'square',
   size = 'medium',
-  buttonStyle = 'filled',
+  style = 'filled',
   theme = 'dark',
+  fullWidth = false,
+  centered = false,
+  paddingLeft = undefined,
   type = 'button',
   disabled = false,
   pending = false,
   active = false,
   success = false,
   errored = false,
-  style = {},
 }: Props): ReactElement {
   const [autoPending, setAutoPending] = useState<boolean>(false);
   const [autoErrored, setAutoErrored] = useState<boolean>(false);
-  const [className, setClassName] = useState<string[]>([
+  const [className, setClassName] = useState<(string | undefined)[]>([
     'cezembre-ui-button',
     shape,
     size,
-    buttonStyle,
+    style,
     theme,
+    active ? 'active' : undefined,
+    success ? 'success' : undefined,
+    pending || autoPending ? 'pending' : undefined,
+    errored || autoErrored ? 'errored' : undefined,
+    disabled ? 'disabled' : undefined,
+    fullWidth ? 'full-width' : undefined,
+    centered ? 'centered' : undefined,
   ]);
 
   useEffect(() => {
-    const nextClasses = ['cezembre-ui-button', shape, size, buttonStyle, theme];
+    const nextClasses = ['cezembre-ui-button', shape, size, style, theme];
 
     if (active) {
       nextClasses.push('active');
@@ -86,6 +98,14 @@ function Wrapper({
       nextClasses.push('disabled');
     }
 
+    if (fullWidth) {
+      nextClasses.push('full-width');
+    }
+
+    if (centered) {
+      nextClasses.push('centered');
+    }
+
     setClassName(nextClasses);
   }, [
     active,
@@ -94,11 +114,13 @@ function Wrapper({
     disabled,
     shape,
     size,
-    buttonStyle,
+    style,
     pending,
     autoPending,
     autoErrored,
     theme,
+    fullWidth,
+    centered,
   ]);
 
   const onButtonClick = useCallback(
@@ -129,7 +151,7 @@ function Wrapper({
 
   if (!disabled && !pending && !autoPending && href && href.length) {
     return (
-      <a className={className.join(' ')} href={href} onFocus={onFocus} style={style}>
+      <a className={className.join(' ')} href={href} onFocus={onFocus} style={{ paddingLeft }}>
         {children}
       </a>
     );
@@ -137,7 +159,12 @@ function Wrapper({
 
   if (!disabled && !pending && !autoPending && to && to.length) {
     return (
-      <NavLink className={className.join(' ')} to={to} style={style || {}} exact onFocus={onFocus}>
+      <NavLink
+        className={className.join(' ')}
+        to={to}
+        exact
+        onFocus={onFocus}
+        style={{ paddingLeft }}>
         {children}
       </NavLink>
     );
@@ -145,12 +172,12 @@ function Wrapper({
 
   return (
     <button
-      className={className.join(' ')}
+      className={className.filter(String).join(' ')}
       onClick={onButtonClick}
       onFocus={onFocus}
       type={type}
       disabled={(disabled || pending || autoPending) as boolean}
-      style={style}>
+      style={{ paddingLeft }}>
       {children}
     </button>
   );
@@ -163,9 +190,12 @@ export default function Button({
   onClick = undefined,
   shape = 'square',
   size = 'medium',
-  buttonStyle = 'filled',
+  style = 'filled',
   type = 'button',
   theme = 'dark',
+  fullWidth = false,
+  centered = false,
+  paddingLeft = undefined,
   active = false,
   pending = false,
   success = false,
@@ -175,7 +205,6 @@ export default function Button({
   leftIconSize = 15,
   rightIcon = undefined,
   rightIconSize = 15,
-  style = {},
 }: Props): ReactElement {
   return (
     <Wrapper
@@ -188,7 +217,9 @@ export default function Button({
       shape={shape}
       size={size}
       theme={theme}
-      buttonStyle={buttonStyle}
+      fullWidth={fullWidth}
+      centered={centered}
+      paddingLeft={paddingLeft}
       active={active}
       success={success}
       errored={errored}

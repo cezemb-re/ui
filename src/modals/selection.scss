@@ -6,6 +6,6 @@
   transition: top ease-out 50ms, left ease-out 50ms;
 
   &.active {
-    animation: appear linear 100ms forwards;
+    animation: fade-in linear 100ms forwards;
   }
 }

@@ -1,7 +1,6 @@
-import { ReactElement, useCallback, useState } from 'react';
+import { ReactElement, useState } from 'react';
+import { Table, Button, DataType } from '@cezembre/ui';
 import './App.scss';
-import { Table, Button, Overlay, IconName, Input, Textarea, DataType, Wysiwyg } from '@cezembre/ui';
-import { Field, Form } from '@cezembre/forms';
 
 interface Article {
   id: string;
@@ -49,82 +48,56 @@ const articles: Article[] = [
 ];
 
 export default function App(): ReactElement {
-  const [visible, setVisible] = useState(false);
-  const [closed, setClosed] = useState(false);
-
-  const onChange = useCallback((fields, changes) => {
-    console.log('Change !', changes);
-  }, []);
+  const [activeNamespace, setActiveNamespace] = useState(false);
+  const [activeLink, setActiveLink] = useState(false);
 
   return (
     <div className="App">
-      <div className="header">
+      <div className="namespaces-menu">
         <Button
-          buttonStyle="link"
-          // theme="light"
-          leftIcon={IconName.ARROW}
-          leftIconRotation={180}
-          onClick={() => {
-            setVisible(true);
-            setClosed(false);
-          }}>
-          Oui
+          style="namespace"
+          fullWidth
+          shape="rounded"
+          leftIcon="time"
+          active={activeNamespace}
+          onClick={() => setActiveNamespace((a) => !a)}>
+          Accueil
+        </Button>
+
+        <Button
+          style="link"
+          fullWidth
+          shape="rounded"
+          paddingLeft={40}
+          active={activeLink}
+          onClick={() => setActiveLink((a) => !a)}>
+          Foot
+        </Button>
+
+        <Button style="link" fullWidth shape="rounded" paddingLeft={40} rightIcon="arrow">
+          Clubs
         </Button>
       </div>
 
-      <div style={{ position: 'relative' }}>
-        <Overlay visible={visible} closed={closed}>
-          <Button
-            buttonStyle="text"
-            onClick={() => {
-              setVisible(false);
-              setClosed(true);
-            }}>
-            Close
-          </Button>
-        </Overlay>
-      </div>
-
-      <Table<Article>
-        columns={[
-          {
-            key: 'title',
-            title: 'Titre',
-            width: 300,
-          },
-          { key: 'date', title: 'Date', width: 200, type: DataType.DATETIME },
-          { key: 'author', title: 'Auteur', width: 200 },
-          { key: 'active', title: 'Active', width: 100 },
-          { key: 'description', title: 'Description' },
-        ]}
-        data={articles}
-        onClickItem={() => null}
-      />
-
-      <Form className="form cezembre-ui-form" onChange={onChange}>
-        <div className="field title">
-          <Field name="title" placeholder="Titre ..." component={Input} inputStyle="inline" />
-        </div>
-
-        <div className="field">
-          <Field name="description" label="Description" component={Textarea} />
-        </div>
-
-        <div className="field composition">
-          <Field
-            name="composition"
-            component={Wysiwyg}
-            type="paragraph"
-            placeholder="Composition ..."
+      <div className="container">
+        <div className="table">
+          <Table<Article>
+            columns={[
+              {
+                key: 'title',
+                title: 'Titre',
+                width: 300,
+              },
+              { key: 'date', title: 'Date', width: 200, type: DataType.DATETIME },
+              { key: 'author', title: 'Auteur', width: 200 },
+              { key: 'active', title: 'Active', width: 100 },
+              { key: 'description', title: 'Description' },
+            ]}
+            data={articles}
+            onClickItem={() => null}
           />
         </div>
-
-        <div className="field composition">
-          <Field name="other" component={Wysiwyg} type="paragraph" placeholder="Autre ..." />
-        </div>
-      </Form>
-
-      <Button buttonStyle="link">Oui</Button>
+      </div>
     </div>
   );
 }

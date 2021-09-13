@@ -18,11 +18,7 @@
   padding: 0 15px;
   background: transparent;
   position: relative;
-  transition: background linear 200ms, border linear 200ms;
-
-  &.square {
-    border-radius: 8px;
-  }
+  transition: background linear 100ms, border linear 100ms;
 
   > .container {
     width: 100%;
@@ -32,6 +28,11 @@
     display: flex;
     align-items: stretch;
     justify-content: space-between;
+
+    svg {
+      transition: fill linear 100ms;
+      fill: colors.$lead;
+    }
 
     > .body {
       display: flex;
@@ -43,31 +44,23 @@
       > .left-icon {
         align-self: center;
         flex-shrink: 0;
-        margin-right: 15px;
+        margin-right: 10px;
       }
 
       > span {
-        @include fonts.JetBrainsMono(.9em, colors.$lead, bold);
+        @include fonts.JetBrainsMono(1em, colors.$lead);
         align-self: center;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
         flex-shrink: 2;
-
-        @include screens.laptop() {
-          font-size: .85em;
-        }
-
-        @include screens.tablet() {
-          font-size: .8em;
-        }
       }
     }
 
     > .right-icon {
       align-self: center;
       flex-shrink: 0;
-      margin-left: 15px;
+      margin-left: 10px;
     }
   }
 
@@ -87,6 +80,20 @@
     visibility: hidden;
     opacity: 0;
     transition: visibility linear 100ms, opacity linear 100ms;
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &.centered {
+    > .container {
+      justify-content: center;
+    }
+  }
+
+  &.rounded {
+    border-radius: 8px;
   }
 
   &.small {
@@ -121,7 +128,6 @@
     background: colors.$lead;
 
     > .container {
-
       svg {
         fill: colors.$lead-light;
       }
@@ -139,12 +145,6 @@
   &.outlined {
     border: solid colors.$lead 1px;
 
-    > .container {
-      svg {
-        fill: colors.$lead;
-      }
-    }
-
     &:hover, &.active {
       background: colors.$lead;
 
@@ -161,12 +161,6 @@
   }
 
   &.text {
-    > .container {
-      svg {
-        fill: colors.$lead;
-      }
-    }
-
     &:hover, &.active {
       background: colors.$lead;
 
@@ -175,7 +169,7 @@
           fill: colors.$lead-light;
         }
 
-        > .container > .body > span {
+        > .body > span {
           color: colors.$lead-light;
         }
       }
@@ -183,38 +177,60 @@
   }
 
   &.link {
-    padding: 0;
-
     > .container {
       svg {
-        fill: colors.$text-light;
+        fill: colors.$text-medium;
       }
 
       > .body > span {
-        color: colors.$text-light;
+        color: colors.$text-medium;
       }
     }
 
     &:hover {
+      background: white;
+    }
+
+    &.active {
+      background: white;
+
       > .container {
         svg {
-          fill: rgba(colors.$text, .4);
+          fill: colors.$text;
         }
 
         > .body > span {
-          color: rgba(colors.$text, .4);
+          color: colors.$text;
+          font-weight: bold;
         }
       }
+    }
+  }
+
+  &.namespace {
+    > .container {
+      svg {
+        fill: colors.$text-medium;
+      }
+
+      > .body > span {
+        color: colors.$text-medium;
+      }
+    }
+
+    &:hover {
+      background: white;
     }
 
     &.active {
       > .container {
         svg {
-          fill: colors.$lead;
+          fill: colors.$text;
         }
 
         > .body > span {
-          color: colors.$lead;
+          color: colors.$text;
+          font-weight: bold;
         }
       }
     }

@@ -9,7 +9,6 @@ export interface Props extends FieldComponentProps<DateTime | null> {
   placeholder?: string;
   format?: string | ((value: DateTime | null) => string);
   expanded?: boolean;
-  buttonStyle?: CSSProperties;
   disableBefore?: DateTime;
   disableAfter?: DateTime;
 }
@@ -21,7 +20,6 @@ export default function DatePicker({
   value,
   onChange,
   expanded = false,
-  buttonStyle = {},
   disableBefore = DateTime.now(),
   disableAfter,
   placeholder,
@@ -102,11 +100,7 @@ export default function DatePicker({
 
   return (
     <div ref={picker} className="cezembre-ui-fields-date-picker">
-      {!expanded ? (
-        <Button style={buttonStyle} onClick={() => setIsExpanded(true)}>
-          {getLabel()}
-        </Button>
-      ) : null}
+      {!expanded ? <Button onClick={() => setIsExpanded(true)}>{getLabel()}</Button> : null}
 
       <div className={`picker${!expanded ? ' expandable' : ''}${isExpanded ? ' expanded' : ''}`}>
         <div className="month">

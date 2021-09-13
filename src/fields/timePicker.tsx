@@ -29,7 +29,7 @@ export default function TimePicker({ value, onChange }: Props): ReactElement {
 
       onChange(nextValue);
     },
-    [onChange, value]
+    [onChange, value],
   );
 
   const selectMinute = useCallback(
@@ -52,7 +52,7 @@ export default function TimePicker({ value, onChange }: Props): ReactElement {
 
       onChange(nextValue);
     },
-    [onChange, value]
+    [onChange, value],
   );
 
   return (
@@ -64,10 +64,7 @@ export default function TimePicker({ value, onChange }: Props): ReactElement {
 
             return (
               <li key={hour.toString()}>
-                <button
-                  onClick={() => selectHour(hour)}
-                  className={selected ? ' selected' : ''}
-                >
+                <button onClick={() => selectHour(hour)} className={selected ? ' selected' : ''}>
                   {hour < 10 ? `0${hour}` : hour}
                 </button>
               </li>
@@ -81,10 +78,7 @@ export default function TimePicker({ value, onChange }: Props): ReactElement {
 
             return (
               <li key={minute.toString()}>
-                <button
-                  onClick={() => selectMinute(minute)}
-                  className={selected ? 'selected' : ''}
-                >
+                <button onClick={() => selectMinute(minute)} className={selected ? 'selected' : ''}>
                   {minute < 10 ? `0${minute}` : minute}
                 </button>
               </li>
