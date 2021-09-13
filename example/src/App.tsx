@@ -93,7 +93,7 @@ export default function App(): ReactElement {
               { key: 'active', title: 'Active', width: 100 },
               { key: 'description', title: 'Description' },
             ]}
-            data={articles}
+            data={[]}
             onClickItem={() => null}
           />
         </div>

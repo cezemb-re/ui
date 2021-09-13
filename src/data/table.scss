@@ -86,3 +86,21 @@ table.cezembre-ui-table {
     }
   }
 }
+
+div.cezembre-ui-empty-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+
+  > svg {
+    stroke: colors.$text-medium;
+  }
+
+  > .label {
+    @include fonts.JetBrainsMono(1em, colors.$text-medium);
+    text-align: center;
+    margin-top: 20px;
+  }
+}

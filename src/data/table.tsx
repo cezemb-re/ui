@@ -2,6 +2,7 @@ import { ReactElement, useCallback } from 'react';
 import Model from './model';
 import Cell from './cell';
 import Type from './types';
+import Icon from '../general/icon';
 
 export interface Column<M extends Model = Model> {
   key: keyof M;
@@ -14,16 +15,20 @@ export interface Column<M extends Model = Model> {
 }
 
 export interface Props<M extends Model = Model> {
-  columns?: Column<M>[];
+  columns: Column<M>[];
   data?: M[];
   onClickItem?: (item: M) => void;
+  EmptyPlaceholder?: ReactElement;
+  emptyLabel?: string;
 }
 
 export default function Table<M extends Model = Model>({
   columns,
   data = [],
   onClickItem = undefined,
-}: Props<M>): ReactElement | null {
+  EmptyPlaceholder = undefined,
+  emptyLabel = undefined,
+}: Props<M>): ReactElement {
   const onClickRow = useCallback(
     (item: M) => {
       if (onClickItem) {
@@ -33,8 +38,15 @@ export default function Table<M extends Model = Model>({
     [onClickItem],
   );
 
-  if (!columns) {
-    return null;
+  if (!data || !data.length) {
+    return EmptyPlaceholder ? (
+      EmptyPlaceholder
+    ) : (
+      <div className="cezembre-ui-empty-table">
+        <Icon name="inbox" size={50} width={1} />
+        <p className="label">{emptyLabel || 'Aucune donnée'}</p>
+      </div>
+    );
   }
 
   return (
