@@ -113,7 +113,7 @@ export default function Select({
 
       <div className="container">
         <div className="button">
-          <Button onClick={toggleFocus} rightIcon="arrow" leftIcon={currentIcon}>
+          <Button onClick={toggleFocus} rightIcon="arrow-right" leftIcon={currentIcon}>
             {selectedOptionIndex !== -1
               ? options[selectedOptionIndex].label
               : placeholder || 'Choisissez une option'}
@@ -137,14 +137,14 @@ export default function Select({
 
       {error ? (
         <div className="error">
-          <Icon name="alert" />
+          <Icon name="alert-triangle" />
           <span>{error}</span>
         </div>
       ) : null}
 
       {warning ? (
         <div className="warning">
-          <Icon name="alert" />
+          <Icon name="alert-triangle" />
           <span>{warning}</span>
         </div>
       ) : null}

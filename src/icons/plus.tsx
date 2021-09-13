@@ -2,14 +2,24 @@ import { ReactElement } from 'react';
 import colors from '../styles/_colors.scss';
 import IconProps from './props';
 
-export default function Plus({
+export default function ({
   size = 15,
+  width = 2,
   color = colors.TEXT,
 }: IconProps): ReactElement<SVGElement> {
   return (
-    <svg width={size} viewBox="0 0 409.6 409.6" fill={color}>
-      <title>Plus</title>
-      <path d="M392.533,187.733H221.867V17.067C221.867,7.641,214.226,0,204.8,0s-17.067,7.641-17.067,17.067v170.667H17.067C7.641,187.733,0,195.374,0,204.8s7.641,17.067,17.067,17.067h170.667v170.667c0,9.426,7.641,17.067,17.067,17.067s17.067-7.641,17.067-17.067V221.867h170.667c9.426,0,17.067-7.641,17.067-17.067S401.959,187.733,392.533,187.733z" />
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      stroke={color}
+      fill="none"
+      strokeWidth={width}
+      strokeLinecap="round"
+      strokeLinejoin="round">
+      <title>plus</title>
+      <line x1="12" y1="5" x2="12" y2="19" />
+      <line x1="5" y1="12" x2="19" y2="12" />
     </svg>
   );
 }

@@ -76,14 +76,14 @@ export default function Switch({
 
       {error ? (
         <div className="error">
-          <Icon name="alert" />
+          <Icon name="alert-triangle" />
           <span>{error}</span>
         </div>
       ) : null}
 
       {warning ? (
         <div className="warning">
-          <Icon name="alert" />
+          <Icon name="alert-triangle" />
           <span>{warning}</span>
         </div>
       ) : null}

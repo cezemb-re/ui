@@ -2,14 +2,26 @@ import { ReactElement } from 'react';
 import colors from '../styles/_colors.scss';
 import IconProps from './props';
 
-export default function Calendar({
+export default function ({
   size = 15,
+  width = 2,
   color = colors.TEXT,
 }: IconProps): ReactElement<SVGElement> {
   return (
-    <svg viewBox="0 0 512.001 512.001" width={size} fill={color}>
-      <title>Calendar</title>
-      <path d="m15.001 421h75v45c0 8.284 6.716 15 15 15h392c8.284 0 15-6.716 15-15v-390c0-8.284-6.716-15-15-15h-75v-15c0-8.284-6.716-15-15-15s-15 6.716-15 15v15h-76v-15c0-8.284-6.716-15-15-15s-15 6.716-15 15v15h-75v-15c0-8.284-6.716-15-15-15s-15 6.716-15 15v15h-76c-8.284 0-15 6.716-15 15v90c0 110.55-45.945 195.596-84.603 228.477-4.852 4.043-6.651 10.691-4.502 16.63 2.151 5.938 7.789 9.893 14.105 9.893zm467 30h-362v-30h287c3.509 0 6.907-1.23 9.603-3.477 18.032-15.019 45.963-50.777 65.397-96.575zm-362-360h61v15c0 8.284 6.716 15 15 15s15-6.716 15-15v-15h75v15c0 8.284 6.716 15 15 15s15-6.716 15-15v-15h76v15c0 8.284 6.716 15 15 15s15-6.716 15-15v-15h60v60h-362zm-.257 89.99h361.991c-3.38 95.155-39.901 170.023-80.616 210.01h-351.999c46.133-58.781 68.149-135.318 70.624-210.01z" />
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      stroke={color}
+      fill="none"
+      strokeWidth={width}
+      strokeLinecap="round"
+      strokeLinejoin="round">
+      <title>calendar</title>
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" />
     </svg>
   );
 }

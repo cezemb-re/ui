@@ -4,7 +4,7 @@
   display: block;
 
   > svg {
-    transition: fill linear 100ms, height linear 100ms, width linear 100ms;
+    transition: stroke linear 100ms, height linear 100ms, width linear 100ms;
     display: block;
   }
 }

@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import IconProps from './props';
 
-export default function Mastercard({ size = 15 }: IconProps): ReactElement<SVGElement> {
+export default function ({ size = 15 }: IconProps): ReactElement<SVGElement> {
   return (
     <svg width={size} viewBox="0 0 291.791 291.791">
       <path

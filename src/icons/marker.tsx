@@ -2,10 +2,7 @@ import { ReactElement } from 'react';
 import colors from '../styles/_colors.scss';
 import IconProps from './props';
 
-export default function Marker({
-  size = 15,
-  color = colors.TEXT,
-}: IconProps): ReactElement<SVGElement> {
+export default function ({ size = 15, color = colors.TEXT }: IconProps): ReactElement<SVGElement> {
   return (
     <svg viewBox="0 0 327.85 500" width={size} fill={color}>
       <title>Marker</title>

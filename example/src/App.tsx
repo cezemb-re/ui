@@ -58,7 +58,7 @@ export default function App(): ReactElement {
           style="namespace"
           fullWidth
           shape="rounded"
-          leftIcon="time"
+          leftIcon="activity"
           active={activeNamespace}
           onClick={() => setActiveNamespace((a) => !a)}>
           Accueil
@@ -74,7 +74,7 @@ export default function App(): ReactElement {
           Foot
         </Button>
 
-        <Button style="link" fullWidth shape="rounded" paddingLeft={40} rightIcon="arrow">
+        <Button style="link" fullWidth shape="rounded" paddingLeft={40} rightIcon="chevron-down">
           Clubs
         </Button>
       </div>

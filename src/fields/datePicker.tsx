@@ -105,13 +105,13 @@ export default function DatePicker({
       <div className={`picker${!expanded ? ' expandable' : ''}${isExpanded ? ' expanded' : ''}`}>
         <div className="month">
           <button onClick={previousMonth}>
-            <Icon name="arrow" />
+            <Icon name="arrow-left" />
           </button>
 
           <span>{month.toFormat('LLLL yyyy')}</span>
 
           <button onClick={nextMonth}>
-            <Icon name="arrow" />
+            <Icon name="arrow-right" />
           </button>
         </div>
 

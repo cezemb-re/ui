@@ -43,7 +43,7 @@
   margin-top: 15px;
 
   > svg {
-    fill: colors.$error;
+    stroke: colors.$error;
   }
 
   > span {
@@ -59,7 +59,7 @@
   margin-top: 15px;
 
   > svg {
-    fill: colors.$warning;
+    stroke: colors.$warning;
   }
 
   > span {

@@ -115,7 +115,7 @@ export default function Cell<M extends Model = Model>({
     case Type.BOOLEAN:
       return (
         <p className="boolean">
-          {value ? <Icon name="check" size={15} /> : <Icon name="cross" size={12} />}
+          {value ? <Icon name="check" size={15} /> : <Icon name="x" size={15} />}
         </p>
       );
 
