@@ -1,8 +1,7 @@
-import { ReactNode, ReactElement, useState, useEffect, useCallback, useRef } from 'react';
+import { ReactElement, useState, useEffect, useCallback, useRef } from 'react';
 import _ from 'lodash';
 import { FieldComponentProps } from '@cezembre/forms';
 import { useClickOutside } from '@cezembre/fronts';
-import Button from '../general/button';
 import Icon from '../general/icon';
 
 export enum Type {
@@ -74,13 +73,7 @@ export default function Select({
   ]);
 
   useEffect(() => {
-    const nextClassNames = [
-      'cezembre-ui-fields-select',
-      type,
-      isActive ? 'isActive' : undefined,
-      error ? 'error' : undefined,
-      warning ? 'warning' : undefined,
-    ];
+    const nextClassNames = ['cezembre-ui-fields-select', type];
 
     if (isActive) {
       nextClassNames.push('active');
@@ -139,7 +132,7 @@ export default function Select({
       {label && <label htmlFor={name}>{label}</label>}
 
       <div className="container">
-        <button onClick={toggleFocus}>
+        <button onClick={toggleFocus} type="button">
           <Cell
             option={selectedOptionIndex !== undefined ? options[selectedOptionIndex] : undefined}
             placeholder={placeholder}
@@ -151,6 +144,7 @@ export default function Select({
           {options?.map((option, index) => (
             <button
               key={option.value}
+              type="button"
               className={`option${selectedOptionIndex === index ? ' active' : ''}`}
               onClick={() => selectOption(index, option.value)}>
               <Cell option={option} />
