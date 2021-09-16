@@ -583,581 +583,580 @@ export default function Icon({
   name = 'activity',
   size = 15,
   width = 2,
-  color,
 }: Props): ReactElement<SVGElement> {
   switch (name) {
     default:
     case 'activity':
-      return <Activity color={color} size={size} width={width} />;
+      return <Activity size={size} width={width} />;
     case 'airplay':
-      return <Airplay color={color} size={size} width={width} />;
+      return <Airplay size={size} width={width} />;
     case 'alert-circle':
-      return <AlertCircle color={color} size={size} width={width} />;
+      return <AlertCircle size={size} width={width} />;
     case 'alert-octagon':
-      return <AlertOctagon color={color} size={size} width={width} />;
+      return <AlertOctagon size={size} width={width} />;
     case 'alert-triangle':
-      return <AlertTriangle color={color} size={size} width={width} />;
+      return <AlertTriangle size={size} width={width} />;
     case 'align-center':
-      return <AlignCenter color={color} size={size} width={width} />;
+      return <AlignCenter size={size} width={width} />;
     case 'align-justify':
-      return <AlignJustify color={color} size={size} width={width} />;
+      return <AlignJustify size={size} width={width} />;
     case 'align-left':
-      return <AlignLeft color={color} size={size} width={width} />;
+      return <AlignLeft size={size} width={width} />;
     case 'align-right':
-      return <AlignRight color={color} size={size} width={width} />;
+      return <AlignRight size={size} width={width} />;
     case 'anchor':
-      return <Anchor color={color} size={size} width={width} />;
+      return <Anchor size={size} width={width} />;
     case 'aperture':
-      return <Aperture color={color} size={size} width={width} />;
+      return <Aperture size={size} width={width} />;
     case 'archive':
-      return <Archive color={color} size={size} width={width} />;
+      return <Archive size={size} width={width} />;
     case 'arrow-down':
-      return <ArrowDown color={color} size={size} width={width} />;
+      return <ArrowDown size={size} width={width} />;
     case 'arrow-down-circle':
-      return <ArrowDownCircle color={color} size={size} width={width} />;
+      return <ArrowDownCircle size={size} width={width} />;
     case 'arrow-down-left':
-      return <ArrowDownLeft color={color} size={size} width={width} />;
+      return <ArrowDownLeft size={size} width={width} />;
     case 'arrow-down-right':
-      return <ArrowDownRight color={color} size={size} width={width} />;
+      return <ArrowDownRight size={size} width={width} />;
     case 'arrow-left':
-      return <ArrowLeft color={color} size={size} width={width} />;
+      return <ArrowLeft size={size} width={width} />;
     case 'arrow-left-circle':
-      return <ArrowLeftCircle color={color} size={size} width={width} />;
+      return <ArrowLeftCircle size={size} width={width} />;
     case 'arrow-right':
-      return <ArrowRight color={color} size={size} width={width} />;
+      return <ArrowRight size={size} width={width} />;
     case 'arrow-right-circle':
-      return <ArrowRightCircle color={color} size={size} width={width} />;
+      return <ArrowRightCircle size={size} width={width} />;
     case 'arrow-up':
-      return <ArrowUp color={color} size={size} width={width} />;
+      return <ArrowUp size={size} width={width} />;
     case 'arrow-up-circle':
-      return <ArrowUpCircle color={color} size={size} width={width} />;
+      return <ArrowUpCircle size={size} width={width} />;
     case 'arrow-up-left':
-      return <ArrowUpLeft color={color} size={size} width={width} />;
+      return <ArrowUpLeft size={size} width={width} />;
     case 'arrow-up-right':
-      return <ArrowUpRight color={color} size={size} width={width} />;
+      return <ArrowUpRight size={size} width={width} />;
     case 'at-sign':
-      return <AtSign color={color} size={size} width={width} />;
+      return <AtSign size={size} width={width} />;
     case 'award':
-      return <Award color={color} size={size} width={width} />;
+      return <Award size={size} width={width} />;
     case 'bar-chart':
-      return <BarChart color={color} size={size} width={width} />;
+      return <BarChart size={size} width={width} />;
     case 'bar-chart-2':
-      return <BarChart2 color={color} size={size} width={width} />;
+      return <BarChart2 size={size} width={width} />;
     case 'battery':
-      return <Battery color={color} size={size} width={width} />;
+      return <Battery size={size} width={width} />;
     case 'battery-charging':
-      return <BatteryCharging color={color} size={size} width={width} />;
+      return <BatteryCharging size={size} width={width} />;
     case 'bell':
-      return <Bell color={color} size={size} width={width} />;
+      return <Bell size={size} width={width} />;
     case 'bell-off':
-      return <BellOff color={color} size={size} width={width} />;
+      return <BellOff size={size} width={width} />;
     case 'bluetooth':
-      return <Bluetooth color={color} size={size} width={width} />;
+      return <Bluetooth size={size} width={width} />;
     case 'bold':
-      return <Bold color={color} size={size} width={width} />;
+      return <Bold size={size} width={width} />;
     case 'book':
-      return <Book color={color} size={size} width={width} />;
+      return <Book size={size} width={width} />;
     case 'book-open':
-      return <BookOpen color={color} size={size} width={width} />;
+      return <BookOpen size={size} width={width} />;
     case 'bookmark':
-      return <Bookmark color={color} size={size} width={width} />;
+      return <Bookmark size={size} width={width} />;
     case 'box':
-      return <Box color={color} size={size} width={width} />;
+      return <Box size={size} width={width} />;
     case 'briefcase':
-      return <Briefcase color={color} size={size} width={width} />;
+      return <Briefcase size={size} width={width} />;
     case 'calendar':
-      return <Calendar color={color} size={size} width={width} />;
+      return <Calendar size={size} width={width} />;
     case 'camera':
-      return <Camera color={color} size={size} width={width} />;
+      return <Camera size={size} width={width} />;
     case 'camera-off':
-      return <CameraOff color={color} size={size} width={width} />;
+      return <CameraOff size={size} width={width} />;
     case 'cast':
-      return <Cast color={color} size={size} width={width} />;
+      return <Cast size={size} width={width} />;
     case 'check':
-      return <Check color={color} size={size} width={width} />;
+      return <Check size={size} width={width} />;
     case 'check-circle':
-      return <CheckCircle color={color} size={size} width={width} />;
+      return <CheckCircle size={size} width={width} />;
     case 'check-square':
-      return <CheckSquare color={color} size={size} width={width} />;
+      return <CheckSquare size={size} width={width} />;
     case 'chevron-down':
-      return <ChevronDown color={color} size={size} width={width} />;
+      return <ChevronDown size={size} width={width} />;
     case 'chevron-left':
-      return <ChevronLeft color={color} size={size} width={width} />;
+      return <ChevronLeft size={size} width={width} />;
     case 'chevron-right':
-      return <ChevronRight color={color} size={size} width={width} />;
+      return <ChevronRight size={size} width={width} />;
     case 'chevron-up':
-      return <ChevronUp color={color} size={size} width={width} />;
+      return <ChevronUp size={size} width={width} />;
     case 'chevrons-down':
-      return <ChevronsDown color={color} size={size} width={width} />;
+      return <ChevronsDown size={size} width={width} />;
     case 'chevrons-left':
-      return <ChevronsLeft color={color} size={size} width={width} />;
+      return <ChevronsLeft size={size} width={width} />;
     case 'chevrons-right':
-      return <ChevronsRight color={color} size={size} width={width} />;
+      return <ChevronsRight size={size} width={width} />;
     case 'chevrons-up':
-      return <ChevronsUp color={color} size={size} width={width} />;
+      return <ChevronsUp size={size} width={width} />;
     case 'chrome':
-      return <Chrome color={color} size={size} width={width} />;
+      return <Chrome size={size} width={width} />;
     case 'circle':
-      return <Circle color={color} size={size} width={width} />;
+      return <Circle size={size} width={width} />;
     case 'clipboard':
-      return <Clipboard color={color} size={size} width={width} />;
+      return <Clipboard size={size} width={width} />;
     case 'clock':
-      return <Clock color={color} size={size} width={width} />;
+      return <Clock size={size} width={width} />;
     case 'cloud':
-      return <Cloud color={color} size={size} width={width} />;
+      return <Cloud size={size} width={width} />;
     case 'cloud-drizzle':
-      return <CloudDrizzle color={color} size={size} width={width} />;
+      return <CloudDrizzle size={size} width={width} />;
     case 'cloud-lightning':
-      return <CloudLightning color={color} size={size} width={width} />;
+      return <CloudLightning size={size} width={width} />;
     case 'cloud-off':
-      return <CloudOff color={color} size={size} width={width} />;
+      return <CloudOff size={size} width={width} />;
     case 'cloud-rain':
-      return <CloudRain color={color} size={size} width={width} />;
+      return <CloudRain size={size} width={width} />;
     case 'cloud-snow':
-      return <CloudSnow color={color} size={size} width={width} />;
+      return <CloudSnow size={size} width={width} />;
     case 'code':
-      return <Code color={color} size={size} width={width} />;
+      return <Code size={size} width={width} />;
     case 'codepen':
-      return <Codepen color={color} size={size} width={width} />;
+      return <Codepen size={size} width={width} />;
     case 'codesandbox':
-      return <Codesandbox color={color} size={size} width={width} />;
+      return <Codesandbox size={size} width={width} />;
     case 'coffee':
-      return <Coffee color={color} size={size} width={width} />;
+      return <Coffee size={size} width={width} />;
     case 'columns':
-      return <Columns color={color} size={size} width={width} />;
+      return <Columns size={size} width={width} />;
     case 'command':
-      return <Command color={color} size={size} width={width} />;
+      return <Command size={size} width={width} />;
     case 'compass':
-      return <Compass color={color} size={size} width={width} />;
+      return <Compass size={size} width={width} />;
     case 'copy':
-      return <Copy color={color} size={size} width={width} />;
+      return <Copy size={size} width={width} />;
     case 'corner-down-left':
-      return <CornerDownLeft color={color} size={size} width={width} />;
+      return <CornerDownLeft size={size} width={width} />;
     case 'corner-down-right':
-      return <CornerDownRight color={color} size={size} width={width} />;
+      return <CornerDownRight size={size} width={width} />;
     case 'corner-left-down':
-      return <CornerLeftDown color={color} size={size} width={width} />;
+      return <CornerLeftDown size={size} width={width} />;
     case 'corner-left-up':
-      return <CornerLeftUp color={color} size={size} width={width} />;
+      return <CornerLeftUp size={size} width={width} />;
     case 'corner-right-down':
-      return <CornerRightDown color={color} size={size} width={width} />;
+      return <CornerRightDown size={size} width={width} />;
     case 'corner-right-up':
-      return <CornerRightUp color={color} size={size} width={width} />;
+      return <CornerRightUp size={size} width={width} />;
     case 'corner-up-left':
-      return <CornerUpLeft color={color} size={size} width={width} />;
+      return <CornerUpLeft size={size} width={width} />;
     case 'corner-up-right':
-      return <CornerUpRight color={color} size={size} width={width} />;
+      return <CornerUpRight size={size} width={width} />;
     case 'cpu':
-      return <Cpu color={color} size={size} width={width} />;
+      return <Cpu size={size} width={width} />;
     case 'credit-card':
-      return <CreditCard color={color} size={size} width={width} />;
+      return <CreditCard size={size} width={width} />;
     case 'crop':
-      return <Crop color={color} size={size} width={width} />;
+      return <Crop size={size} width={width} />;
     case 'crosshair':
-      return <Crosshair color={color} size={size} width={width} />;
+      return <Crosshair size={size} width={width} />;
     case 'database':
-      return <Database color={color} size={size} width={width} />;
+      return <Database size={size} width={width} />;
     case 'delete':
-      return <Delete color={color} size={size} width={width} />;
+      return <Delete size={size} width={width} />;
     case 'disc':
-      return <Disc color={color} size={size} width={width} />;
+      return <Disc size={size} width={width} />;
     case 'divide':
-      return <Divide color={color} size={size} width={width} />;
+      return <Divide size={size} width={width} />;
     case 'divide-circle':
-      return <DivideCircle color={color} size={size} width={width} />;
+      return <DivideCircle size={size} width={width} />;
     case 'divide-square':
-      return <DivideSquare color={color} size={size} width={width} />;
+      return <DivideSquare size={size} width={width} />;
     case 'dollar-sign':
-      return <DollarSign color={color} size={size} width={width} />;
+      return <DollarSign size={size} width={width} />;
     case 'download':
-      return <Download color={color} size={size} width={width} />;
+      return <Download size={size} width={width} />;
     case 'download-cloud':
-      return <DownloadCloud color={color} size={size} width={width} />;
+      return <DownloadCloud size={size} width={width} />;
     case 'dribbble':
-      return <Dribbble color={color} size={size} width={width} />;
+      return <Dribbble size={size} width={width} />;
     case 'droplet':
-      return <Droplet color={color} size={size} width={width} />;
+      return <Droplet size={size} width={width} />;
     case 'edit':
-      return <Edit color={color} size={size} width={width} />;
+      return <Edit size={size} width={width} />;
     case 'edit-2':
-      return <Edit2 color={color} size={size} width={width} />;
+      return <Edit2 size={size} width={width} />;
     case 'edit-3':
-      return <Edit3 color={color} size={size} width={width} />;
+      return <Edit3 size={size} width={width} />;
     case 'external-link':
-      return <ExternalLink color={color} size={size} width={width} />;
+      return <ExternalLink size={size} width={width} />;
     case 'eye':
-      return <Eye color={color} size={size} width={width} />;
+      return <Eye size={size} width={width} />;
     case 'eye-off':
-      return <EyeOff color={color} size={size} width={width} />;
+      return <EyeOff size={size} width={width} />;
     case 'facebook':
-      return <Facebook color={color} size={size} width={width} />;
+      return <Facebook size={size} width={width} />;
     case 'fast-forward':
-      return <FastForward color={color} size={size} width={width} />;
+      return <FastForward size={size} width={width} />;
     case 'feather':
-      return <Feather color={color} size={size} width={width} />;
+      return <Feather size={size} width={width} />;
     case 'figma':
-      return <Figma color={color} size={size} width={width} />;
+      return <Figma size={size} width={width} />;
     case 'file':
-      return <File color={color} size={size} width={width} />;
+      return <File size={size} width={width} />;
     case 'file-minus':
-      return <FileMinus color={color} size={size} width={width} />;
+      return <FileMinus size={size} width={width} />;
     case 'file-plus':
-      return <FilePlus color={color} size={size} width={width} />;
+      return <FilePlus size={size} width={width} />;
     case 'file-text':
-      return <FileText color={color} size={size} width={width} />;
+      return <FileText size={size} width={width} />;
     case 'film':
-      return <Film color={color} size={size} width={width} />;
+      return <Film size={size} width={width} />;
     case 'filter':
-      return <Filter color={color} size={size} width={width} />;
+      return <Filter size={size} width={width} />;
     case 'flag':
-      return <Flag color={color} size={size} width={width} />;
+      return <Flag size={size} width={width} />;
     case 'folder':
-      return <Folder color={color} size={size} width={width} />;
+      return <Folder size={size} width={width} />;
     case 'folder-minus':
-      return <FolderMinus color={color} size={size} width={width} />;
+      return <FolderMinus size={size} width={width} />;
     case 'folder-plus':
-      return <FolderPlus color={color} size={size} width={width} />;
+      return <FolderPlus size={size} width={width} />;
     case 'framer':
-      return <Framer color={color} size={size} width={width} />;
+      return <Framer size={size} width={width} />;
     case 'frown':
-      return <Frown color={color} size={size} width={width} />;
+      return <Frown size={size} width={width} />;
     case 'gift':
-      return <Gift color={color} size={size} width={width} />;
+      return <Gift size={size} width={width} />;
     case 'git-branch':
-      return <GitBranch color={color} size={size} width={width} />;
+      return <GitBranch size={size} width={width} />;
     case 'git-commit':
-      return <GitCommit color={color} size={size} width={width} />;
+      return <GitCommit size={size} width={width} />;
     case 'git-merge':
-      return <GitMerge color={color} size={size} width={width} />;
+      return <GitMerge size={size} width={width} />;
     case 'git-pull-request':
-      return <GitPullRequest color={color} size={size} width={width} />;
+      return <GitPullRequest size={size} width={width} />;
     case 'github':
-      return <Github color={color} size={size} width={width} />;
+      return <Github size={size} width={width} />;
     case 'gitlab':
-      return <Gitlab color={color} size={size} width={width} />;
+      return <Gitlab size={size} width={width} />;
     case 'globe':
-      return <Globe color={color} size={size} width={width} />;
+      return <Globe size={size} width={width} />;
     case 'grid':
-      return <Grid color={color} size={size} width={width} />;
+      return <Grid size={size} width={width} />;
     case 'hard-drive':
-      return <HardDrive color={color} size={size} width={width} />;
+      return <HardDrive size={size} width={width} />;
     case 'hash':
-      return <Hash color={color} size={size} width={width} />;
+      return <Hash size={size} width={width} />;
     case 'headphones':
-      return <Headphones color={color} size={size} width={width} />;
+      return <Headphones size={size} width={width} />;
     case 'heart':
-      return <Heart color={color} size={size} width={width} />;
+      return <Heart size={size} width={width} />;
     case 'help-circle':
-      return <HelpCircle color={color} size={size} width={width} />;
+      return <HelpCircle size={size} width={width} />;
     case 'hexagon':
-      return <Hexagon color={color} size={size} width={width} />;
+      return <Hexagon size={size} width={width} />;
     case 'home':
-      return <Home color={color} size={size} width={width} />;
+      return <Home size={size} width={width} />;
     case 'image':
-      return <Image color={color} size={size} width={width} />;
+      return <Image size={size} width={width} />;
     case 'inbox':
-      return <Inbox color={color} size={size} width={width} />;
+      return <Inbox size={size} width={width} />;
     case 'info':
-      return <Info color={color} size={size} width={width} />;
+      return <Info size={size} width={width} />;
     case 'instagram':
-      return <Instagram color={color} size={size} width={width} />;
+      return <Instagram size={size} width={width} />;
     case 'italic':
-      return <Italic color={color} size={size} width={width} />;
+      return <Italic size={size} width={width} />;
     case 'key':
-      return <Key color={color} size={size} width={width} />;
+      return <Key size={size} width={width} />;
     case 'layers':
-      return <Layers color={color} size={size} width={width} />;
+      return <Layers size={size} width={width} />;
     case 'layout':
-      return <Layout color={color} size={size} width={width} />;
+      return <Layout size={size} width={width} />;
     case 'life-buoy':
-      return <LifeBuoy color={color} size={size} width={width} />;
+      return <LifeBuoy size={size} width={width} />;
     case 'link':
-      return <Link color={color} size={size} width={width} />;
+      return <Link size={size} width={width} />;
     case 'link-2':
-      return <Link2 color={color} size={size} width={width} />;
+      return <Link2 size={size} width={width} />;
     case 'linkedin':
-      return <Linkedin color={color} size={size} width={width} />;
+      return <Linkedin size={size} width={width} />;
     case 'list':
-      return <List color={color} size={size} width={width} />;
+      return <List size={size} width={width} />;
     case 'loader':
-      return <Loader color={color} size={size} width={width} />;
+      return <Loader size={size} width={width} />;
     case 'lock':
-      return <Lock color={color} size={size} width={width} />;
+      return <Lock size={size} width={width} />;
     case 'log-in':
-      return <LogIn color={color} size={size} width={width} />;
+      return <LogIn size={size} width={width} />;
     case 'log-out':
-      return <LogOut color={color} size={size} width={width} />;
+      return <LogOut size={size} width={width} />;
     case 'mail':
-      return <Mail color={color} size={size} width={width} />;
+      return <Mail size={size} width={width} />;
     case 'map':
-      return <Map color={color} size={size} width={width} />;
+      return <Map size={size} width={width} />;
     case 'map-pin':
-      return <MapPin color={color} size={size} width={width} />;
+      return <MapPin size={size} width={width} />;
     case 'maximize':
-      return <Maximize color={color} size={size} width={width} />;
+      return <Maximize size={size} width={width} />;
     case 'maximize-2':
-      return <Maximize2 color={color} size={size} width={width} />;
+      return <Maximize2 size={size} width={width} />;
     case 'meh':
-      return <Meh color={color} size={size} width={width} />;
+      return <Meh size={size} width={width} />;
     case 'menu':
-      return <Menu color={color} size={size} width={width} />;
+      return <Menu size={size} width={width} />;
     case 'message-circle':
-      return <MessageCircle color={color} size={size} width={width} />;
+      return <MessageCircle size={size} width={width} />;
     case 'message-square':
-      return <MessageSquare color={color} size={size} width={width} />;
+      return <MessageSquare size={size} width={width} />;
     case 'mic':
-      return <Mic color={color} size={size} width={width} />;
+      return <Mic size={size} width={width} />;
     case 'mic-off':
-      return <MicOff color={color} size={size} width={width} />;
+      return <MicOff size={size} width={width} />;
     case 'minimize':
-      return <Minimize color={color} size={size} width={width} />;
+      return <Minimize size={size} width={width} />;
     case 'minimize-2':
-      return <Minimize2 color={color} size={size} width={width} />;
+      return <Minimize2 size={size} width={width} />;
     case 'minus':
-      return <Minus color={color} size={size} width={width} />;
+      return <Minus size={size} width={width} />;
     case 'minus-circle':
-      return <MinusCircle color={color} size={size} width={width} />;
+      return <MinusCircle size={size} width={width} />;
     case 'minus-square':
-      return <MinusSquare color={color} size={size} width={width} />;
+      return <MinusSquare size={size} width={width} />;
     case 'monitor':
-      return <Monitor color={color} size={size} width={width} />;
+      return <Monitor size={size} width={width} />;
     case 'moon':
-      return <Moon color={color} size={size} width={width} />;
+      return <Moon size={size} width={width} />;
     case 'more-horizontal':
-      return <MoreHorizontal color={color} size={size} width={width} />;
+      return <MoreHorizontal size={size} width={width} />;
     case 'more-vertical':
-      return <MoreVertical color={color} size={size} width={width} />;
+      return <MoreVertical size={size} width={width} />;
     case 'mouse-pointer':
-      return <MousePointer color={color} size={size} width={width} />;
+      return <MousePointer size={size} width={width} />;
     case 'move':
-      return <Move color={color} size={size} width={width} />;
+      return <Move size={size} width={width} />;
     case 'music':
-      return <Music color={color} size={size} width={width} />;
+      return <Music size={size} width={width} />;
     case 'navigation':
-      return <Navigation color={color} size={size} width={width} />;
+      return <Navigation size={size} width={width} />;
     case 'navigation-2':
-      return <Navigation2 color={color} size={size} width={width} />;
+      return <Navigation2 size={size} width={width} />;
     case 'octagon':
-      return <Octagon color={color} size={size} width={width} />;
+      return <Octagon size={size} width={width} />;
     case 'package':
-      return <Package color={color} size={size} width={width} />;
+      return <Package size={size} width={width} />;
     case 'paperclip':
-      return <Paperclip color={color} size={size} width={width} />;
+      return <Paperclip size={size} width={width} />;
     case 'pause':
-      return <Pause color={color} size={size} width={width} />;
+      return <Pause size={size} width={width} />;
     case 'pause-circle':
-      return <PauseCircle color={color} size={size} width={width} />;
+      return <PauseCircle size={size} width={width} />;
     case 'pen-tool':
-      return <PenTool color={color} size={size} width={width} />;
+      return <PenTool size={size} width={width} />;
     case 'percent':
-      return <Percent color={color} size={size} width={width} />;
+      return <Percent size={size} width={width} />;
     case 'phone':
-      return <Phone color={color} size={size} width={width} />;
+      return <Phone size={size} width={width} />;
     case 'phone-call':
-      return <PhoneCall color={color} size={size} width={width} />;
+      return <PhoneCall size={size} width={width} />;
     case 'phone-forwarded':
-      return <PhoneForwarded color={color} size={size} width={width} />;
+      return <PhoneForwarded size={size} width={width} />;
     case 'phone-incoming':
-      return <PhoneIncoming color={color} size={size} width={width} />;
+      return <PhoneIncoming size={size} width={width} />;
     case 'phone-missed':
-      return <PhoneMissed color={color} size={size} width={width} />;
+      return <PhoneMissed size={size} width={width} />;
     case 'phone-off':
-      return <PhoneOff color={color} size={size} width={width} />;
+      return <PhoneOff size={size} width={width} />;
     case 'phone-outgoing':
-      return <PhoneOutgoing color={color} size={size} width={width} />;
+      return <PhoneOutgoing size={size} width={width} />;
     case 'pie-chart':
-      return <PieChart color={color} size={size} width={width} />;
+      return <PieChart size={size} width={width} />;
     case 'play':
-      return <Play color={color} size={size} width={width} />;
+      return <Play size={size} width={width} />;
     case 'play-circle':
-      return <PlayCircle color={color} size={size} width={width} />;
+      return <PlayCircle size={size} width={width} />;
     case 'plus':
-      return <Plus color={color} size={size} width={width} />;
+      return <Plus size={size} width={width} />;
     case 'plus-circle':
-      return <PlusCircle color={color} size={size} width={width} />;
+      return <PlusCircle size={size} width={width} />;
     case 'plus-square':
-      return <PlusSquare color={color} size={size} width={width} />;
+      return <PlusSquare size={size} width={width} />;
     case 'pocket':
-      return <Pocket color={color} size={size} width={width} />;
+      return <Pocket size={size} width={width} />;
     case 'power':
-      return <Power color={color} size={size} width={width} />;
+      return <Power size={size} width={width} />;
     case 'printer':
-      return <Printer color={color} size={size} width={width} />;
+      return <Printer size={size} width={width} />;
     case 'radio':
-      return <Radio color={color} size={size} width={width} />;
+      return <Radio size={size} width={width} />;
     case 'refresh-ccw':
-      return <RefreshCcw color={color} size={size} width={width} />;
+      return <RefreshCcw size={size} width={width} />;
     case 'refresh-cw':
-      return <RefreshCw color={color} size={size} width={width} />;
+      return <RefreshCw size={size} width={width} />;
     case 'repeat':
-      return <Repeat color={color} size={size} width={width} />;
+      return <Repeat size={size} width={width} />;
     case 'rewind':
-      return <Rewind color={color} size={size} width={width} />;
+      return <Rewind size={size} width={width} />;
     case 'rotate-ccw':
-      return <RotateCcw color={color} size={size} width={width} />;
+      return <RotateCcw size={size} width={width} />;
     case 'rotate-cw':
-      return <RotateCw color={color} size={size} width={width} />;
+      return <RotateCw size={size} width={width} />;
     case 'rss':
-      return <Rss color={color} size={size} width={width} />;
+      return <Rss size={size} width={width} />;
     case 'save':
-      return <Save color={color} size={size} width={width} />;
+      return <Save size={size} width={width} />;
     case 'scissors':
-      return <Scissors color={color} size={size} width={width} />;
+      return <Scissors size={size} width={width} />;
     case 'search':
-      return <Search color={color} size={size} width={width} />;
+      return <Search size={size} width={width} />;
     case 'send':
-      return <Send color={color} size={size} width={width} />;
+      return <Send size={size} width={width} />;
     case 'server':
-      return <Server color={color} size={size} width={width} />;
+      return <Server size={size} width={width} />;
     case 'settings':
-      return <Settings color={color} size={size} width={width} />;
+      return <Settings size={size} width={width} />;
     case 'share':
-      return <Share color={color} size={size} width={width} />;
+      return <Share size={size} width={width} />;
     case 'share-2':
-      return <Share2 color={color} size={size} width={width} />;
+      return <Share2 size={size} width={width} />;
     case 'shield':
-      return <Shield color={color} size={size} width={width} />;
+      return <Shield size={size} width={width} />;
     case 'shield-off':
-      return <ShieldOff color={color} size={size} width={width} />;
+      return <ShieldOff size={size} width={width} />;
     case 'shopping-bag':
-      return <ShoppingBag color={color} size={size} width={width} />;
+      return <ShoppingBag size={size} width={width} />;
     case 'shopping-cart':
-      return <ShoppingCart color={color} size={size} width={width} />;
+      return <ShoppingCart size={size} width={width} />;
     case 'shuffle':
-      return <Shuffle color={color} size={size} width={width} />;
+      return <Shuffle size={size} width={width} />;
     case 'sidebar':
-      return <Sidebar color={color} size={size} width={width} />;
+      return <Sidebar size={size} width={width} />;
     case 'skip-back':
-      return <SkipBack color={color} size={size} width={width} />;
+      return <SkipBack size={size} width={width} />;
     case 'skip-forward':
-      return <SkipForward color={color} size={size} width={width} />;
+      return <SkipForward size={size} width={width} />;
     case 'slack':
-      return <Slack color={color} size={size} width={width} />;
+      return <Slack size={size} width={width} />;
     case 'slash':
-      return <Slash color={color} size={size} width={width} />;
+      return <Slash size={size} width={width} />;
     case 'sliders':
-      return <Sliders color={color} size={size} width={width} />;
+      return <Sliders size={size} width={width} />;
     case 'smartphone':
-      return <Smartphone color={color} size={size} width={width} />;
+      return <Smartphone size={size} width={width} />;
     case 'smile':
-      return <Smile color={color} size={size} width={width} />;
+      return <Smile size={size} width={width} />;
     case 'speaker':
-      return <Speaker color={color} size={size} width={width} />;
+      return <Speaker size={size} width={width} />;
     case 'square':
-      return <Square color={color} size={size} width={width} />;
+      return <Square size={size} width={width} />;
     case 'star':
-      return <Star color={color} size={size} width={width} />;
+      return <Star size={size} width={width} />;
     case 'stop-circle':
-      return <StopCircle color={color} size={size} width={width} />;
+      return <StopCircle size={size} width={width} />;
     case 'sun':
-      return <Sun color={color} size={size} width={width} />;
+      return <Sun size={size} width={width} />;
     case 'sunrise':
-      return <Sunrise color={color} size={size} width={width} />;
+      return <Sunrise size={size} width={width} />;
     case 'sunset':
-      return <Sunset color={color} size={size} width={width} />;
+      return <Sunset size={size} width={width} />;
     case 'tablet':
-      return <Tablet color={color} size={size} width={width} />;
+      return <Tablet size={size} width={width} />;
     case 'tag':
-      return <Tag color={color} size={size} width={width} />;
+      return <Tag size={size} width={width} />;
     case 'target':
-      return <Target color={color} size={size} width={width} />;
+      return <Target size={size} width={width} />;
     case 'terminal':
-      return <Terminal color={color} size={size} width={width} />;
+      return <Terminal size={size} width={width} />;
     case 'thermometer':
-      return <Thermometer color={color} size={size} width={width} />;
+      return <Thermometer size={size} width={width} />;
     case 'thumbs-down':
-      return <ThumbsDown color={color} size={size} width={width} />;
+      return <ThumbsDown size={size} width={width} />;
     case 'thumbs-up':
-      return <ThumbsUp color={color} size={size} width={width} />;
+      return <ThumbsUp size={size} width={width} />;
     case 'toggle-left':
-      return <ToggleLeft color={color} size={size} width={width} />;
+      return <ToggleLeft size={size} width={width} />;
     case 'toggle-right':
-      return <ToggleRight color={color} size={size} width={width} />;
+      return <ToggleRight size={size} width={width} />;
     case 'tool':
-      return <Tool color={color} size={size} width={width} />;
+      return <Tool size={size} width={width} />;
     case 'trash':
-      return <Trash color={color} size={size} width={width} />;
+      return <Trash size={size} width={width} />;
     case 'trash-2':
-      return <Trash2 color={color} size={size} width={width} />;
+      return <Trash2 size={size} width={width} />;
     case 'trello':
-      return <Trello color={color} size={size} width={width} />;
+      return <Trello size={size} width={width} />;
     case 'trending-down':
-      return <TrendingDown color={color} size={size} width={width} />;
+      return <TrendingDown size={size} width={width} />;
     case 'trending-up':
-      return <TrendingUp color={color} size={size} width={width} />;
+      return <TrendingUp size={size} width={width} />;
     case 'triangle':
-      return <Triangle color={color} size={size} width={width} />;
+      return <Triangle size={size} width={width} />;
     case 'truck':
-      return <Truck color={color} size={size} width={width} />;
+      return <Truck size={size} width={width} />;
     case 'tv':
-      return <Tv color={color} size={size} width={width} />;
+      return <Tv size={size} width={width} />;
     case 'twitch':
-      return <Twitch color={color} size={size} width={width} />;
+      return <Twitch size={size} width={width} />;
     case 'twitter':
-      return <Twitter color={color} size={size} width={width} />;
+      return <Twitter size={size} width={width} />;
     case 'type':
-      return <Type color={color} size={size} width={width} />;
+      return <Type size={size} width={width} />;
     case 'umbrella':
-      return <Umbrella color={color} size={size} width={width} />;
+      return <Umbrella size={size} width={width} />;
     case 'underline':
-      return <Underline color={color} size={size} width={width} />;
+      return <Underline size={size} width={width} />;
     case 'unlock':
-      return <Unlock color={color} size={size} width={width} />;
+      return <Unlock size={size} width={width} />;
     case 'upload':
-      return <Upload color={color} size={size} width={width} />;
+      return <Upload size={size} width={width} />;
     case 'upload-cloud':
-      return <UploadCloud color={color} size={size} width={width} />;
+      return <UploadCloud size={size} width={width} />;
     case 'user':
-      return <User color={color} size={size} width={width} />;
+      return <User size={size} width={width} />;
     case 'user-check':
-      return <UserCheck color={color} size={size} width={width} />;
+      return <UserCheck size={size} width={width} />;
     case 'user-minus':
-      return <UserMinus color={color} size={size} width={width} />;
+      return <UserMinus size={size} width={width} />;
     case 'user-plus':
-      return <UserPlus color={color} size={size} width={width} />;
+      return <UserPlus size={size} width={width} />;
     case 'user-x':
-      return <UserX color={color} size={size} width={width} />;
+      return <UserX size={size} width={width} />;
     case 'users':
-      return <Users color={color} size={size} width={width} />;
+      return <Users size={size} width={width} />;
     case 'video':
-      return <Video color={color} size={size} width={width} />;
+      return <Video size={size} width={width} />;
     case 'video-off':
-      return <VideoOff color={color} size={size} width={width} />;
+      return <VideoOff size={size} width={width} />;
     case 'voicemail':
-      return <Voicemail color={color} size={size} width={width} />;
+      return <Voicemail size={size} width={width} />;
     case 'volume':
-      return <Volume color={color} size={size} width={width} />;
+      return <Volume size={size} width={width} />;
     case 'volume-1':
-      return <Volume1 color={color} size={size} width={width} />;
+      return <Volume1 size={size} width={width} />;
     case 'volume-2':
-      return <Volume2 color={color} size={size} width={width} />;
+      return <Volume2 size={size} width={width} />;
     case 'volume-x':
-      return <VolumeX color={color} size={size} width={width} />;
+      return <VolumeX size={size} width={width} />;
     case 'watch':
-      return <Watch color={color} size={size} width={width} />;
+      return <Watch size={size} width={width} />;
     case 'wifi':
-      return <Wifi color={color} size={size} width={width} />;
+      return <Wifi size={size} width={width} />;
     case 'wifi-off':
-      return <WifiOff color={color} size={size} width={width} />;
+      return <WifiOff size={size} width={width} />;
     case 'wind':
-      return <Wind color={color} size={size} width={width} />;
+      return <Wind size={size} width={width} />;
     case 'x':
-      return <X color={color} size={size} width={width} />;
+      return <X size={size} width={width} />;
     case 'x-circle':
-      return <XCircle color={color} size={size} width={width} />;
+      return <XCircle size={size} width={width} />;
     case 'x-octagon':
-      return <XOctagon color={color} size={size} width={width} />;
+      return <XOctagon size={size} width={width} />;
     case 'x-square':
-      return <XSquare color={color} size={size} width={width} />;
+      return <XSquare size={size} width={width} />;
     case 'youtube':
-      return <Youtube color={color} size={size} width={width} />;
+      return <Youtube size={size} width={width} />;
     case 'zap':
-      return <Zap color={color} size={size} width={width} />;
+      return <Zap size={size} width={width} />;
     case 'zap-off':
-      return <ZapOff color={color} size={size} width={width} />;
+      return <ZapOff size={size} width={width} />;
     case 'zoom-in':
-      return <ZoomIn color={color} size={size} width={width} />;
+      return <ZoomIn size={size} width={width} />;
     case 'zoom-out':
-      return <ZoomOut color={color} size={size} width={width} />;
+      return <ZoomOut size={size} width={width} />;
   }
 }

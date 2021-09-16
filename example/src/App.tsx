@@ -1,5 +1,6 @@
 import { ReactElement, useState } from 'react';
-import { Table, Button, DataType } from '@cezembre/ui';
+import { Form, Field } from '@cezembre/forms';
+import { Table, Button, DataType, Select, Input } from '@cezembre/ui';
 import './App.scss';
 
 interface Article {
@@ -97,6 +98,99 @@ export default function App(): ReactElement {
             onClickItem={() => null}
           />
         </div>
+
+        <Form className="form">
+          <Field component={Input} name="name" label="Nom" />
+          <br />
+          <br />
+          <Field
+            component={Select}
+            name="test"
+            label="Choix"
+            options={[
+              {
+                value: 'pk_01',
+                item: 'Key one',
+              },
+              {
+                value: 'pk_02',
+                item: 'Key two',
+              },
+              {
+                value: 'pk_03',
+                item: 'Key three',
+              },
+              {
+                value: 'pk_04',
+                item: 'Key four',
+              },
+              {
+                value: 'pk_05',
+                item: 'Key five',
+              },
+              {
+                value: 'pk_06',
+                item: 'Key six',
+              },
+              {
+                value: 'pk_07',
+                item: 'Key seven',
+              },
+              {
+                value: 'pk_08',
+                item: 'Key eight',
+              },
+              {
+                value: 'pk_09',
+                item: 'Key nine',
+              },
+              {
+                value: 'pk_10',
+                item: 'Key ten',
+              },
+              {
+                value: 'pk_11',
+                item: 'Key eleven',
+              },
+              {
+                value: 'pk_12',
+                item: 'Key twelve',
+              },
+              {
+                value: 'pk_13',
+                item: 'Key thirteen',
+              },
+              {
+                value: 'pk_14',
+                item: 'Key fourteen',
+              },
+              {
+                value: 'pk_15',
+                item: 'Key fifteen',
+              },
+              {
+                value: 'pk_16',
+                item: 'Key sixteen',
+              },
+              {
+                value: 'pk_17',
+                item: 'Key seventeen',
+              },
+              {
+                value: 'pk_18',
+                item: 'Key eighteen',
+              },
+              {
+                value: 'pk_19',
+                item: 'Key nineteen',
+              },
+              {
+                value: 'pk_20',
+                item: 'Key twenty',
+              },
+            ]}
+          />
+        </Form>
       </div>
     </div>
   );

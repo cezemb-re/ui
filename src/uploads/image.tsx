@@ -121,7 +121,7 @@ export default function UploadImage({
       <div className="overlay">
         {error ? <p className="error">{error.message}</p> : null}
         {pending ? <Loader size={40} /> : null}
-        {!error && !pending ? <Icon name="camera" color="white" size={40} /> : null}
+        {!error && !pending ? <Icon name="camera" size={40} /> : null}
       </div>
     </div>
   );

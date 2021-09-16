@@ -36,6 +36,10 @@
     opacity: 0;
     transition: opacity linear 100ms;
 
+    svg {
+      stroke: white;
+    }
+
     > .error {
       @include fonts.JetBrainsMono(1em, white);
       background: colors.$error;

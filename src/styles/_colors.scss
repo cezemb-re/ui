@@ -17,25 +17,3 @@ $placeholder: #eceef6;
 $text: #1f2265;
 $text-medium: #777ab1;
 $text-light: #cacad5;
-
-:export {
-  LEAD_DARK: $lead-dark;
-  LEAD: $lead;
-  LEAD_LIGHT: $lead-light;
-
-  ALTERNATIVE: $alternative;
-  ALTERNATIVE_LIGHT: $alternative-light;
-
-  ACCENT: $accent;
-
-  WARNING: $warning;
-  ERROR: $error;
-
-  BACKGROUND: $background;
-  BORDER: $border;
-  PLACEHOLDER: $placeholder;
-
-  TEXT: $text;
-  TEXT_MEDIUM: $text-medium;
-  TEXT_LIGHT: $text-light;
-}

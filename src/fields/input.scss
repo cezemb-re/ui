@@ -90,10 +90,6 @@
   > .instructions {
     @include fonts.JetBrainsMono(1em, black);
     margin-top: 10px;
-
-    @include screens.tablet() {
-      font-size: .9em;
-    }
   }
 
   >.error {

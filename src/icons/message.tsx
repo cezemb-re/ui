@@ -1,5 +1,4 @@
 import { ReactElement } from 'react';
-import colors from '../styles/_colors.scss';
 import IconProps from './props';
 
 export default function ({ size = 15, color = colors.TEXT }: IconProps): ReactElement<SVGElement> {
