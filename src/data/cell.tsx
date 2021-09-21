@@ -7,9 +7,7 @@ import Icon from '../general/icon';
 
 export interface Props<M extends Model = Model> {
   value: any;
-  item: M;
   type?: Type;
-  Component?: (props: { value: any; item: M; type?: Type; options?: any }) => ReactElement;
 }
 
 /**
@@ -24,20 +22,18 @@ export interface Props<M extends Model = Model> {
 
 export default function Cell<M extends Model = Model>({
   value,
-  item,
   type = Type.AUTO,
-  Component,
 }: Props<M>): ReactElement | null {
-  if (Component) {
-    return <Component value={value} item={item} type={type} />;
-  }
-
   let resolvedType: Type = type;
 
   if (type === Type.AUTO) {
     switch (typeof value) {
       case 'string':
         resolvedType = Type.TEXT;
+        break;
+
+      case 'number':
+        resolvedType = Type.NUMBER;
         break;
 
       case 'object':
@@ -75,6 +71,9 @@ export default function Cell<M extends Model = Model>({
         return null;
       }
       return <p className="text">{text}</p>;
+
+    case Type.NUMBER:
+      return <p className="number">{value}</p>;
 
     case Type.DATE:
     case Type.RELATIVE_DATE:

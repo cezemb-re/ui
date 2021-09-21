@@ -2,6 +2,7 @@ enum Type {
   AUTO = 'auto',
   UNKNOWN = 'unknown',
   TEXT = 'text',
+  NUMBER = 'number',
   DATE = 'date',
   RELATIVE_DATE = 'relative-date',
   DATETIME = 'datetime',

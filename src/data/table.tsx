@@ -5,13 +5,13 @@ import Type from './types';
 import Icon from '../general/icon';
 
 export interface Column<M extends Model = Model> {
-  key: keyof M;
-  title?: string;
+  key: string;
+  label?: string;
   type?: Type;
   width?: string | number;
   sorted?: 'asc' | 'desc';
   onSort?: () => void;
-  Cell?: (props: { value: any; item: M; type?: Type; options?: any }) => ReactElement;
+  Cell?: (props: { item: M }) => ReactElement;
 }
 
 export interface Props<M extends Model = Model> {
@@ -59,7 +59,7 @@ export default function Table<M extends Model = Model>({
           <tr>
             {columns.map((column: Column<M>) => (
               <th key={column.key as string} style={{ width: column.width }}>
-                {column.title}
+                {column.label}
               </th>
             ))}
           </tr>
@@ -71,12 +71,11 @@ export default function Table<M extends Model = Model>({
           <tr key={item.id} onClick={() => onClickRow(item)}>
             {columns.map((column: Column<M>) => (
               <td key={column.key as string} width={column.width}>
-                <Cell<M>
-                  value={item[column.key]}
-                  item={item}
-                  type={column.type}
-                  Component={column.Cell}
-                />
+                {column.Cell ? (
+                  <column.Cell item={item} />
+                ) : (
+                  <Cell<M> value={item[column.key]} type={column.type} />
+                )}
               </td>
             ))}
           </tr>

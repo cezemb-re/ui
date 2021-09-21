@@ -5,11 +5,12 @@ import './App.scss';
 
 interface Article {
   id: string;
-  date: Date;
-  title: string;
-  author: string;
-  active: boolean;
-  description: string;
+  date?: Date;
+  title?: string;
+  author?: { name: string };
+  active?: boolean;
+  description?: string;
+  likes?: number;
 }
 
 const articles: Article[] = [
@@ -17,32 +18,35 @@ const articles: Article[] = [
     id: '1',
     date: new Date(),
     title: 'Un premier article',
-    author: 'Lucien Perouze',
+    author: { name: 'Lucien Perouze' },
     active: true,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    likes: 42,
   },
   {
     id: '2',
     date: new Date(),
     title: 'Un deuxième article',
-    author: 'Lucien Perouze',
+    author: { name: 'Lucien Perouze' },
     active: true,
     description: 'Hello World!',
+    likes: 42,
   },
   {
     id: '3',
     date: new Date(),
     title: "L'article du siecle",
-    author: 'Lucien Perouze',
+    author: { name: 'Lucien Perouze' },
     active: false,
     description: 'Une description',
+    likes: 42,
   },
   {
     id: '4',
     date: new Date(),
     title: 'Les articles sont le kiff',
-    author: 'Lucien Perouze',
+    author: { name: 'Lucien Perouze' },
     active: false,
     description: 'Oui ceci est un article',
   },
@@ -86,15 +90,18 @@ export default function App(): ReactElement {
             columns={[
               {
                 key: 'title',
-                title: 'Titre',
-                width: 300,
+                label: 'Titre',
               },
-              { key: 'date', title: 'Date', width: 200, type: DataType.DATETIME },
-              { key: 'author', title: 'Auteur', width: 200 },
-              { key: 'active', title: 'Active', width: 100 },
-              { key: 'description', title: 'Description' },
+              { key: 'date', label: 'Date', type: DataType.DATETIME },
+              {
+                key: 'authosr',
+                label: 'Author',
+                Cell: ({ item: { author } }) => <p>Auteur: {author?.name}</p>,
+              },
+              { key: 'active', label: 'Active' },
+              { key: 'likes', label: 'Likes' },
             ]}
-            data={[]}
+            data={articles}
             onClickItem={() => null}
           />
         </div>
@@ -115,78 +122,6 @@ export default function App(): ReactElement {
               {
                 value: 'pk_02',
                 item: 'Key two',
-              },
-              {
-                value: 'pk_03',
-                item: 'Key three',
-              },
-              {
-                value: 'pk_04',
-                item: 'Key four',
-              },
-              {
-                value: 'pk_05',
-                item: 'Key five',
-              },
-              {
-                value: 'pk_06',
-                item: 'Key six',
-              },
-              {
-                value: 'pk_07',
-                item: 'Key seven',
-              },
-              {
-                value: 'pk_08',
-                item: 'Key eight',
-              },
-              {
-                value: 'pk_09',
-                item: 'Key nine',
-              },
-              {
-                value: 'pk_10',
-                item: 'Key ten',
-              },
-              {
-                value: 'pk_11',
-                item: 'Key eleven',
-              },
-              {
-                value: 'pk_12',
-                item: 'Key twelve',
-              },
-              {
-                value: 'pk_13',
-                item: 'Key thirteen',
-              },
-              {
-                value: 'pk_14',
-                item: 'Key fourteen',
-              },
-              {
-                value: 'pk_15',
-                item: 'Key fifteen',
-              },
-              {
-                value: 'pk_16',
-                item: 'Key sixteen',
-              },
-              {
-                value: 'pk_17',
-                item: 'Key seventeen',
-              },
-              {
-                value: 'pk_18',
-                item: 'Key eighteen',
-              },
-              {
-                value: 'pk_19',
-                item: 'Key nineteen',
-              },
-              {
-                value: 'pk_20',
-                item: 'Key twenty',
               },
             ]}
           />
