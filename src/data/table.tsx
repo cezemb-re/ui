@@ -68,6 +68,7 @@ export default function Table<M extends Model = Model>({
         let callback: Promise<void> | void | undefined;
 
         switch (selectionMode) {
+          default:
           case 'single':
             setSelection((_selection) => {
               const nextSelection = _selection !== id ? id : undefined;
