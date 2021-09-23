@@ -2,48 +2,55 @@
 @use "../styles/colors";
 
 .cezembre-ui-check {
-  width: 30px;
-  height: 30px;
-  background: colors.$background;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 20px;
+  height: 20px;
+  transition: border linear 100ms, background linear 100ms, box-shadow linear 100ms;
+  background: white;
   border: solid colors.$border 1px;
+  box-shadow: 0 0 5px rgba(colors.$lead-dark, 0);
   cursor: pointer;
   outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: all cubic-bezier(0.215, 0.61, 0.355, 1) 400ms;
   border-radius: 2px;
+
+  &:hover {
+    box-shadow: 0 0 5px rgba(colors.$lead-dark, .15);
+    border-color: colors.$border;
+  }
+
+  &:focus, &.active {
+    border-color: colors.$border;
+  }
 
   &.tag {
     width: auto;
     padding: 0 10px;
   }
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(colors.$lead, .3);
-  }
-
   > svg {
-    stroke-dashoffset: 100;
-    transition: stroke-dashoffset cubic-bezier(0.215, 0.61, 0.355, 1) 400ms;
+    stroke: transparent;
+    transition: stroke linear 100ms;
   }
 
   > span {
-    @include fonts.JetBrainsMono(1em, black);
+    @include fonts.JetBrainsMono();
   }
 
   &[aria-pressed=true] {
-    border: solid colors.$lead 1px;
-    background: white;
-
     > svg {
-      stroke-dashoffset: 0;
+      stroke: colors.$text;
     }
 
     > span {
-      color: colors.$lead;
+      color: colors.$text;
     }
   }
 }

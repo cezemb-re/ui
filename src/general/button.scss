@@ -19,7 +19,8 @@
   padding: 0 15px;
   background: transparent;
   position: relative;
-  transition: background linear 100ms, border linear 100ms;
+  transition: background linear 100ms, border linear 100ms, box-shadow linear 100ms;
+  box-shadow: 0 0 5px rgba(colors.$lead-dark, 0);
 
   > .container {
     width: 100%;
@@ -33,7 +34,7 @@
     svg {
       display: block;
       transition: stroke linear 100ms;
-      stroke: colors.$lead;
+      stroke: colors.$text-medium;
     }
 
     > .body {
@@ -50,7 +51,7 @@
       }
 
       > span {
-        @include fonts.JetBrainsMono(1em, colors.$lead);
+        @include fonts.JetBrainsMono(1em, colors.$text-medium);
         align-self: center;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -76,7 +77,7 @@
     bottom: 0;
     justify-content: center;
     align-items: center;
-    background: colors.$lead;
+    background: colors.$text-medium;
     border-radius: 8px;
     display: flex;
     visibility: hidden;
@@ -126,149 +127,365 @@
     }
   }
 
-  &.filled {
-    background: colors.$lead;
+  &.default {
+    &.filled {
+      background: colors.$placeholder;
+      border: solid colors.$placeholder 1px;
 
-    > .container {
-      svg {
-        stroke: colors.$lead-light;
-      }
+      &:hover, &.active {
+        border-color: colors.$border;
+        box-shadow: 0 0 5px rgba(colors.$lead-dark, .15);
 
-      > .body > span {
-        color: colors.$lead-light;
-      }
-    }
+        > .container {
+          svg {
+            stroke: colors.$text;
+          }
 
-    &:hover, &.active {
-      background: colors.$alternative;
-    }
-  }
-
-  &.outlined {
-    border: solid colors.$lead 1px;
-
-    &:hover, &.active {
-      background: colors.$lead;
-
-      > .container {
-        svg {
-          stroke: colors.$lead-light;
-        }
-
-        > .body > span {
-          color: colors.$lead-light;
+          > .body > span {
+            color: colors.$text;
+          }
         }
       }
     }
-  }
 
-  &.text {
-    &:hover, &.active {
-      background: colors.$lead;
+    &.outlined {
+      border: solid colors.$border 1px;
 
-      > .container {
-        svg {
-          stroke: colors.$lead-light;
-        }
+      &:hover, &.active {
+        background: colors.$background;
 
-        > .body > span {
-          color: colors.$lead-light;
-        }
-      }
-    }
-  }
+        > .container {
+          svg {
+            stroke: colors.$text;
+          }
 
-  &.link {
-    > .container {
-      svg {
-        stroke: colors.$text-medium;
-      }
-
-      > .body > span {
-        color: colors.$text-medium;
-      }
-    }
-
-    &:hover {
-      background: white;
-    }
-
-    &.active {
-      background: white;
-
-      > .container {
-        svg {
-          stroke: colors.$text;
-        }
-
-        > .body > span {
-          color: colors.$text;
-          font-weight: bold;
+          > .body > span {
+            color: colors.$text;
+          }
         }
       }
     }
-  }
 
-  &.namespace {
-    > .container {
-      svg {
-        stroke: colors.$text-medium;
-      }
-
-      > .body > span {
-        color: colors.$text-medium;
-      }
-    }
-
-    &:hover {
-      background: white;
-    }
-
-    &.active {
-      > .container {
-        svg {
-          stroke: colors.$text;
-        }
-
-        > .body > span {
-          color: colors.$text;
-          font-weight: bold;
-        }
-      }
-    }
-  }
-
-  &.light {
     &.text {
-      svg {
-        stroke: colors.$text-light;
+      &:hover, &.active {
+        background: colors.$placeholder;
+
+        > .container {
+          svg {
+            stroke: colors.$text;
+          }
+
+          > .body > span {
+            color: colors.$text;
+          }
+        }
       }
+    }
 
-      > .container > .body > span {
-        color: colors.$text-light;
-      }
-
-      &:hover {
-        background: none;
-
+    &.link {
+      > .container {
         svg {
           stroke: colors.$text-medium;
         }
 
-        > .container > .body > span {
+        > .body > span {
           color: colors.$text-medium;
         }
       }
 
-      &.active {
-        background: none;
+      &:hover {
+        background: white;
+      }
 
+      &.active {
+        background: white;
+
+        > .container {
+          svg {
+            stroke: colors.$text;
+          }
+
+          > .body > span {
+            color: colors.$text;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    &.namespace {
+      > .container {
+        svg {
+          stroke: colors.$text-medium;
+        }
+
+        > .body > span {
+          color: colors.$text-medium;
+        }
+      }
+
+      &:hover {
+        background: white;
+      }
+
+      &.active {
+        > .container {
+          svg {
+            stroke: colors.$text;
+          }
+
+          > .body > span {
+            color: colors.$text;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  &.warning {
+    &.filled {
+      background: colors.$error;
+
+      > .container {
+        svg {
+          stroke: white;
+        }
+
+        > .body > span {
+          color: white;
+        }
+      }
+
+      &:hover, &.active {
+        background: colors.$alternative;
+      }
+    }
+
+    &.outlined {
+      border: solid colors.$error 1px;
+
+      > .container {
+        svg {
+          stroke: colors.$error;
+        }
+
+        > .body > span {
+          color: colors.$error;
+        }
+      }
+
+      &:hover, &.active {
+        background: colors.$error;
+
+        > .container {
+          svg {
+            stroke: white;
+          }
+
+          > .body > span {
+            color: white;
+          }
+        }
+      }
+    }
+
+    &.text {
+      &:hover, &.active {
+        background: colors.$placeholder;
+
+        > .container {
+          svg {
+            stroke: colors.$lead;
+          }
+
+          > .body > span {
+            color: colors.$lead;
+          }
+        }
+      }
+    }
+
+    &.link {
+      > .container {
+        svg {
+          stroke: colors.$text-medium;
+        }
+
+        > .body > span {
+          color: colors.$text-medium;
+        }
+      }
+
+      &:hover {
+        background: white;
+      }
+
+      &.active {
+        background: white;
+
+        > .container {
+          svg {
+            stroke: colors.$text;
+          }
+
+          > .body > span {
+            color: colors.$text;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    &.namespace {
+      > .container {
+        svg {
+          stroke: colors.$text-medium;
+        }
+
+        > .body > span {
+          color: colors.$text-medium;
+        }
+      }
+
+      &:hover {
+        background: white;
+      }
+
+      &.active {
+        > .container {
+          svg {
+            stroke: colors.$text;
+          }
+
+          > .body > span {
+            color: colors.$text;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  &.lead {
+    &.filled {
+      background: colors.$lead;
+
+      > .container {
+        svg {
+          stroke: colors.$lead-light;
+        }
+
+        > .body > span {
+          color: colors.$lead-light;
+        }
+      }
+
+      &:hover, &.active {
+        background: colors.$alternative;
+      }
+    }
+
+    &.outlined {
+      border: solid colors.$lead 1px;
+
+      > .container {
         svg {
           stroke: colors.$lead;
         }
 
-        > .container > .body > span {
+        > .body > span {
           color: colors.$lead;
+        }
+      }
+
+      &:hover, &.active {
+        background: colors.$lead;
+
+        > .container {
+          svg {
+            stroke: colors.$lead-light;
+          }
+
+          > .body > span {
+            color: colors.$lead-light;
+          }
+        }
+      }
+    }
+
+    &.text {
+      &:hover, &.active {
+        background: colors.$placeholder;
+
+        > .container {
+          svg {
+            stroke: colors.$lead;
+          }
+
+          > .body > span {
+            color: colors.$lead;
+          }
+        }
+      }
+    }
+
+    &.link {
+      > .container {
+        svg {
+          stroke: colors.$text-medium;
+        }
+
+        > .body > span {
+          color: colors.$text-medium;
+        }
+      }
+
+      &:hover {
+        background: white;
+      }
+
+      &.active {
+        background: white;
+
+        > .container {
+          svg {
+            stroke: colors.$text;
+          }
+
+          > .body > span {
+            color: colors.$text;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    &.namespace {
+      > .container {
+        svg {
+          stroke: colors.$text-medium;
+        }
+
+        > .body > span {
+          color: colors.$text-medium;
+        }
+      }
+
+      &:hover {
+        background: white;
+      }
+
+      &.active {
+        > .container {
+          svg {
+            stroke: colors.$text;
+          }
+
+          > .body > span {
+            color: colors.$text;
+            font-weight: bold;
+          }
         }
       }
     }

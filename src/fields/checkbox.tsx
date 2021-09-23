@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
-import * as React from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { FieldComponentProps } from '@cezembre/forms';
 import Check from '../general/check';
 import Icon from '../general/icon';
 
-export interface Props extends FieldComponentProps {
+export interface Props extends FieldComponentProps<boolean> {
   label?: string;
   instructions?: string;
 }
@@ -20,7 +19,7 @@ export default function Checkbox({
   onBlur,
   label = undefined,
   instructions = undefined,
-}: Props): React.ReactElement {
+}: Props): ReactElement {
   const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-fields-checkbox']);
 
   useEffect(() => {
@@ -43,7 +42,7 @@ export default function Checkbox({
   return (
     <div className={classNames.join(' ')}>
       <div className="container">
-        <Check active={value as boolean} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
+        <Check active={value || false} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
         {label ? <label htmlFor={name}>{label}</label> : null}
       </div>
 

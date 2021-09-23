@@ -19,10 +19,10 @@ export interface Props {
   onClick?: (event: MouseEvent<HTMLButtonElement>) => Promise<void> | void;
   onFocus?: (event: FocusEvent<HTMLElement>) => void;
   type?: 'submit' | 'reset' | 'button';
-  shape?: 'square' | 'rounded' | 'round';
+  shape?: 'rounded' | 'square' | 'round';
   size?: 'small' | 'medium' | 'large';
   style?: 'filled' | 'outlined' | 'text' | 'link' | 'namespace';
-  theme?: 'dark' | 'light';
+  theme?: 'default' | 'lead' | 'alert';
   fullWidth?: boolean;
   centered?: boolean;
   paddingLeft?: number;
@@ -44,10 +44,10 @@ function Wrapper({
   to = undefined,
   onClick = undefined,
   onFocus = undefined,
-  shape = 'square',
+  shape = 'rounded',
   size = 'medium',
   style = 'filled',
-  theme = 'dark',
+  theme = 'default',
   fullWidth = false,
   centered = false,
   paddingLeft = undefined,
@@ -188,11 +188,11 @@ export default function Button({
   href = undefined,
   to = undefined,
   onClick = undefined,
-  shape = 'square',
+  shape = 'rounded',
   size = 'medium',
   style = 'filled',
   type = 'button',
-  theme = 'dark',
+  theme = 'default',
   fullWidth = false,
   centered = false,
   paddingLeft = undefined,

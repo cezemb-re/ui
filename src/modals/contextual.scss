@@ -1,6 +1,6 @@
 @use "~@cezembre/fronts/dist/layouts";
 
-.cezembre-ui-modals-selection {
+.cezembre-ui-modals-contextual {
   @include layouts.modal();
   visibility: hidden;
   opacity: 0;

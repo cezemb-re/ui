@@ -1,13 +1,21 @@
-import { ReactElement, useCallback } from 'react';
-import * as React from 'react';
+import {
+  ReactNode,
+  FocusEvent,
+  KeyboardEvent,
+  ReactElement,
+  useCallback,
+  useState,
+  useEffect,
+} from 'react';
+import Icon from './icon';
 
 export interface Props {
   active: boolean;
-  onChange?: ((value: boolean) => void) | null;
-  onFocus?: (event: React.FocusEvent<HTMLDivElement>) => void;
-  onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void;
+  onChange?: (value: boolean) => void;
+  onFocus?: (event: FocusEvent<HTMLDivElement>) => void;
+  onBlur?: (event: FocusEvent<HTMLDivElement>) => void;
   tabIndex?: number;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 export default function Check({
@@ -16,8 +24,23 @@ export default function Check({
   onFocus,
   onBlur,
   tabIndex = 0,
-  children = null,
+  children = undefined,
 }: Props): ReactElement {
+  const [classNames, setClassNames] = useState<(string | undefined)[]>([
+    'cezembre-ui-check',
+    children ? ' tag' : undefined,
+  ]);
+
+  useEffect(() => {
+    const nextClassNames = ['cezembre-ui-check'];
+
+    if (children) {
+      nextClassNames.push('tag');
+    }
+
+    setClassNames(nextClassNames);
+  }, [children]);
+
   const onClick = useCallback(() => {
     if (onChange) {
       onChange(!active);
@@ -25,7 +48,7 @@ export default function Check({
   }, [active, onChange]);
 
   const onKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
+    (event: KeyboardEvent<HTMLDivElement>) => {
       if (onChange && event.key === 'Enter') {
         onChange(!active);
       }
@@ -35,7 +58,7 @@ export default function Check({
 
   return (
     <div
-      className={`cezembre-ui-check${children ? ' tag' : ''}`}
+      className={classNames.filter(String).join(' ')}
       role="button"
       aria-pressed={active}
       onKeyDown={onKeyDown}
@@ -43,22 +66,7 @@ export default function Check({
       onFocus={onFocus}
       onBlur={onBlur}
       tabIndex={tabIndex}>
-      {children ? (
-        <span>{children}</span>
-      ) : (
-        <svg
-          height={12}
-          viewBox="-50 -50 800 600"
-          strokeDasharray={100}
-          strokeDashoffset={0}
-          strokeWidth={100}
-          stroke="black"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="transparent">
-          <path pathLength={100} d="M0,250L250,500L700,10" />
-        </svg>
-      )}
+      {children ? <span>{children}</span> : <Icon name="check" size={12} />}
     </div>
   );
 }

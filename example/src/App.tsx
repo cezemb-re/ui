@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
 import { Form, Field } from '@cezembre/forms';
-import { Table, Button, DataType, Select, Input } from '@cezembre/ui';
+import { Table, Button, DataType, Select, Input, Selection } from '@cezembre/ui';
 import './App.scss';
 
 interface Article {
@@ -15,7 +15,7 @@ interface Article {
 
 const articles: Article[] = [
   {
-    id: '1',
+    id: '1A',
     date: new Date(),
     title: 'Un premier article',
     author: { name: 'Lucien Perouze' },
@@ -25,7 +25,7 @@ const articles: Article[] = [
     likes: 42,
   },
   {
-    id: '2',
+    id: '2B',
     date: new Date(),
     title: 'Un deuxième article',
     author: { name: 'Lucien Perouze' },
@@ -34,7 +34,7 @@ const articles: Article[] = [
     likes: 42,
   },
   {
-    id: '3',
+    id: '3C',
     date: new Date(),
     title: "L'article du siecle",
     author: { name: 'Lucien Perouze' },
@@ -43,7 +43,7 @@ const articles: Article[] = [
     likes: 42,
   },
   {
-    id: '4',
+    id: '4D',
     date: new Date(),
     title: 'Les articles sont le kiff',
     author: { name: 'Lucien Perouze' },
@@ -55,6 +55,7 @@ const articles: Article[] = [
 export default function App(): ReactElement {
   const [activeNamespace, setActiveNamespace] = useState(false);
   const [activeLink, setActiveLink] = useState(false);
+  const [selection, setSelection] = useState<Selection>();
 
   return (
     <div className="App">
@@ -85,6 +86,8 @@ export default function App(): ReactElement {
       </div>
 
       <div className="container">
+        {Array.isArray(selection) ? selection.join(',') : selection}
+
         <div className="table">
           <Table<Article>
             columns={[
@@ -94,15 +97,25 @@ export default function App(): ReactElement {
               },
               { key: 'date', label: 'Date', type: DataType.DATETIME },
               {
-                key: 'authosr',
+                key: 'author',
                 label: 'Author',
-                Cell: ({ item: { author } }) => <p>Auteur: {author?.name}</p>,
+                Cell: ({ item }) => <p>{item.author?.name}</p>,
               },
               { key: 'active', label: 'Active' },
               { key: 'likes', label: 'Likes' },
             ]}
             data={articles}
-            onClickItem={() => null}
+            onSelectItem={(_selection: Selection) => setSelection(_selection)}
+            selectionMode="multiple"
+            itemActions={[
+              {
+                children: 'Éditer',
+                onlySingle: true,
+              },
+              {
+                children: 'Effacer',
+              },
+            ]}
           />
         </div>
 
