@@ -65,43 +65,36 @@ export default function Table<M extends Model = Model>({
   const selectItem = useCallback(
     (id: string) => {
       (async () => {
+        let nextSelection: Selection;
         let callback: Promise<void> | void | undefined;
 
         switch (selectionMode) {
           default:
           case 'single':
-            setSelection((_selection) => {
-              const nextSelection = _selection !== id ? id : undefined;
-              if (onSelectItem) {
-                callback = onSelectItem(nextSelection);
-              }
-              return nextSelection;
-            });
+            nextSelection = selection !== id ? id : undefined;
             break;
 
           case 'multiple':
-            setSelection((_selection) => {
-              let nextSelection: string | string[] | undefined;
-
-              if (!_selection) {
-                nextSelection = [id];
-              } else if (typeof _selection === 'string') {
-                nextSelection = _selection !== id ? [_selection, id] : undefined;
+            if (!selection) {
+              nextSelection = [id];
+            } else if (typeof selection === 'string') {
+              nextSelection = selection !== id ? [selection, id] : undefined;
+            } else {
+              const i = selection.findIndex((value) => value === id);
+              if (i === -1) {
+                nextSelection = [...selection, id];
               } else {
-                const i = _selection.findIndex((value) => value === id);
-                if (i === -1) {
-                  nextSelection = [..._selection, id];
-                } else {
-                  nextSelection = [..._selection];
-                  nextSelection.splice(i, 1);
-                }
+                nextSelection = [...selection];
+                nextSelection.splice(i, 1);
               }
-              if (onSelectItem) {
-                callback = onSelectItem(nextSelection);
-              }
-              return nextSelection;
-            });
+            }
             break;
+        }
+
+        setSelection(nextSelection);
+
+        if (onSelectItem) {
+          callback = onSelectItem(nextSelection);
         }
 
         if (
@@ -115,7 +108,7 @@ export default function Table<M extends Model = Model>({
         }
       })();
     },
-    [onSelectItem, selectionMode],
+    [onSelectItem, selection, selectionMode],
   );
 
   useEffect(() => {
