@@ -89,6 +89,15 @@
           }
         }
 
+        &.selected {
+          background: colors.$lead-light;
+
+          > td > .selection {
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+
         > td {
           margin: 0;
           border: none;
@@ -153,15 +162,6 @@
       &:hover > td > .selection {
         visibility: visible;
         opacity: 1;
-      }
-
-      &.selected {
-        background: colors.$lead-light;
-
-        > td > .selection {
-          visibility: visible;
-          opacity: 1;
-        }
       }
     }
   }
