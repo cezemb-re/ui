@@ -42,7 +42,7 @@
   justify-content: flex-start;
   margin-top: 15px;
 
-  > svg {
+  > svg[stroke] {
     stroke: colors.$error;
   }
 
@@ -58,7 +58,7 @@
   justify-content: flex-start;
   margin-top: 15px;
 
-  > svg {
+  > svg[stroke] {
     stroke: colors.$warning;
   }
 

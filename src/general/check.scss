@@ -35,7 +35,7 @@
     padding: 0 10px;
   }
 
-  > svg {
+  > svg[stroke] {
     stroke: transparent;
     transition: stroke linear 100ms;
   }
@@ -45,7 +45,7 @@
   }
 
   &[aria-pressed=true] {
-    > svg {
+    > svg[stroke] {
       stroke: colors.$text;
     }
 

@@ -127,7 +127,7 @@
             overflow: hidden;
 
             &.boolean {
-              svg {
+              svg[stroke] {
                 stroke: colors.$text;
               }
             }
@@ -138,7 +138,7 @@
             visibility: hidden;
             opacity: 0;
 
-            > svg {
+            > svg[stroke] {
               stroke: colors.$text;
             }
           }
@@ -174,7 +174,7 @@
   justify-content: center;
   padding: 30px;
 
-  > svg {
+  > svg[stroke] {
     stroke: colors.$text-medium;
   }
 

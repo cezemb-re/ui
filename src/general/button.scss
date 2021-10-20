@@ -31,7 +31,7 @@
     align-items: stretch;
     justify-content: space-between;
 
-    svg {
+    svg[stroke] {
       display: block;
       transition: stroke linear 100ms;
       stroke: colors.$text-medium;
@@ -137,7 +137,7 @@
         box-shadow: 0 0 5px rgba(colors.$lead-dark, .15);
 
         > .container {
-          svg {
+          svg[stroke] {
             stroke: colors.$text;
           }
 
@@ -155,7 +155,7 @@
         background: colors.$background;
 
         > .container {
-          svg {
+          svg[stroke] {
             stroke: colors.$text;
           }
 
@@ -171,7 +171,7 @@
         background: colors.$placeholder;
 
         > .container {
-          svg {
+          svg[stroke] {
             stroke: colors.$text;
           }
 
@@ -184,7 +184,7 @@
 
     &.link {
       > .container {
-        svg {
+        svg[stroke] {
           stroke: colors.$text-medium;
         }
 
@@ -201,7 +201,7 @@
         background: white;
 
         > .container {
-          svg {
+          svg[stroke] {
             stroke: colors.$text;
           }
 
@@ -215,7 +215,7 @@
 
     &.namespace {
       > .container {
-        svg {
+        svg[stroke] {
           stroke: colors.$text-medium;
         }
 
@@ -230,7 +230,7 @@
 
       &.active {
         > .container {
-          svg {
+          svg[stroke] {
             stroke: colors.$text;
           }
 
@@ -248,7 +248,7 @@
       background: colors.$error;
 
       > .container {
-        svg {
+        svg[stroke] {
           stroke: white;
         }
 
@@ -266,7 +266,7 @@
       border: solid colors.$error 1px;
 
       > .container {
-        svg {
+        svg[stroke] {
           stroke: colors.$error;
         }
 
@@ -279,7 +279,7 @@
         background: colors.$error;
 
         > .container {
-          svg {
+          svg[stroke] {
             stroke: white;
           }
 
@@ -295,7 +295,7 @@
         background: colors.$placeholder;
 
         > .container {
-          svg {
+          svg[stroke] {
             stroke: colors.$lead;
           }
 
@@ -308,7 +308,7 @@
 
     &.link {
       > .container {
-        svg {
+        svg[stroke] {
           stroke: colors.$text-medium;
         }
 
@@ -325,7 +325,7 @@
         background: white;
 
         > .container {
-          svg {
+          svg[stroke] {
             stroke: colors.$text;
           }
 
@@ -339,7 +339,7 @@
 
     &.namespace {
       > .container {
-        svg {
+        svg[stroke] {
           stroke: colors.$text-medium;
         }
 
@@ -354,7 +354,7 @@
 
       &.active {
         > .container {
-          svg {
+          svg[stroke] {
             stroke: colors.$text;
           }
 
@@ -372,7 +372,7 @@
       background: colors.$lead;
 
       > .container {
-        svg {
+        svg[stroke] {
           stroke: colors.$lead-light;
         }
 
@@ -390,7 +390,7 @@
       border: solid colors.$lead 1px;
 
       > .container {
-        svg {
+        svg[stroke] {
           stroke: colors.$lead;
         }
 
@@ -403,7 +403,7 @@
         background: colors.$lead;
 
         > .container {
-          svg {
+          svg[stroke] {
             stroke: colors.$lead-light;
           }
 
@@ -419,7 +419,7 @@
         background: colors.$placeholder;
 
         > .container {
-          svg {
+          svg[stroke] {
             stroke: colors.$lead;
           }
 
@@ -432,7 +432,7 @@
 
     &.link {
       > .container {
-        svg {
+        svg[stroke] {
           stroke: colors.$text-medium;
         }
 
@@ -449,7 +449,7 @@
         background: white;
 
         > .container {
-          svg {
+          svg[stroke] {
             stroke: colors.$text;
           }
 
@@ -463,7 +463,7 @@
 
     &.namespace {
       > .container {
-        svg {
+        svg[stroke] {
           stroke: colors.$text-medium;
         }
 
@@ -478,7 +478,7 @@
 
       &.active {
         > .container {
-          svg {
+          svg[stroke] {
             stroke: colors.$text;
           }
 
@@ -496,7 +496,7 @@
     background: colors.$background;
 
     > .container > .body {
-      > .left-icon svg, > .right-icon svg {
+      > .left-icon svg[stroke], > .right-icon svg[stroke] {
         stroke: colors.$placeholder;
       }
 

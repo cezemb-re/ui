@@ -3,7 +3,7 @@
   padding: 0;
   display: block;
 
-  > svg {
+  > svg[stroke] {
     transition: stroke linear 100ms, height linear 100ms, width linear 100ms;
     display: block;
   }

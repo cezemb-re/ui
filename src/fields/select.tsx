@@ -4,22 +4,18 @@ import { FieldComponentProps } from '@cezembre/forms';
 import { useClickOutside } from '@cezembre/fronts';
 import Icon from '../general/icon';
 
-export enum Type {
-  DROPDOWN = 'dropdown',
-  FLAT = 'flat',
-}
-
 export interface Option<Value = any> {
   value: Value;
   item?: ReactElement | string;
+  key?: string;
 }
 
-export interface CellProps {
+export interface OptionProps {
   option?: Option;
   placeholder?: ReactElement | string;
 }
 
-function Cell({ placeholder, option }: CellProps): ReactElement {
+function OptionComponent({ placeholder, option }: OptionProps): ReactElement {
   if (option?.item) {
     if (typeof option.item === 'string') {
       return <span>{option.item}</span>;
@@ -42,7 +38,6 @@ function Cell({ placeholder, option }: CellProps): ReactElement {
 }
 
 export interface Props extends FieldComponentProps {
-  type?: Type;
   label?: string;
   options?: Option[];
   placeholder?: ReactElement | string;
@@ -58,7 +53,6 @@ export default function Select({
   name,
   onChange,
   onBlur,
-  type = Type.DROPDOWN,
   label = undefined,
   options = [],
   placeholder = undefined,
@@ -66,14 +60,13 @@ export default function Select({
 }: Props): ReactElement {
   const [classNames, setClassNames] = useState<(string | undefined)[]>([
     'cezembre-ui-fields-select',
-    type,
     isActive ? 'isActive' : undefined,
     error ? 'error' : undefined,
     warning ? 'warning' : undefined,
   ]);
 
   useEffect(() => {
-    const nextClassNames = ['cezembre-ui-fields-select', type];
+    const nextClassNames = ['cezembre-ui-fields-select'];
 
     if (isActive) {
       nextClassNames.push('active');
@@ -87,17 +80,13 @@ export default function Select({
       nextClassNames.push('warning');
     }
     setClassNames(nextClassNames);
-  }, [error, isActive, type, warning]);
+  }, [error, isActive, warning]);
 
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | undefined>();
 
   useEffect(() => {
-    if (value !== undefined) {
-      const i = _.findIndex(options, (option) => option.value === value);
-      if (i !== -1) {
-        setSelectedOptionIndex(i);
-      }
-    }
+    const i = _.findIndex(options, (option) => _.isEqual(option.value, value));
+    setSelectedOptionIndex(i !== -1 ? i : undefined);
   }, [value, options]);
 
   const toggleFocus = useCallback(() => {
@@ -133,7 +122,7 @@ export default function Select({
 
       <div className="container">
         <button onClick={toggleFocus} type="button">
-          <Cell
+          <OptionComponent
             option={selectedOptionIndex !== undefined ? options[selectedOptionIndex] : undefined}
             placeholder={placeholder}
           />
@@ -143,11 +132,11 @@ export default function Select({
         <div className="options">
           {options?.map((option, index) => (
             <button
-              key={option.value}
+              key={option.key || option.value}
               type="button"
               className={`option${selectedOptionIndex === index ? ' active' : ''}`}
               onClick={() => selectOption(index, option.value)}>
-              <Cell option={option} />
+              <OptionComponent option={option} />
             </button>
           ))}
         </div>

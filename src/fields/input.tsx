@@ -8,85 +8,76 @@ import {
   ChangeEvent,
   FC,
   ReactNode,
+  KeyboardEvent,
 } from 'react';
-
 import { FieldComponentProps } from '@cezembre/forms';
 import Icon, { IconName } from '../general/icon';
 
-export enum Type {
-  TEXT = 'text',
-  PASSWORD = 'password',
-  EMAIL = 'email',
-  SEARCH = 'search',
-  URL = 'url',
-  NUMBER = 'number',
-  HIDDEN = 'hidden',
-}
+export type InputType = 'text' | 'password' | 'email' | 'search' | 'url' | 'number' | 'hidden';
 
-export enum AutoComplete {
-  OFF = 'off',
-  ON = 'on',
-  NAME = 'name',
-  HONORIFIC_PREFIX = 'honorific-prefix',
-  GIVEN_NAME = 'given-name',
-  ADDITIONAL_NAME = 'additional-name',
-  FAMILY_NAME = 'family-name',
-  HONORIFIC_SUFFIX = 'honorific-suffix',
-  NICKNAME = 'nickname',
-  EMAIL = 'email',
-  USERNAME = 'username',
-  NEW_PASSWORD = 'new-password',
-  CURRENT_PASSWORD = 'current-password',
-  ONE_TIME_CODE = 'one-time-code',
-  ORGANIZATION_TITLE = 'organization-title',
-  ORGANIZATION = 'organization',
-  STREET_ADDRESS = 'street-address',
-  ADDRESS_LINE_1 = 'address-line1',
-  ADDRESS_LINE_2 = 'address-line2',
-  ADDRESS_LINE_3 = 'address-line3',
-  ADDRESS_LEVEL_4 = 'address-level4',
-  ADDRESS_LEVEL_3 = 'address-level3',
-  ADDRESS_LEVEL_2 = 'address-level2',
-  ADDRESS_LEVEL_1 = 'address-level1',
-  COUNTRY = 'country',
-  COUNTRY_NAME = 'country-name',
-  POSTAL_CODE = 'postal-code',
-  CC_NAME = 'cc-name',
-  CC_ADDITIONAL_NAME = 'cc-additional-name',
-  CC_FAMILY_NAME = 'cc-family-name',
-  CC_NUMBER = 'cc-number',
-  CC_EXP = 'cc-exp',
-  CC_EXP_MONTH = 'cc-exp-month',
-  CC_EXP_YEAR = 'cc-exp-year',
-  CC_CSC = 'cc-csc',
-  CC_TYPE = 'cc-type',
-  TRANSACTION_CURRENCY = 'transaction-currency',
-  TRANSACTION_AMOUNT = 'transaction-amount',
-  LANGUAGE = 'language',
-  BDAY = 'bday',
-  BDAY_DAY = 'bday-day',
-  BDAY_MONTH = 'bday-month',
-  BDAY_YEAR = 'bday-year',
-  SEX = 'sex',
-  TEL = 'tel',
-  TEL_COUNTRY_CODE = 'tel-country-code',
-  TEL_NATIONAL = 'tel-national',
-  TEL_AREA_CODE = 'tel-area-code',
-  TEL_LOCAL = 'tel-local',
-  TEL_EXTENSION = 'tel-extension',
-  IMPP = 'impp',
-  URL = 'url',
-  PHOTO = 'photo',
-}
+export type AutoComplete =
+  | 'off'
+  | 'on'
+  | 'name'
+  | 'honorific-prefix'
+  | 'given-name'
+  | 'additional-name'
+  | 'family-name'
+  | 'honorific-suffix'
+  | 'nickname'
+  | 'email'
+  | 'username'
+  | 'new-password'
+  | 'current-password'
+  | 'one-time-code'
+  | 'organization-title'
+  | 'organization'
+  | 'street-address'
+  | 'address-line1'
+  | 'address-line2'
+  | 'address-line3'
+  | 'address-level4'
+  | 'address-level3'
+  | 'address-level2'
+  | 'address-level1'
+  | 'country'
+  | 'country-name'
+  | 'postal-code'
+  | 'cc-name'
+  | 'cc-additional-name'
+  | 'cc-family-name'
+  | 'cc-number'
+  | 'cc-exp'
+  | 'cc-exp-month'
+  | 'cc-exp-year'
+  | 'cc-csc'
+  | 'cc-type'
+  | 'transaction-currency'
+  | 'transaction-amount'
+  | 'language'
+  | 'bday'
+  | 'bday-day'
+  | 'bday-month'
+  | 'bday-year'
+  | 'sex'
+  | 'tel'
+  | 'tel-country-code'
+  | 'tel-national'
+  | 'tel-area-code'
+  | 'tel-local'
+  | 'tel-extension'
+  | 'impp'
+  | 'url'
+  | 'photo';
 
-export type Adapter<Value = any> = (value: string | number) => Value;
-export type Resolver<Value = any> = (value: Value | undefined) => string | number;
+export type Adapter<Value = any> = (value: string) => Value;
+export type Resolver<Value = any> = (value?: Value) => string | number;
 
 export interface SuggestionProps {
   suggestion: ReactNode;
 }
 
-function Suggestion({ suggestion }: SuggestionProps): React.ReactElement {
+function Suggestion({ suggestion }: SuggestionProps): ReactElement {
   return (
     <div className="cezembre-ui-fields-input-suggestion">
       <span>{suggestion}</span>
@@ -99,20 +90,20 @@ export type InputStyle = 'field' | 'inline';
 export interface Props<Value = string, Suggestion = any> extends FieldComponentProps<Value> {
   adapter?: Adapter<Value>;
   resolver?: Resolver<Value>;
-  type?: Type | string | null;
-  inputStyle?: InputStyle;
-  label?: string | null;
-  placeholder?: string | null;
-  instructions?: string | null;
-  autoComplete?: AutoComplete | string | null;
+  type?: InputType | string;
+  label?: string;
+  placeholder?: string;
+  instructions?: string;
+  autoComplete?: AutoComplete | string;
   spellCheck?: boolean;
   suggestions?: Suggestion[];
   SuggestionItem?: FC<Suggestion>;
   suggestionsKeyExtractor?: (suggestion: Suggestion) => string;
-  suggestionsHeader?: ReactNode | null;
-  suggestionsFooter?: ReactNode | null;
-  onSelectSuggestion?: ((suggestion: Suggestion) => void) | null;
-  leftIcon?: IconName;
+  suggestionsHeader?: ReactNode;
+  suggestionsFooter?: ReactNode;
+  onSelectSuggestion?: (suggestion: Suggestion) => void;
+  leftComponent?: ReactNode | IconName;
+  rightComponent?: ReactNode | IconName;
   autoCorrect?: boolean;
   autoCapitalize?: string;
 }
@@ -129,22 +120,23 @@ export default function Input<Value = string>({
   name,
   onChange,
   onBlur,
-  type = Type.TEXT,
-  adapter = undefined,
-  resolver = undefined,
+  type = 'text',
+  adapter,
+  resolver,
+  format,
   inputStyle = 'field',
-  label = null,
-  placeholder = null,
-  instructions = null,
-  autoComplete = AutoComplete.ON,
+  label,
+  placeholder,
+  instructions,
+  autoComplete = 'on',
   spellCheck = true,
   suggestions = [],
   SuggestionItem = Suggestion,
   suggestionsKeyExtractor = (suggestion: string) => suggestion,
-  suggestionsHeader = null,
-  suggestionsFooter = null,
-  onSelectSuggestion = null,
-  leftIcon = undefined,
+  suggestionsHeader,
+  suggestionsFooter,
+  onSelectSuggestion,
+  leftIcon,
   autoCorrect = true,
   autoCapitalize = 'off',
 }: Props<Value>): ReactElement {
@@ -156,7 +148,7 @@ export default function Input<Value = string>({
   const [suggestionsActive, setSuggestionsActive] = useState<boolean>(false);
 
   useEffect(() => {
-    if (autoComplete === AutoComplete.OFF && window.MutationObserver && inputRef.current) {
+    if (autoComplete === 'off' && window.MutationObserver && inputRef.current) {
       const observerHack = new MutationObserver(() => {
         observerHack.disconnect();
         if (inputRef.current) {
@@ -221,7 +213,7 @@ export default function Input<Value = string>({
   );
 
   const onKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLInputElement>) => {
+    (event: KeyboardEvent<HTMLInputElement>) => {
       if (event.key === 'ArrowDown') {
         if (suggestions && suggestions.length) {
           event.preventDefault();
@@ -295,17 +287,10 @@ export default function Input<Value = string>({
         <input
           ref={inputRef}
           name={name}
-          value={
-            // eslint-disable-next-line no-nested-ternary
-            resolver
-              ? resolver(value)
-              : typeof value === 'string' || typeof value === 'number'
-              ? value
-              : ''
-          }
-          type={type || Type.TEXT}
+          value={!isActive && format ? format(value) : resolver ? resolver(value) : value}
+          type={type || 'text'}
           placeholder={placeholder || ''}
-          autoComplete={autoComplete || AutoComplete.OFF}
+          autoComplete={autoComplete || 'off'}
           onFocus={focus}
           onChange={change}
           onBlur={blur}

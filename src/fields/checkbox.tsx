@@ -25,6 +25,10 @@ export default function Checkbox({
   useEffect(() => {
     const nextClassNames = ['cezembre-ui-fields-checkbox'];
 
+    if (value) {
+      nextClassNames.push('checked');
+    }
+
     if (isActive) {
       nextClassNames.push('active');
     }
@@ -37,7 +41,7 @@ export default function Checkbox({
       nextClassNames.push('warning');
     }
     setClassNames(nextClassNames);
-  }, [error, isActive, warning]);
+  }, [value, error, isActive, warning]);
 
   return (
     <div className={classNames.join(' ')}>
