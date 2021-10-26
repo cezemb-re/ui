@@ -61,7 +61,7 @@ export default function App(): ReactElement {
     <div className="App">
       <div className="namespaces-menu">
         <Button
-          style="namespace"
+          styleType="namespace"
           fullWidth
           shape="rounded"
           leftIcon="activity"
@@ -71,7 +71,7 @@ export default function App(): ReactElement {
         </Button>
 
         <Button
-          style="link"
+          styleType="link"
           fullWidth
           shape="rounded"
           paddingLeft={40}
@@ -80,7 +80,12 @@ export default function App(): ReactElement {
           Foot
         </Button>
 
-        <Button style="link" fullWidth shape="rounded" paddingLeft={40} rightIcon="chevron-down">
+        <Button
+          styleType="link"
+          fullWidth
+          shape="rounded"
+          paddingLeft={40}
+          rightIcon="chevron-down">
           Clubs
         </Button>
       </div>
@@ -99,7 +104,7 @@ export default function App(): ReactElement {
               {
                 key: 'author',
                 label: 'Author',
-                Cell: ({ item }) => <p>{item.author?.name}</p>,
+                Cell: ({ item }: { item: Article }) => <p>{item.author?.name}</p>,
               },
               { key: 'active', label: 'Active' },
               { key: 'likes', label: 'Likes' },
@@ -138,7 +143,7 @@ export default function App(): ReactElement {
           <br />
           <Field component={Input} name="name" label="Nom" />
           <br />
-          <Field component={CheckBox} name="is_cancelled" label="Annulé" initialValue={true} />
+          <Field component={CheckBox} name="is_cancelled" label="Annulé" initialValue />
           <br />
           <Field
             component={Select}

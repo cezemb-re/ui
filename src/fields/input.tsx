@@ -69,7 +69,7 @@ export type AutoComplete =
   | 'url'
   | 'photo';
 
-export type Theme = 'default' | 'black';
+export type Theme = 'field' | 'inline';
 
 export type Adapter<Value = string> = (value: string) => Value;
 export type Resolver<Value = string> = (value?: Value) => string | number;
@@ -122,7 +122,7 @@ export default function Input<Value = string, Suggestion = Value>({
   onChange,
   onBlur,
   type = 'text',
-  theme = 'default',
+  theme = 'field',
   adapter,
   resolver,
   label,
@@ -271,7 +271,7 @@ export default function Input<Value = string, Suggestion = Value>({
     <div className={classNames.join(' ')}>
       {label ? <label htmlFor={name}>{label}</label> : null}
 
-      <div className="container">
+      <div className={`container${isActive ? ' active' : ''}`}>
         {leftComponent ? <div className="left-component">{leftComponent}</div> : null}
 
         <input
