@@ -1,7 +1,7 @@
 {
   "name": "@cezembre/ui",
   "author": "Lucien Perouze",
-  "version": "0.5.11",
+  "version": "0.6.0",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
