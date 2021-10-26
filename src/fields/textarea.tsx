@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react';
-import { ReactElement } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { FieldComponentProps } from '@cezembre/forms';
 import Icon from '../general/icon';
 
-export interface Props {
-  label?: string | null;
-  placeholder?: string | null;
-  instructions?: string | null;
+export interface Props extends FieldComponentProps<string | number | null> {
+  label?: string;
+  placeholder?: string;
+  instructions?: string;
   spellCheck?: boolean;
 }
 
-export default function Textarea({
+export default function TextareaField({
   value,
   error,
   warning,
@@ -21,15 +20,15 @@ export default function Textarea({
   name,
   onChange,
   onBlur,
-  label = null,
-  placeholder = null,
-  instructions = null,
+  label,
+  placeholder,
+  instructions,
   spellCheck = true,
-}: FieldComponentProps & Props): ReactElement {
-  const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-fields-textarea']);
+}: Props): ReactElement {
+  const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-textarea']);
 
   useEffect(() => {
-    const nextClassNames = ['cezembre-ui-fields-textarea'];
+    const nextClassNames = ['cezembre-ui-textarea'];
 
     if (visited) {
       nextClassNames.push('visited');
@@ -50,28 +49,30 @@ export default function Textarea({
     <div className={classNames.join(' ')}>
       {label ? <label htmlFor={name}>{label}</label> : null}
 
-      <textarea
-        name={name}
-        value={value || ''}
-        placeholder={placeholder || ''}
-        onFocus={onFocus}
-        onChange={onChange}
-        onBlur={onBlur}
-        spellCheck={spellCheck}
-      />
+      <div className="container">
+        <textarea
+          name={name}
+          value={value || ''}
+          placeholder={placeholder || ''}
+          onFocus={onFocus}
+          onChange={onChange}
+          onBlur={onBlur}
+          spellCheck={spellCheck}
+        />
+      </div>
 
       {instructions ? <p className="instructions">{instructions}</p> : null}
 
       {(visited || submitted) && !isActive && error ? (
         <div className="error">
-          <Icon name="alert-triangle" />
+          <Icon name="alert-triangle" size={15} />
           <span>{error}</span>
         </div>
       ) : null}
 
       {warning ? (
         <div className="warning">
-          <Icon name="alert-triangle" />
+          <Icon name="alert-triangle" size={15} />
           <span>{warning}</span>
         </div>
       ) : null}

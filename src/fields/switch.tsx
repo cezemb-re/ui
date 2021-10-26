@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
-import { ReactElement } from 'react';
+import { ReactElement, KeyboardEvent, useCallback, useEffect, useState } from 'react';
 import { FieldComponentProps } from '@cezembre/forms';
 import Icon from '../general/icon';
 
-export interface Props {
+export interface Props extends FieldComponentProps<boolean> {
   label?: string | null;
   instructions?: string | null;
 }
@@ -19,7 +18,7 @@ export default function Switch({
   onBlur,
   label = null,
   instructions = null,
-}: FieldComponentProps & Props): ReactElement {
+}: Props): ReactElement {
   const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-fields-switch']);
 
   useEffect(() => {
@@ -47,7 +46,7 @@ export default function Switch({
   }, [isActive, onChange]);
 
   const onKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
+    (event: KeyboardEvent<HTMLDivElement>) => {
       if (onChange && event.key === 'Enter') {
         onChange(!isActive);
       }
@@ -61,7 +60,7 @@ export default function Switch({
         <div
           className="button"
           role="button"
-          aria-pressed={value as boolean}
+          aria-pressed={value}
           onKeyDown={onKeyDown}
           onClick={onClick}
           onFocus={onFocus}

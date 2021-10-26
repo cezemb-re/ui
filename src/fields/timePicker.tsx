@@ -1,16 +1,16 @@
 import { ReactElement, useCallback } from 'react';
-import { FieldComponentProps } from '@cezembre/forms';
 import { DateTime } from 'luxon';
+import { FieldComponentProps } from '@cezembre/forms';
 
 export type Props = FieldComponentProps<DateTime | null>;
 
-const hours = Array(24).fill(null);
-const minutes = Array(60).fill(null);
-const seconds = Array(60).fill(null);
+const hours = Array<null>(24).fill(null);
+const minutes = Array<null>(60).fill(null);
+// const seconds = Array<null>(60).fill(null);
 
-export default function TimePicker({ value, onChange }: Props): ReactElement {
+export default function TimePickerField({ value, onChange }: Props): ReactElement {
   const selectHour = useCallback(
-    (hour) => {
+    (hour: number) => {
       let nextValue: DateTime;
 
       if (!value) {
@@ -33,7 +33,7 @@ export default function TimePicker({ value, onChange }: Props): ReactElement {
   );
 
   const selectMinute = useCallback(
-    (minute) => {
+    (minute: number) => {
       let nextValue: DateTime;
 
       if (!value) {
@@ -56,7 +56,7 @@ export default function TimePicker({ value, onChange }: Props): ReactElement {
   );
 
   return (
-    <div className="ui-fields-time-picker">
+    <div className="cezembre-ui-time-picker">
       <div className="container">
         <ul>
           {hours.map((_, hour: number) => {

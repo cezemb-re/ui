@@ -1,4 +1,13 @@
-import { useState, useEffect, useRef, useCallback, ReactElement, KeyboardEvent } from 'react';
+import {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  ReactElement,
+  KeyboardEvent,
+  MouseEventHandler,
+  MouseEvent,
+} from 'react';
 import {
   Editor,
   EditorState,
@@ -16,10 +25,7 @@ import _ from 'lodash';
 import { FieldComponentProps } from '@cezembre/forms';
 import SelectionModal from '../modals/selection';
 
-export enum Type {
-  FIELD = 'field',
-  PARAGRAPH = 'paragraph',
-}
+export type Type = 'field' | 'paragraph';
 
 export type BlockType = 'custom' | DraftBlockType;
 
@@ -45,7 +51,7 @@ export default function Wysiwyg({
   label,
   onDelete,
   placeholder = 'Votre texte ici ...',
-  type = Type.FIELD,
+  type = 'field',
   debounce = 1000,
 }: Props): ReactElement {
   const key = useRef<string>(Math.random().toString(36).substr(2, 10));
@@ -100,7 +106,7 @@ export default function Wysiwyg({
   }, [editorState]);
 
   const toggleInlineStyle = useCallback(
-    (event, inlineStyle: InlineStyle) => {
+    (event: MouseEvent<HTMLButtonElement>, inlineStyle: InlineStyle) => {
       event.preventDefault();
       changeEditorState(RichUtils.toggleInlineStyle(editorState, inlineStyle));
     },
@@ -115,7 +121,7 @@ export default function Wysiwyg({
   }, [editorState]);
 
   const switchBlockType = useCallback(
-    (event, blockType: BlockType) => {
+    (event: MouseEvent<HTMLButtonElement>, blockType: BlockType) => {
       event.preventDefault();
       changeEditorState(RichUtils.toggleBlockType(editorState, blockType));
     },
@@ -134,9 +140,9 @@ export default function Wysiwyg({
     setClassNames(nextClassNames);
   }, [isActive, type]);
 
-  const focus = useCallback(
-    (e) => {
-      e.preventDefault();
+  const focus = useCallback<MouseEventHandler<HTMLDivElement>>(
+    (event: MouseEvent<HTMLDivElement>) => {
+      event.preventDefault();
       if (!isActive) {
         editor.current?.focus();
       }

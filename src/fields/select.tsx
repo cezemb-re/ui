@@ -4,14 +4,14 @@ import { FieldComponentProps } from '@cezembre/forms';
 import { useClickOutside } from '@cezembre/fronts';
 import Icon from '../general/icon';
 
-export interface Option<Value = any> {
+export interface Option<Value = unknown> {
   value: Value;
   item?: ReactElement | string;
   key?: string;
 }
 
-export interface OptionProps {
-  option?: Option;
+export interface OptionProps<Value = unknown> {
+  option?: Option<Value>;
   placeholder?: ReactElement | string;
 }
 
@@ -37,14 +37,14 @@ function OptionComponent({ placeholder, option }: OptionProps): ReactElement {
   return <span className="placeholder">Choisissez une option</span>;
 }
 
-export interface Props extends FieldComponentProps {
+export interface Props<Value = unknown> extends FieldComponentProps<Value> {
   label?: string;
-  options?: Option[];
+  options?: Option<Value>[];
   placeholder?: ReactElement | string;
   instructions?: ReactElement | string;
 }
 
-export default function Select({
+export default function Select<Value = unknown>({
   value,
   error,
   warning,
@@ -57,7 +57,7 @@ export default function Select({
   options = [],
   placeholder = undefined,
   instructions = undefined,
-}: Props): ReactElement {
+}: Props<Value>): ReactElement {
   const [classNames, setClassNames] = useState<(string | undefined)[]>([
     'cezembre-ui-fields-select',
     isActive ? 'isActive' : undefined,
@@ -132,7 +132,7 @@ export default function Select({
         <div className="options">
           {options?.map((option, index) => (
             <button
-              key={option.key || option.value}
+              key={option.key || index}
               type="button"
               className={`option${selectedOptionIndex === index ? ' active' : ''}`}
               onClick={() => selectOption(index, option.value)}>
