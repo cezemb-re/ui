@@ -3,7 +3,6 @@ import Icon, { IconName } from './general/icon';
 import Loader from './general/loader';
 import Check from './general/check';
 import Button from './general/button';
-import Image from './general/image';
 import Avatar from './general/avatar';
 import SelectionModal from './modals/selection';
 import CheckBox from './fields/checkbox';
@@ -25,7 +24,9 @@ import UploadImage from './uploads/image';
 /**
  * Genral
  */
-export { Icon, IconName, Loader, Check, Button, Image, Avatar };
+export { Icon, Loader, Check, Button, Avatar };
+
+export type { IconName };
 
 /**
  * Modals

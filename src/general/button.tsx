@@ -6,7 +6,6 @@ import {
   useCallback,
   useEffect,
   useState,
-  CSSProperties,
 } from 'react';
 import { NavLink } from 'react-router-dom';
 import Loader from './loader';
@@ -21,7 +20,7 @@ export interface Props {
   type?: 'submit' | 'reset' | 'button';
   shape?: 'rounded' | 'square' | 'round';
   size?: 'small' | 'medium' | 'large';
-  style?: 'filled' | 'outlined' | 'text' | 'link' | 'namespace';
+  styleType?: 'filled' | 'outlined' | 'text' | 'link' | 'namespace';
   theme?: 'default' | 'lead' | 'alert';
   fullWidth?: boolean;
   centered?: boolean;
@@ -35,22 +34,21 @@ export interface Props {
   leftIconSize?: number;
   rightIcon?: IconName;
   rightIconSize?: number;
-  nativeStyle?: CSSProperties;
 }
 
 function Wrapper({
   children,
-  href = undefined,
-  to = undefined,
-  onClick = undefined,
-  onFocus = undefined,
+  href,
+  to,
+  onClick,
+  onFocus,
   shape = 'rounded',
   size = 'medium',
-  style = 'filled',
+  styleType = 'filled',
   theme = 'default',
   fullWidth = false,
   centered = false,
-  paddingLeft = undefined,
+  paddingLeft,
   type = 'button',
   disabled = false,
   pending = false,
@@ -64,7 +62,7 @@ function Wrapper({
     'cezembre-ui-button',
     shape,
     size,
-    style,
+    styleType,
     theme,
     active ? 'active' : undefined,
     success ? 'success' : undefined,
@@ -76,7 +74,7 @@ function Wrapper({
   ]);
 
   useEffect(() => {
-    const nextClasses = ['cezembre-ui-button', shape, size, style, theme];
+    const nextClasses = ['cezembre-ui-button', shape, size, styleType, theme];
 
     if (active) {
       nextClasses.push('active');
@@ -114,7 +112,7 @@ function Wrapper({
     disabled,
     shape,
     size,
-    style,
+    styleType,
     pending,
     autoPending,
     autoErrored,
@@ -130,7 +128,8 @@ function Wrapper({
 
         if (
           typeof response === 'object' &&
-          response &&
+          response !== undefined &&
+          response !== null &&
           'then' in response &&
           response.then &&
           typeof response.then === 'function'
@@ -176,7 +175,7 @@ function Wrapper({
       onClick={onButtonClick}
       onFocus={onFocus}
       type={type}
-      disabled={(disabled || pending || autoPending) as boolean}
+      disabled={disabled || pending || autoPending}
       style={{ paddingLeft }}>
       {children}
     </button>
@@ -190,7 +189,7 @@ export default function Button({
   onClick = undefined,
   shape = 'rounded',
   size = 'medium',
-  style = 'filled',
+  styleType = 'filled',
   type = 'button',
   theme = 'default',
   fullWidth = false,
@@ -223,7 +222,7 @@ export default function Button({
       active={active}
       success={success}
       errored={errored}
-      style={style}>
+      styleType={styleType}>
       <div className="container">
         <div className="body">
           {leftIcon ? (

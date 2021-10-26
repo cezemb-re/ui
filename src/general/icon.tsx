@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import IconProps from '../icons/props';
 import FeatherIcons from 'react-feather';
+import IconProps from '../icons/props';
 
 export type IconName =
   | 'activity'

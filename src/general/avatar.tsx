@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import Image from './image';
+import { Img } from '@cezembre/fronts';
 
 export interface Props {
   size?: 'tiny' | 'small' | 'medium' | 'large';
@@ -22,7 +22,7 @@ export default function Avatar({
     <div className={`cezembre-ui-avatar ${size} ${type}`}>
       <span className="main">
         {image && image.length ? (
-          <Image src={image} width="100%" height="100%" alt={name} />
+          <Img src={image} width="100%" aspectRatio="square" alt={name} />
         ) : (
           name?.substr(0, 1)
         )}
@@ -31,7 +31,7 @@ export default function Avatar({
       {badgeName || badgeImage ? (
         <span className="badge">
           {badgeImage ? (
-            <Image src={badgeImage} width="100%" height="100%" alt={badgeName} />
+            <Img src={badgeImage} width="100%" aspectRatio="square" alt={badgeName} />
           ) : (
             badgeName?.substr(0, 1)
           )}

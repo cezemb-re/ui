@@ -1,16 +1,42 @@
 {
   "compilerOptions": {
-    "target": "esnext", // Let Babel deal with transpiling new language features
+    "strict": true,
+    "target": "ES2019",
     "module": "esnext",
     "moduleResolution": "node",
-    "jsx": "react-jsx",
-    "declaration": true,
+    "outDir": "build",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "allowJs": true,
-    "removeComments": false,
-    "strict": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "alwaysStrict": true,
+    "sourceMap": true,
     "esModuleInterop": true,
-    "outDir": "./dist"
+    "jsx": "react-jsx",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "types": [
+      "react-scripts",
+      "googlemaps"
+    ],
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["./src"]
+  "exclude": [
+    "node_modules"
+  ],
+  "lib": [
+    "es2016",
+    "dom"
+  ],
+  "include": [
+    "src/**/*"
+  ]
 }

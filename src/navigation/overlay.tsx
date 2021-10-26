@@ -11,9 +11,7 @@ export default function Overlay({
   visible = false,
   closed = false,
 }: Props): ReactElement {
-  const [classNames, setClassNames] = useState<string[]>([
-    'cezembre-ui-overlay',
-  ]);
+  const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-overlay']);
 
   useEffect(() => {
     const nextClassNames = ['cezembre-ui-overlay'];
