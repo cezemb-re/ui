@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "@cezembre/forms": ">=1.6.9",
-    "@cezembre/fronts": ">=0.4.9",
+    "@cezembre/fronts": ">=0.4.10",
     "draft-js": ">=0.11.7",
     "luxon": ">=2.0.2",
     "react": ">=17.0.2",

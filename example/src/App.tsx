@@ -3,9 +3,9 @@ import { Form, Field } from '@cezembre/forms';
 import {
   Table,
   Textarea,
+  Wysiwyg,
   UploadImage,
   Button,
-  DataType,
   Select,
   Input,
   Selection,
@@ -109,7 +109,7 @@ export default function App(): ReactElement {
                 key: 'title',
                 label: 'Titre',
               },
-              { key: 'date', label: 'Date', type: DataType.DATETIME },
+              { key: 'date', label: 'Date', type: 'datetime' },
               {
                 key: 'author',
                 label: 'Author',
@@ -154,7 +154,7 @@ export default function App(): ReactElement {
           <br />
           <Field component={Textarea} name="dff" label="Nom" />
           <br />
-          <Field component={Input} name="fggf" label="Nom" />
+          <Field component={Wysiwyg} name="fggf" label="Text" type="paragraph" />
           <br />
           <UploadImage
             label="Illustration"
