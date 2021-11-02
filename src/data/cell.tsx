@@ -1,9 +1,21 @@
 import { ReactElement } from 'react';
 import { DateTime } from 'luxon';
 import Model from './model';
-import Type from './types';
 import Datetime from '../general/datetime';
 import Icon from '../general/icon';
+
+export type Type =
+  | 'auto'
+  | 'unknown'
+  | 'text'
+  | 'number'
+  | 'date'
+  | 'relative-date'
+  | 'datetime'
+  | 'relative-datetime'
+  | 'time'
+  | 'relative-time'
+  | 'boolean';
 
 export interface Props<M extends Model = Model> {
   value: any;
@@ -22,34 +34,34 @@ export interface Props<M extends Model = Model> {
 
 export default function Cell<M extends Model = Model>({
   value,
-  type = Type.AUTO,
+  type = 'auto',
 }: Props<M>): ReactElement | null {
   let resolvedType: Type = type;
 
-  if (type === Type.AUTO) {
+  if (type === 'auto') {
     switch (typeof value) {
       case 'string':
-        resolvedType = Type.TEXT;
+        resolvedType = 'text';
         break;
 
       case 'number':
-        resolvedType = Type.NUMBER;
+        resolvedType = 'number';
         break;
 
       case 'object':
         if (DateTime.isDateTime(value) || value instanceof Date) {
-          resolvedType = Type.DATE;
+          resolvedType = 'date';
         } else {
-          resolvedType = Type.UNKNOWN;
+          resolvedType = 'unknown';
         }
         break;
 
       case 'boolean':
-        resolvedType = Type.BOOLEAN;
+        resolvedType = 'boolean';
         break;
 
       default:
-        resolvedType = Type.UNKNOWN;
+        resolvedType = 'unknown';
         break;
     }
   }
@@ -58,7 +70,7 @@ export default function Cell<M extends Model = Model>({
   let datetime: DateTime;
 
   switch (resolvedType) {
-    case Type.TEXT:
+    case 'text':
       if (typeof value === 'string') {
         text = value;
       } else if (typeof value === 'object') {
@@ -72,15 +84,15 @@ export default function Cell<M extends Model = Model>({
       }
       return <p className="text">{text}</p>;
 
-    case Type.NUMBER:
+    case 'number':
       return <p className="number">{value}</p>;
 
-    case Type.DATE:
-    case Type.RELATIVE_DATE:
-    case Type.TIME:
-    case Type.RELATIVE_TIME:
-    case Type.DATETIME:
-    case Type.RELATIVE_DATETIME:
+    case 'date':
+    case 'relative-date':
+    case 'time':
+    case 'relative-time':
+    case 'datetime':
+    case 'relative-datetime':
       if (DateTime.isDateTime(value)) {
         datetime = value;
       } else if (typeof value === 'string') {
@@ -98,20 +110,16 @@ export default function Cell<M extends Model = Model>({
         <span className="date">
           <Datetime
             value={datetime}
-            date={[Type.DATE, Type.RELATIVE_DATE, Type.DATETIME, Type.RELATIVE_DATETIME].includes(
-              resolvedType,
-            )}
-            time={[Type.TIME, Type.RELATIVE_TIME, Type.DATETIME, Type.RELATIVE_DATETIME].includes(
-              resolvedType,
-            )}
-            relative={[Type.RELATIVE_DATE, Type.RELATIVE_TIME, Type.RELATIVE_DATETIME].includes(
+            date={['date', 'relative-date', 'datetime', 'relative-datetime'].includes(resolvedType)}
+            time={['time', 'relative-time', 'datetime', 'relative-datetime'].includes(resolvedType)}
+            relative={['relative-date', 'relative-time', 'relative-datetime'].includes(
               resolvedType,
             )}
           />
         </span>
       );
 
-    case Type.BOOLEAN:
+    case 'boolean':
       return (
         <p className="boolean">
           {value ? <Icon name="check" size={15} /> : <Icon name="x" size={15} />}

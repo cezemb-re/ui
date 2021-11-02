@@ -1,7 +1,6 @@
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import Model from './model';
-import Cell from './cell';
-import Type from './types';
+import Cell, { Type } from './cell';
 import Icon from '../general/icon';
 import Check from '../general/check';
 import Button, { Props as ButtonProps } from '../general/button';
