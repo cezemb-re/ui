@@ -3,8 +3,8 @@
 
 @mixin label {
   @include fonts.JetBrainsMono(.9em);
-  padding-bottom: 8px;
-  padding-left: 12px;
+  padding-bottom: .8em;
+  padding-left: 1em;
   display: inline-block;
 }
 
@@ -65,6 +65,13 @@
   > span {
     margin-left: 10px;
   }
+}
+
+@mixin instructions {
+  @include fonts.JetBrainsMono(.9em);
+  padding-top: .8em;
+  padding-left: 1em;
+  display: inline-block;
 }
 
 @mixin submit {

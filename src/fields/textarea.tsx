@@ -25,10 +25,10 @@ export default function TextareaField({
   instructions,
   spellCheck = true,
 }: Props): ReactElement {
-  const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-textarea']);
+  const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-fields-textarea']);
 
   useEffect(() => {
-    const nextClassNames = ['cezembre-ui-textarea'];
+    const nextClassNames = ['cezembre-ui-fields-textarea'];
 
     if (visited) {
       nextClassNames.push('visited');
@@ -49,17 +49,15 @@ export default function TextareaField({
     <div className={classNames.join(' ')}>
       {label ? <label htmlFor={name}>{label}</label> : null}
 
-      <div className="container">
-        <textarea
-          name={name}
-          value={value || ''}
-          placeholder={placeholder || ''}
-          onFocus={onFocus}
-          onChange={onChange}
-          onBlur={onBlur}
-          spellCheck={spellCheck}
-        />
-      </div>
+      <textarea
+        name={name}
+        value={value || ''}
+        placeholder={placeholder || ''}
+        onFocus={onFocus}
+        onChange={onChange}
+        onBlur={onBlur}
+        spellCheck={spellCheck}
+      />
 
       {instructions ? <p className="instructions">{instructions}</p> : null}
 

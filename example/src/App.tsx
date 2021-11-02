@@ -1,6 +1,15 @@
 import { ReactElement, useState } from 'react';
 import { Form, Field } from '@cezembre/forms';
-import { Table, Button, DataType, Select, Input, Selection, CheckBox } from '@cezembre/ui';
+import {
+  Table,
+  Textarea,
+  UploadImage,
+  Button,
+  DataType,
+  Select,
+  Input,
+  Selection,
+} from '@cezembre/ui';
 import './App.scss';
 
 interface Article {
@@ -143,7 +152,17 @@ export default function App(): ReactElement {
           <br />
           <Field component={Input} name="name" label="Nom" />
           <br />
-          <Field component={CheckBox} name="is_cancelled" label="Annulé" initialValue />
+          <Field component={Textarea} name="dff" label="Nom" />
+          <br />
+          <Field component={Input} name="fggf" label="Nom" />
+          <br />
+          <UploadImage
+            label="Illustration"
+            width="100%"
+            aspectRatio="4:3"
+            instructions="L'image ne doit pas excéder 100Mo"
+            placeholder
+          />
           <br />
           <Field
             component={Select}

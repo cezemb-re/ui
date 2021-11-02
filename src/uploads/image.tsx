@@ -1,14 +1,5 @@
-import {
-  FocusEvent,
-  ChangeEvent,
-  KeyboardEvent,
-  ReactElement,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import { AspectRatio, Mode, Img } from '@cezembre/fronts';
+import { ChangeEvent, ReactElement, useEffect, useRef, useState } from 'react';
+import { AspectRatio, Orientation, Img } from '@cezembre/fronts';
 import { Property } from 'csstype';
 import Loader from '../general/loader';
 import Icon from '../general/icon';
@@ -21,28 +12,32 @@ export interface Props {
   width?: string | number;
   height?: string | number;
   aspectRatio?: AspectRatio;
-  mode?: Mode;
-  placeholder?: boolean;
-  placeholderColor?: string;
+  orientation?: Orientation;
   objectFit?: Property.ObjectFit;
   objectPosition?: Property.ObjectPosition;
+  backgroundColor?: Property.BackgroundColor;
+  placeholder?: boolean;
   onUpload?: (file: File) => Promise<void>;
-  onFocus?: (event: FocusEvent<HTMLDivElement>) => void;
-  onBlur?: (event: FocusEvent<HTMLDivElement>) => void;
   tabIndex?: number;
+  label?: string;
+  instructions?: string;
 }
 
 export default function UploadImage({
   src,
-  alt = 'Missing description',
-  width = '100%',
-  height = undefined,
-  aspectRatio = '16:9',
-  mode = 'landscape',
+  alt,
+  width,
+  height,
+  aspectRatio,
+  orientation,
+  objectFit,
+  objectPosition,
+  backgroundColor,
+  placeholder,
   onUpload,
-  onFocus,
-  onBlur,
   tabIndex = 0,
+  label,
+  instructions,
 }: Props): ReactElement {
   const input = useRef<HTMLInputElement>(null);
   const [imageSrc, setImageSrc] = useState<string | undefined>(src);
@@ -82,12 +77,6 @@ export default function UploadImage({
     }
   }
 
-  const onKeyDown = useCallback((event: KeyboardEvent<HTMLDivElement>) => {
-    if (input.current && event.key === 'Enter') {
-      input.current.click();
-    }
-  }, []);
-
   const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-upload-image']);
 
   useEffect(() => {
@@ -105,32 +94,35 @@ export default function UploadImage({
   }, [error, imageSrc, pending]);
 
   return (
-    <div
-      className={classNames.join(' ')}
-      role="button"
-      onFocus={onFocus}
-      onBlur={onBlur}
-      onClick={() => (input.current ? input.current.click() : null)}
-      tabIndex={tabIndex}
-      onKeyDown={onKeyDown}>
-      <input type="file" onChange={onChange} ref={input} />
+    <div className={classNames.join(' ')} tabIndex={tabIndex}>
+      {label ? <p className="label">{label}</p> : null}
 
-      <div className="image">
-        <Img
-          src={imageSrc}
-          alt={alt}
-          width={width}
-          height={height}
-          aspectRatio={aspectRatio}
-          mode={mode}
-        />
-      </div>
+      <button onClick={() => (input.current ? input.current.click() : null)}>
+        <input type="file" onChange={onChange} ref={input} />
 
-      <div className="overlay">
-        {error ? <p className="error">{error.message}</p> : null}
-        {pending ? <Loader size={40} /> : null}
-        {!error && !pending ? <Icon name="camera" size={40} /> : null}
-      </div>
+        <div className="image">
+          <Img
+            src={imageSrc}
+            alt={alt}
+            width={width}
+            height={height}
+            aspectRatio={aspectRatio}
+            orientation={orientation}
+            objectFit={objectFit}
+            objectPosition={objectPosition}
+            backgroundColor={backgroundColor}
+            placeholder={placeholder}
+          />
+        </div>
+
+        <div className="overlay">
+          {error ? <p className="error">{error.message}</p> : null}
+          {pending ? <Loader size={40} /> : null}
+          {!error && !pending ? <Icon name="image" size={30} /> : null}
+        </div>
+      </button>
+
+      {instructions ? <p className="instructions">{instructions}</p> : null}
     </div>
   );
 }
