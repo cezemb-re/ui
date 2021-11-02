@@ -15,9 +15,8 @@ import Switch from './fields/switch';
 import Textarea from './fields/textarea';
 import Wysiwyg from './fields/wysiwyg';
 import Model from './data/model';
-import DataType from './data/types';
 import Table, { Column, Selection, ItemAction } from './data/table';
-import Cell from './data/cell';
+import Cell, { Type as CellType } from './data/cell';
 import Overlay from './navigation/overlay';
 import UploadImage from './uploads/image';
 
@@ -51,9 +50,9 @@ export {
 /**
  * Data
  */
-export { Table, Cell, DataType };
+export { Table, Cell };
 
-export type { Column, Model, Selection, ItemAction };
+export type { Column, Model, Selection, ItemAction, CellType };
 
 /**
  * Navigation
