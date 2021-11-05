@@ -230,7 +230,7 @@ export default function DatePickerField({
   }, [format, placeholder, value]);
 
   return (
-    <div ref={picker} className="fleuraison-ui-date-picker">
+    <div ref={picker} className="cezembre-ui-date-picker">
       {!expanded ? (
         <Button
           type="button"

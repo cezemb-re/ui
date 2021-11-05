@@ -14,6 +14,7 @@ import Select from './fields/select';
 import Switch from './fields/switch';
 import Textarea from './fields/textarea';
 import Wysiwyg from './fields/wysiwyg';
+import Place from './fields/place';
 import Model from './data/model';
 import Table, { Column, Selection, ItemAction } from './data/table';
 import Cell, { Type as CellType } from './data/cell';
@@ -45,6 +46,7 @@ export {
   Textarea,
   Select,
   Wysiwyg,
+  Place,
 };
 
 /**
