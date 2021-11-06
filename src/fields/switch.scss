@@ -1,7 +1,6 @@
-@use '~@cezembre/fronts/dist/screens';
-@use "../styles/fonts";
+@use "~@cezembre/fronts/dist/screens";
 @use "../styles/colors";
-@use "../styles/forms";
+@use "../styles/fonts";
 
 .cezembre-ui-fields-switch {
   > .container {
@@ -9,59 +8,43 @@
     align-items: center;
     justify-content: flex-start;
 
-    > .button {
+    .box {
       width: 50px;
       height: 30px;
       padding: 2px;
-      background: colors.$background;
-      border: solid colors.$border 1px;
+      background: colors.$placeholder;
       cursor: pointer;
       outline: none;
       position: relative;
       border-radius: 15px;
+      transition: background cubic-bezier(0.215, 0.61, 0.355, 1) 200ms;
 
       > .status {
-        transition: transform cubic-bezier(0.215, 0.61, 0.355, 1) 400ms;
-        width: 24px;
-        height: 24px;
+        transition: transform cubic-bezier(0.215, 0.61, 0.355, 1) 200ms;
+        width: 26px;
+        height: 26px;
         border-radius: 50%;
-        background: black;
+        background: white;
       }
 
       &:focus {
         outline: none;
       }
 
-      &[aria-pressed=true] {
-        border: solid colors.$lead 1px;
-        background: white;
+      &[aria-pressed='true'] {
+        background: colors.$lead;
 
         > .status {
           transform: translateX(20px);
-          background: colors.$lead;
+          background: white;
         }
       }
     }
 
-    >label {
-      @include fonts.JetBrainsMono(.9em, colors.$lead, bold);
-      letter-spacing: .05em;
-      text-transform: uppercase;
+    > label {
+      @include fonts.JetBrainsMono(.9em);
+      padding-left: 1em;
       display: inline-block;
-      margin-left: 20px;
-
-      @include screens.tablet() {
-        font-size: .8em;
-        margin-left: 15px;
-      }
     }
-  }
-
-  >.error {
-    @include forms.error();
-  }
-
-  > .warning {
-    @include forms.warning();
   }
 }

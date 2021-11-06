@@ -1,13 +1,13 @@
-import { ReactElement, KeyboardEvent, useCallback, useEffect, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useState, KeyboardEvent } from 'react';
 import { FieldComponentProps } from '@cezembre/forms';
 import Icon from '../general/icon';
 
 export interface Props extends FieldComponentProps<boolean> {
-  label?: string | null;
-  instructions?: string | null;
+  label?: string;
+  instructions?: string;
 }
 
-export default function Switch({
+export default function SwitchField({
   value,
   error,
   warning,
@@ -16,8 +16,8 @@ export default function Switch({
   name,
   onChange,
   onBlur,
-  label = null,
-  instructions = null,
+  label,
+  instructions,
 }: Props): ReactElement {
   const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-fields-switch']);
 
@@ -41,24 +41,24 @@ export default function Switch({
 
   const onClick = useCallback(() => {
     if (onChange) {
-      onChange(!isActive);
+      onChange(!value);
     }
-  }, [isActive, onChange]);
+  }, [value, onChange]);
 
   const onKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>) => {
       if (onChange && event.key === 'Enter') {
-        onChange(!isActive);
+        onChange(!value);
       }
     },
-    [isActive, onChange],
+    [value, onChange],
   );
 
   return (
     <div className={classNames.join(' ')}>
       <div className="container">
         <div
-          className="button"
+          className="box"
           role="button"
           aria-pressed={value}
           onKeyDown={onKeyDown}
@@ -75,14 +75,14 @@ export default function Switch({
 
       {error ? (
         <div className="error">
-          <Icon name="alert-triangle" />
+          <Icon name="alert-triangle" size={15} />
           <span>{error}</span>
         </div>
       ) : null}
 
       {warning ? (
         <div className="warning">
-          <Icon name="alert-triangle" />
+          <Icon name="alert-triangle" size={15} />
           <span>{warning}</span>
         </div>
       ) : null}

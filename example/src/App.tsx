@@ -8,6 +8,7 @@ import {
   Button,
   Select,
   Input,
+  Switch,
   Selection,
 } from '@cezembre/ui';
 import './App.scss';
@@ -151,6 +152,8 @@ export default function App(): ReactElement {
           />
           <br />
           <Field component={Input} name="name" label="Nom" />
+          <br />
+          <Field component={Switch} name="active" label="Actif" />
           <br />
           <Field component={Textarea} name="dff" label="Nom" />
           <br />
