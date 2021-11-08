@@ -125,6 +125,7 @@ export default function Input<Value = string, Suggestion = Value>({
   theme = 'field',
   adapter,
   resolver,
+  format,
   label,
   placeholder,
   instructions,
@@ -278,7 +279,9 @@ export default function Input<Value = string, Suggestion = Value>({
           ref={inputRef}
           name={name}
           value={
-            resolver
+            !isActive && format
+              ? format(value)
+              : resolver
               ? resolver(value)
               : typeof value === 'string' || typeof value === 'number'
               ? value
