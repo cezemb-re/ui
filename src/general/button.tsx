@@ -158,12 +158,7 @@ function Wrapper({
 
   if (!disabled && !pending && !autoPending && to && to.length) {
     return (
-      <NavLink
-        className={className.join(' ')}
-        to={to}
-        exact
-        onFocus={onFocus}
-        style={{ paddingLeft }}>
+      <NavLink className={className.join(' ')} to={to} onFocus={onFocus} style={{ paddingLeft }}>
         {children}
       </NavLink>
     );
@@ -183,10 +178,10 @@ function Wrapper({
 }
 
 export default function Button({
-  children = null,
-  href = undefined,
-  to = undefined,
-  onClick = undefined,
+  children,
+  href,
+  to,
+  onClick,
   shape = 'rounded',
   size = 'medium',
   styleType = 'filled',
@@ -194,15 +189,15 @@ export default function Button({
   theme = 'default',
   fullWidth = false,
   centered = false,
-  paddingLeft = undefined,
+  paddingLeft,
   active = false,
   pending = false,
   success = false,
   errored = false,
   disabled = false,
-  leftIcon = undefined,
+  leftIcon,
   leftIconSize = 15,
-  rightIcon = undefined,
+  rightIcon,
   rightIconSize = 15,
 }: Props): ReactElement {
   return (
