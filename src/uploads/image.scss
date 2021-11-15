@@ -10,11 +10,9 @@
   > button {
     border: none;
     outline: none;
-    display: block;
     margin: 0;
     padding: 0;
     background: none;
-    width: auto;
     position: relative;
     background: colors.$placeholder;
     cursor: pointer;
@@ -25,8 +23,9 @@
     }
 
     > .image {
+      width: 100%;
+
       > img {
-        display: block;
         margin: 0;
         padding: 0;
       }

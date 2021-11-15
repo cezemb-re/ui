@@ -66,12 +66,13 @@ export default function UploadImage({
       reader.readAsDataURL(image);
 
       if (onUpload) {
+        setPending(true);
         try {
-          setPending(true);
           await onUpload(event.target.files[0]);
-          setPending(false);
         } catch (e) {
           setError(e as Error);
+        } finally {
+          setPending(false);
         }
       }
     }
@@ -97,10 +98,12 @@ export default function UploadImage({
     <div className={classNames.join(' ')} tabIndex={tabIndex}>
       {label ? <p className="label">{label}</p> : null}
 
-      <button onClick={() => (input.current ? input.current.click() : null)}>
+      <button
+        onClick={() => (input.current ? input.current.click() : null)}
+        style={{ width, height }}>
         <input type="file" onChange={onChange} ref={input} />
 
-        <div className="image">
+        <div className="image" style={{ width, height }}>
           <Img
             src={imageSrc}
             alt={alt}
