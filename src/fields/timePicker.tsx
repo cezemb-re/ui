@@ -64,7 +64,10 @@ export default function TimePickerField({ value, onChange }: Props): ReactElemen
 
             return (
               <li key={hour.toString()}>
-                <button onClick={() => selectHour(hour)} className={selected ? ' selected' : ''}>
+                <button
+                  onClick={() => selectHour(hour)}
+                  className={selected ? ' selected' : ''}
+                  type="button">
                   {hour < 10 ? `0${hour}` : hour}
                 </button>
               </li>
@@ -78,7 +81,10 @@ export default function TimePickerField({ value, onChange }: Props): ReactElemen
 
             return (
               <li key={minute.toString()}>
-                <button onClick={() => selectMinute(minute)} className={selected ? 'selected' : ''}>
+                <button
+                  onClick={() => selectMinute(minute)}
+                  className={selected ? 'selected' : ''}
+                  type="button">
                   {minute < 10 ? `0${minute}` : minute}
                 </button>
               </li>

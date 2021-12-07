@@ -230,7 +230,7 @@ export default function DatePickerField({
   }, [format, placeholder, value]);
 
   return (
-    <div ref={picker} className="cezembre-ui-date-picker">
+    <div ref={picker} className="cezembre-ui-fields-date-picker">
       {!expanded ? (
         <Button
           type="button"
@@ -243,13 +243,13 @@ export default function DatePickerField({
 
       <div className={`picker${!expanded ? ' expandable' : ''}${isExpanded ? ' expanded' : ''}`}>
         <div className="month">
-          <button onClick={previousMonth}>
+          <button onClick={previousMonth} type="button">
             <Icon name="chevron-left" size={12} />
           </button>
 
           <span>{month.toFormat('LLLL yyyy')}</span>
 
-          <button onClick={nextMonth}>
+          <button onClick={nextMonth} type="button">
             <Icon name="chevron-right" size={12} />
           </button>
         </div>
@@ -269,6 +269,7 @@ export default function DatePickerField({
             if (cell) {
               return (
                 <button
+                  type="button"
                   key={index.toString()}
                   onClick={() => selectDay(cell.day)}
                   disabled={cell.disabled}

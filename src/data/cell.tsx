@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
 import { DateTime } from 'luxon';
-import Model from './model';
 import Datetime from '../general/datetime';
 import Icon from '../general/icon';
 
@@ -17,8 +16,8 @@ export type Type =
   | 'relative-time'
   | 'boolean';
 
-export interface Props<M extends Model = Model> {
-  value: any;
+export interface Props {
+  value: unknown;
   type?: Type;
 }
 
@@ -32,11 +31,12 @@ export interface Props<M extends Model = Model> {
  * Object that contains toString() function
  */
 
-export default function Cell<M extends Model = Model>({
-  value,
-  type = 'auto',
-}: Props<M>): ReactElement | null {
+export default function Cell({ value, type = 'auto' }: Props): ReactElement | null {
   let resolvedType: Type = type;
+
+  if (value === null || value === undefined) {
+    return null;
+  }
 
   if (type === 'auto') {
     switch (typeof value) {
@@ -74,7 +74,12 @@ export default function Cell<M extends Model = Model>({
       if (typeof value === 'string') {
         text = value;
       } else if (typeof value === 'object') {
-        if ('toString' in value && typeof value.toString === 'function' && value.toString) {
+        if (
+          value &&
+          'toString' in value &&
+          typeof value.toString === 'function' &&
+          value.toString
+        ) {
           text = value.toString();
         } else {
           return null;
@@ -85,7 +90,7 @@ export default function Cell<M extends Model = Model>({
       return <p className="text">{text}</p>;
 
     case 'number':
-      return <p className="number">{value}</p>;
+      return <p className="number">{value as number}</p>;
 
     case 'date':
     case 'relative-date':
@@ -97,7 +102,7 @@ export default function Cell<M extends Model = Model>({
         datetime = value;
       } else if (typeof value === 'string') {
         datetime = DateTime.fromISO(value);
-      } else if (typeof value === 'object') {
+      } else if (value && typeof value === 'object') {
         if (value instanceof Date) {
           datetime = DateTime.fromJSDate(value);
         } else {

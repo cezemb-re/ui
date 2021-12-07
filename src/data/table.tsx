@@ -68,11 +68,6 @@ export default function Table<M extends Model = Model>({
         let callback: Promise<void> | void | undefined;
 
         switch (selectionMode) {
-          default:
-          case 'single':
-            nextSelection = selection !== id ? id : undefined;
-            break;
-
           case 'multiple':
             if (!selection) {
               nextSelection = [id];
@@ -87,6 +82,10 @@ export default function Table<M extends Model = Model>({
                 nextSelection.splice(i, 1);
               }
             }
+            break;
+
+          default:
+            nextSelection = selection !== id ? id : undefined;
             break;
         }
 
@@ -148,20 +147,20 @@ export default function Table<M extends Model = Model>({
   );
 
   if (!data || !data.length) {
-    return EmptyPlaceholder ? (
-      EmptyPlaceholder
-    ) : (
-      <div className="cezembre-ui-data-empty-table">
-        <Icon name="inbox" size={50} width={1} />
-        <p className="label">{emptyLabel || 'Aucune donnée'}</p>
-      </div>
+    return (
+      EmptyPlaceholder || (
+        <div className="cezembre-ui-data-empty-table">
+          <Icon name="inbox" size={50} width={1} />
+          <p className="label">{emptyLabel || 'Aucune donnée'}</p>
+        </div>
+      )
     );
   }
 
   return (
     <div className={classNames.filter(String).join(' ')}>
       <div className="header">
-        {/*<div className="search"></div>*/}
+        {/* <div className="search"></div> */}
 
         <div className="menu">
           {itemActions && selection?.length ? (
@@ -170,9 +169,32 @@ export default function Table<M extends Model = Model>({
                 .filter((action) =>
                   Array.isArray(selection) && selection.length > 1 ? !action.onlySingle : true,
                 )
-                .map((action, index) => (
+                .map((action: ItemAction, index) => (
                   <div key={index.toString()} className="action">
-                    <Button {...action} />
+                    <Button
+                      href={action.href}
+                      to={action.to}
+                      onClick={action.onClick}
+                      onFocus={action.onFocus}
+                      type={action.type}
+                      shape={action.shape}
+                      size={action.size}
+                      styleType={action.styleType}
+                      theme={action.theme}
+                      fullWidth={action.fullWidth}
+                      centered={action.centered}
+                      paddingLeft={action.paddingLeft}
+                      disabled={action.disabled}
+                      pending={action.pending}
+                      active={action.active}
+                      success={action.success}
+                      errored={action.errored}
+                      leftIcon={action.leftIcon}
+                      leftIconSize={action.leftIconSize}
+                      rightIcon={action.rightIcon}
+                      rightIconSize={action.rightIconSize}>
+                      {action.children}
+                    </Button>
                   </div>
                 ))}
               {Array.isArray(selection) && selection.length > 1 ? (
@@ -197,7 +219,7 @@ export default function Table<M extends Model = Model>({
                 {column.label}
               </th>
             ))}
-            {/*{actions?.length ? <th style={{ width: 40 }} /> : null}*/}
+            {/* {actions?.length ? <th style={{ width: 40 }} /> : null} */}
           </tr>
         </thead>
 
@@ -221,17 +243,17 @@ export default function Table<M extends Model = Model>({
                   {column.Cell ? (
                     <column.Cell item={item} />
                   ) : (
-                    <Cell<M> value={item[column.key]} type={column.type} />
+                    <Cell value={item[column.key]} type={column.type} />
                   )}
                 </td>
               ))}
-              {/*{actions?.length ? (*/}
-              {/*  <td width={40}>*/}
-              {/*    <div className="actions">*/}
-              {/*      <Icon name="more-vertical" />*/}
-              {/*    </div>*/}
-              {/*  </td>*/}
-              {/*) : null}*/}
+              {/* {actions?.length ? ( */}
+              {/*  <td width={40}> */}
+              {/*    <div className="actions"> */}
+              {/*      <Icon name="more-vertical" /> */}
+              {/*    </div> */}
+              {/*  </td> */}
+              {/* ) : null} */}
             </tr>
           ))}
         </tbody>
