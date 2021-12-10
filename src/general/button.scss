@@ -183,6 +183,8 @@
     }
 
     &.link {
+      padding: 0;
+
       > .container {
         svg[stroke] {
           stroke: colors.$text-medium;
@@ -193,13 +195,7 @@
         }
       }
 
-      &:hover {
-        background: white;
-      }
-
-      &.active {
-        background: white;
-
+      &:hover, &.active {
         > .container {
           svg[stroke] {
             stroke: colors.$text;
@@ -229,6 +225,8 @@
       }
 
       &.active {
+        background: white;
+
         > .container {
           svg[stroke] {
             stroke: colors.$text;
@@ -307,6 +305,8 @@
     }
 
     &.link {
+      padding: 0;
+
       > .container {
         svg[stroke] {
           stroke: colors.$text-medium;
@@ -317,13 +317,7 @@
         }
       }
 
-      &:hover {
-        background: white;
-      }
-
-      &.active {
-        background: white;
-
+      &:hover, &.active {
         > .container {
           svg[stroke] {
             stroke: colors.$text;
@@ -353,6 +347,8 @@
       }
 
       &.active {
+        background: white;
+
         > .container {
           svg[stroke] {
             stroke: colors.$text;
@@ -431,6 +427,8 @@
     }
 
     &.link {
+      padding: 0;
+
       > .container {
         svg[stroke] {
           stroke: colors.$text-medium;
@@ -441,11 +439,7 @@
         }
       }
 
-      &:hover {
-        background: white;
-      }
-
-      &.active {
+      &:hover, &.active {
         background: white;
 
         > .container {
@@ -477,6 +471,8 @@
       }
 
       &.active {
+        background: white;
+
         > .container {
           svg[stroke] {
             stroke: colors.$text;
