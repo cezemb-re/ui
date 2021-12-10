@@ -60,7 +60,7 @@
         padding: 0;
 
         > th {
-          @include fonts.JetBrainsMono(.9em, colors.$text-light, bold);
+          @include fonts.JetBrainsMono(.8em, colors.$text-light, bold);
           padding: 10px;
           border: none;
           outline: none;
@@ -121,7 +121,7 @@
           }
 
           > p {
-            @include fonts.JetBrainsMono(.9em, colors.$text);
+            @include fonts.JetBrainsMono(.8em, colors.$text);
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
@@ -179,7 +179,7 @@
   }
 
   > .label {
-    @include fonts.JetBrainsMono(1em, colors.$text-medium);
+    @include fonts.JetBrainsMono(.9em, colors.$text-medium);
     text-align: center;
     margin-top: 20px;
   }

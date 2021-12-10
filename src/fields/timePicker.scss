@@ -28,7 +28,7 @@
 
         > button {
           width: 100%;
-          @include fonts.JetBrainsMono(1em);
+          @include fonts.JetBrainsMono(.9em);
           margin: 0;
           background: none;
           border: none;

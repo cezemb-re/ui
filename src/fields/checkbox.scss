@@ -10,7 +10,7 @@
     justify-content: flex-start;
 
     > label {
-      @include fonts.JetBrainsMono(.9em, colors.$text-light, bold);
+      @include fonts.JetBrainsMono(.8em, colors.$text-light, bold);
       letter-spacing: .05em;
       text-transform: uppercase;
       display: inline-block;

@@ -2,8 +2,9 @@
 @use 'fonts';
 
 @mixin label {
-  @include fonts.JetBrainsMono(.9em);
-  padding-bottom: .8em;
+  @include fonts.JetBrainsMono(.85em);
+  letter-spacing: .05em;
+  padding-bottom: .7em;
   padding-left: 1em;
   display: inline-block;
 }
@@ -36,7 +37,7 @@
 }
 
 @mixin error {
-  @include fonts.JetBrainsMono(1em, colors.$error);
+  @include fonts.JetBrainsMono(.8em, colors.$error);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -52,7 +53,7 @@
 }
 
 @mixin warning {
-  @include fonts.JetBrainsMono(1em, colors.$warning);
+  @include fonts.JetBrainsMono(.8em, colors.$warning);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -68,7 +69,7 @@
 }
 
 @mixin instructions {
-  @include fonts.JetBrainsMono(.9em);
+  @include fonts.JetBrainsMono(.8em);
   padding-top: .8em;
   padding-left: 1em;
   display: inline-block;

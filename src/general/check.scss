@@ -41,7 +41,7 @@
   }
 
   > span {
-    @include fonts.JetBrainsMono();
+    @include fonts.JetBrainsMono(.9em);
   }
 
   &[aria-pressed=true] {

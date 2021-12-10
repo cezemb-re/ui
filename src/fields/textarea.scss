@@ -31,12 +31,7 @@
   }
 
   > .instructions {
-    @include fonts.JetBrainsMono();
-    margin-top: 10px;
-
-    @include screens.tablet() {
-      font-size: .9em;
-    }
+    @include forms.instructions();
   }
 
   >.error {

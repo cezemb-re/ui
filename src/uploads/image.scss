@@ -52,7 +52,7 @@
       }
 
       > .error {
-        @include fonts.JetBrainsMono(1em, white);
+        @include fonts.JetBrainsMono(.9em, white);
         background: colors.$error;
         padding: 5px 10px;
       }

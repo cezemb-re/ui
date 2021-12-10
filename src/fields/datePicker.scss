@@ -49,7 +49,7 @@
       }
 
       > span {
-        @include fonts.JetBrainsMono(1em);
+        @include fonts.JetBrainsMono(.9em);
       }
     }
 
@@ -60,7 +60,7 @@
       justify-content: space-around;
 
       > span {
-        @include fonts.JetBrainsMono(.9em);
+        @include fonts.JetBrainsMono(.8em);
         text-transform: uppercase;
       }
     }
@@ -73,7 +73,7 @@
       align-items: center;
 
       > .day {
-        @include fonts.JetBrainsMono(1em);
+        @include fonts.JetBrainsMono(.9em);
         background: none;
         border: none;
         outline: none;

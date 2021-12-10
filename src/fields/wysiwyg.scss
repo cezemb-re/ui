@@ -14,7 +14,7 @@
 
     > .DraftEditor-root {
       > .public-DraftEditorPlaceholder-root {
-        @include fonts.JetBrainsMono(1em, rgba(colors.$text, .5));
+        @include fonts.JetBrainsMono(.9em, rgba(colors.$text, .5));
         font-style: italic;
         position: absolute;
         pointer-events: none;
@@ -71,7 +71,7 @@
           }
 
           > button {
-            @include fonts.JetBrainsMono(1em, white);
+            @include fonts.JetBrainsMono(.9em, white);
             cursor: pointer;
             -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -99,11 +99,11 @@
             }
 
             &.header-one {
-              font-size: 1.2em;
+              font-size: 1.1em;
             }
 
             &.header-two {
-              font-size: 1.1em;
+              font-size: 1em;
             }
 
             &.blockquote {

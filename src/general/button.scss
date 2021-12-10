@@ -51,7 +51,7 @@
       }
 
       > span {
-        @include fonts.JetBrainsMono(1em, colors.$text-medium);
+        @include fonts.JetBrainsMono(.9em, colors.$text-medium);
         align-self: center;
         text-overflow: ellipsis;
         white-space: nowrap;

@@ -18,7 +18,7 @@
     cursor: pointer;
 
     > span {
-      @include fonts.JetBrainsMono(1.1em);
+      @include fonts.JetBrainsMono(1em);
 
       &:first-letter {
         text-transform: uppercase;

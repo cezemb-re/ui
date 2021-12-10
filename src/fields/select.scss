@@ -36,7 +36,7 @@
       transition: background linear 100ms, border linear 100ms;
 
       > span {
-        @include fonts.JetBrainsMono();
+        @include fonts.JetBrainsMono(.9em);
         text-align: left;
         flex: 1;
         padding: 8px 12px;
@@ -100,7 +100,7 @@
   }
 
   > .instructions {
-    @include fonts.JetBrainsMono(1em, colors.$text-medium);
+    @include fonts.JetBrainsMono(.9em, colors.$text-medium);
     margin-top: 10px;
   }
 

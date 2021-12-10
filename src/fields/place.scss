@@ -3,7 +3,7 @@
 
 .cezembre-ui-place {
   .cezembre-ui-place-prediction {
-    @include fonts.JetBrainsMono();
+    @include fonts.JetBrainsMono(.9em);
     padding: 10px 20px;
     text-overflow: ellipsis;
     white-space: nowrap;

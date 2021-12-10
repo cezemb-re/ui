@@ -11,9 +11,10 @@ import {
   Switch,
   Selection,
 } from '@cezembre/ui';
+import { Model } from '@cezembre/fronts';
 import './App.scss';
 
-interface Article {
+interface Article extends Model {
   id: string;
   date?: Date;
   title?: string;
