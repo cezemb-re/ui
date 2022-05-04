@@ -7,6 +7,10 @@
   position: relative;
   box-sizing: border-box;
 
+  > label {
+    @include forms.label();
+  }
+
   > .label {
     background: none;
     margin: 0;

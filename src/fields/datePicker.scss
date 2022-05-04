@@ -7,6 +7,10 @@
   position: relative;
   box-sizing: border-box;
 
+  > label {
+    @include forms.label();
+  }
+
   > .picker {
     box-sizing: border-box;
     height: 300px;

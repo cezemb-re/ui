@@ -6,6 +6,10 @@
   box-sizing: border-box;
   height: 300px;
 
+  > label {
+    @include forms.label();
+  }
+
   > .container {
     display: flex;
     height: 100%;

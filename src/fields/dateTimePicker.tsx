@@ -8,6 +8,7 @@ import Button from '../general/button';
 export type Props = DatePickerProps;
 
 export default function DateTimePicker({
+  label,
   value,
   onChange,
   onBlur,
@@ -58,6 +59,8 @@ export default function DateTimePicker({
 
   return (
     <div ref={picker} className="cezembre-ui-date-time-picker">
+      {label ? <label htmlFor={name}>{label}</label> : null}
+
       {!expanded ? (
         <Button onClick={() => setIsExpanded(true)} shape="filled" leftIcon={buttonIcon}>
           {actionLabel}

@@ -8,6 +8,7 @@ import Button from '../general/button';
 export type DisabledDay = DateTime | string;
 
 export interface Props extends FieldComponentProps<DateTime | string | null> {
+  label?: string;
   placeholder?: string;
   format?: string | ((value?: DateTime | string | null) => string);
   expanded?: boolean;
@@ -28,6 +29,8 @@ interface Cell {
 }
 
 export default function DatePicker({
+  label,
+  name,
   value,
   onChange,
   expanded = false,
@@ -231,6 +234,8 @@ export default function DatePicker({
 
   return (
     <div ref={picker} className="cezembre-ui-date-picker">
+      {label ? <label htmlFor={name}>{label}</label> : null}
+
       {!expanded ? (
         <Button onClick={() => setIsExpanded(true)} leftIcon={buttonIcon} shape="filled">
           {actionLabel}

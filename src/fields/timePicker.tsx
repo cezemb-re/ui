@@ -2,13 +2,15 @@ import { ReactElement, useCallback, useMemo } from 'react';
 import { DateTime } from 'luxon';
 import { FieldComponentProps } from '@cezembre/forms';
 
-export type Props = FieldComponentProps<DateTime | string | null>;
+export interface Props extends FieldComponentProps<DateTime | string | null> {
+  label?: string;
+}
 
 const hours = Array<null>(24).fill(null);
 const minutes = Array<null>(60).fill(null);
 // const seconds = Array<null>(60).fill(null);
 
-export default function TimePickerField({ value, onChange }: Props): ReactElement {
+export default function TimePickerField({ label, name, value, onChange }: Props): ReactElement {
   const resolvedValue = useMemo<DateTime | null | undefined>(() => {
     return typeof value === 'string' ? DateTime.fromISO(value) : value;
   }, [value]);
@@ -57,6 +59,8 @@ export default function TimePickerField({ value, onChange }: Props): ReactElemen
 
   return (
     <div className="cezembre-ui-time-picker">
+      {label ? <label htmlFor={name}>{label}</label> : null}
+
       <div className="container">
         <ul>
           {hours.map((_, hour: number) => {
