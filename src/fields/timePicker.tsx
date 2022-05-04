@@ -1,58 +1,58 @@
-import { ReactElement, useCallback } from 'react';
+import { ReactElement, useCallback, useMemo } from 'react';
 import { DateTime } from 'luxon';
 import { FieldComponentProps } from '@cezembre/forms';
 
-export type Props = FieldComponentProps<DateTime | null>;
+export type Props = FieldComponentProps<DateTime | string>;
 
 const hours = Array<null>(24).fill(null);
 const minutes = Array<null>(60).fill(null);
 // const seconds = Array<null>(60).fill(null);
 
 export default function TimePickerField({ value, onChange }: Props): ReactElement {
+  const resolvedValue = useMemo<DateTime | undefined>(() => {
+    return typeof value === 'string' ? DateTime.fromISO(value) : value;
+  }, [value]);
+
   const selectHour = useCallback(
     (hour: number) => {
-      let nextValue: DateTime;
-
-      if (!value) {
-        nextValue = DateTime.fromObject({ hour });
+      if (!resolvedValue) {
+        onChange(DateTime.fromObject({ hour }));
       } else {
-        nextValue = DateTime.fromObject({
-          year: value.year,
-          month: value.month,
-          day: value.day,
-          hour,
-          minute: value.minute,
-          second: value.second,
-          millisecond: value.millisecond,
-        });
+        onChange(
+          DateTime.fromObject({
+            year: resolvedValue.year,
+            month: resolvedValue.month,
+            day: resolvedValue.day,
+            hour,
+            minute: resolvedValue.minute,
+            second: resolvedValue.second,
+            millisecond: resolvedValue.millisecond,
+          }),
+        );
       }
-
-      onChange(nextValue);
     },
-    [onChange, value],
+    [onChange, resolvedValue],
   );
 
   const selectMinute = useCallback(
     (minute: number) => {
-      let nextValue: DateTime;
-
-      if (!value) {
-        nextValue = DateTime.fromObject({ minute });
+      if (!resolvedValue) {
+        onChange(DateTime.fromObject({ minute }));
       } else {
-        nextValue = DateTime.fromObject({
-          year: value.year,
-          month: value.month,
-          day: value.day,
-          hour: value.hour,
-          minute,
-          second: value.second,
-          millisecond: value.millisecond,
-        });
+        onChange(
+          DateTime.fromObject({
+            year: resolvedValue.year,
+            month: resolvedValue.month,
+            day: resolvedValue.day,
+            hour: resolvedValue.hour,
+            minute,
+            second: resolvedValue.second,
+            millisecond: resolvedValue.millisecond,
+          }),
+        );
       }
-
-      onChange(nextValue);
     },
-    [onChange, value],
+    [onChange, resolvedValue],
   );
 
   return (
@@ -60,7 +60,7 @@ export default function TimePickerField({ value, onChange }: Props): ReactElemen
       <div className="container">
         <ul>
           {hours.map((_, hour: number) => {
-            const selected = value && value.hour === hour;
+            const selected = resolvedValue && resolvedValue.hour === hour;
 
             return (
               <li key={hour.toString()}>
@@ -77,7 +77,7 @@ export default function TimePickerField({ value, onChange }: Props): ReactElemen
 
         <ul>
           {minutes.map((_, minute: number) => {
-            const selected = value && value.minute === minute;
+            const selected = resolvedValue && resolvedValue.minute === minute;
 
             return (
               <li key={minute.toString()}>

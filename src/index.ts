@@ -4,6 +4,8 @@ import Loader from './general/loader';
 import Check from './general/check';
 import Button from './general/button';
 import Avatar from './general/avatar';
+import Overlay from './general/overlay';
+import { ModalsContext, useModals, Modal, ModalComponentProps, ModalsState } from './general/modal';
 import SelectionModal from './modals/selection';
 import CheckBox from './fields/checkbox';
 import DatePicker from './fields/datePicker';
@@ -18,15 +20,14 @@ import Place from './fields/place';
 import Model from './data/model';
 import Table, { Column, Selection, ItemAction } from './data/table';
 import Cell, { Type as CellType } from './data/cell';
-import Overlay from './navigation/overlay';
 import UploadImage from './uploads/image';
 
 /**
  * Genral
  */
-export { Icon, Loader, Check, Button, Avatar };
+export { Icon, Loader, Check, Button, Avatar, ModalsContext, useModals, Overlay };
 
-export type { IconName };
+export type { IconName, Modal, ModalComponentProps, ModalsState };
 
 /**
  * Modals
@@ -55,11 +56,6 @@ export {
 export { Table, Cell };
 
 export type { Column, Model, Selection, ItemAction, CellType };
-
-/**
- * Navigation
- */
-export { Overlay };
 
 /**
  * Upload

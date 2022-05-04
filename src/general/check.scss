@@ -1,56 +1,48 @@
-@use "../styles/fonts";
-@use "../styles/colors";
+@use '../styles/colors';
+@use '../styles/fonts';
 
 .cezembre-ui-check {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  width: 20px;
-  height: 20px;
-  transition: border linear 100ms, background linear 100ms, box-shadow linear 100ms;
+  width: 30px;
+  height: 30px;
   background: white;
-  border: solid colors.$border 1px;
-  box-shadow: 0 0 5px rgba(colors.$lead-dark, 0);
+  border: solid rgba(colors.$text, 0.1) 1px;
   cursor: pointer;
   outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  border-radius: 2px;
-
-  &:hover {
-    box-shadow: 0 0 5px rgba(colors.$lead-dark, .15);
-    border-color: colors.$border;
-  }
-
-  &:focus, &.active {
-    border-color: colors.$border;
-  }
+  transition: all cubic-bezier(0.215, 0.61, 0.355, 1) 400ms;
+  border-radius: 5px;
 
   &.tag {
     width: auto;
     padding: 0 10px;
   }
 
-  > svg[stroke] {
-    stroke: transparent;
-    transition: stroke linear 100ms;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(colors.$text, 0.1);
+  }
+
+  > svg {
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset cubic-bezier(0.215, 0.61, 0.355, 1) 400ms;
+    stroke: colors.$lead;
   }
 
   > span {
-    @include fonts.JetBrainsMono(.9em);
+    @include fonts.JetBrainsMono(.8em, colors.$text, bold);
+    text-transform: uppercase;
   }
 
-  &[aria-pressed=true] {
-    > svg[stroke] {
-      stroke: colors.$text;
+  &[aria-pressed='true'] {
+    > svg {
+      stroke-dashoffset: 0;
     }
 
     > span {
-      color: colors.$text;
+      color: colors.$lead;
     }
   }
 }

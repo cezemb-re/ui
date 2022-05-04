@@ -1,16 +1,7 @@
-import {
-  ReactNode,
-  FocusEvent,
-  KeyboardEvent,
-  ReactElement,
-  useCallback,
-  useState,
-  useEffect,
-} from 'react';
-import Icon from './icon';
+import { ReactNode, FocusEvent, KeyboardEvent, ReactElement, useCallback } from 'react';
 
 export interface Props {
-  active: boolean;
+  active?: boolean;
   onChange?: (value: boolean) => void;
   onFocus?: (event: FocusEvent<HTMLDivElement>) => void;
   onBlur?: (event: FocusEvent<HTMLDivElement>) => void;
@@ -19,28 +10,13 @@ export interface Props {
 }
 
 export default function Check({
-  active = false,
+  active,
   onChange,
   onFocus,
   onBlur,
   tabIndex = 0,
-  children = undefined,
+  children,
 }: Props): ReactElement {
-  const [classNames, setClassNames] = useState<(string | undefined)[]>([
-    'cezembre-ui-check',
-    children ? ' tag' : undefined,
-  ]);
-
-  useEffect(() => {
-    const nextClassNames = ['cezembre-ui-check'];
-
-    if (children) {
-      nextClassNames.push('tag');
-    }
-
-    setClassNames(nextClassNames);
-  }, [children]);
-
   const onClick = useCallback(() => {
     if (onChange) {
       onChange(!active);
@@ -58,7 +34,7 @@ export default function Check({
 
   return (
     <div
-      className={classNames.filter(String).join(' ')}
+      className={`cezembre-ui-check${children ? ' tag' : ''}`}
       role="button"
       aria-pressed={active}
       onKeyDown={onKeyDown}
@@ -66,7 +42,22 @@ export default function Check({
       onFocus={onFocus}
       onBlur={onBlur}
       tabIndex={tabIndex}>
-      {children ? <span>{children}</span> : <Icon name="check" size={12} />}
+      {children ? (
+        <span>{children}</span>
+      ) : (
+        <svg
+          height={12}
+          viewBox="-50 -50 800 600"
+          strokeDasharray={100}
+          strokeDashoffset={0}
+          strokeWidth={100}
+          stroke="#0f175a"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="transparent">
+          <path pathLength={100} d="M0,250L250,500L700,10" />
+        </svg>
+      )}
     </div>
   );
 }

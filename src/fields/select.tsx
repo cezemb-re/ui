@@ -1,93 +1,74 @@
-import { ReactElement, useState, useEffect, useCallback, useRef } from 'react';
-import _ from 'lodash';
+import { ReactElement, useMemo, useCallback, useRef } from 'react';
 import { FieldComponentProps } from '@cezembre/forms';
 import { useClickOutside } from '@cezembre/fronts';
+import _ from 'lodash';
 import Icon from '../general/icon';
 
-export interface Option<Value = unknown> {
-  value: Value;
-  item?: ReactElement | string;
-  key?: string;
+export interface SelectOption<V = unknown> {
+  value: V;
+  element?: ReactElement | string | number;
 }
 
-export interface OptionProps<Value = unknown> {
-  option?: Option<Value>;
-  placeholder?: ReactElement | string;
+export interface SelectOptionProps<V = unknown> {
+  option?: SelectOption<V>;
+  placeholder?: string;
 }
 
-function OptionComponent({ placeholder, option }: OptionProps): ReactElement {
-  if (option?.item) {
-    if (typeof option.item === 'string') {
-      return <span>{option.item}</span>;
+function SelectOptionComponent<V = unknown>({
+  option,
+  placeholder,
+}: SelectOptionProps<V | undefined>): ReactElement | null {
+  if (option?.element) {
+    if (typeof option.element === 'string' || typeof option.element === 'number') {
+      return <span>{option.element}</span>;
     }
-    return option.item;
+    return option.element;
   }
 
   if (option?.value && typeof option.value === 'string' && option.value.length) {
     return <span>{option.value}</span>;
   }
 
-  if (placeholder) {
-    if (typeof placeholder === 'string') {
-      return <span className="placeholder">{placeholder}</span>;
-    }
-    return placeholder;
-  }
-
-  return <span className="placeholder">Choisissez une option</span>;
+  return <span className="placeholder">{placeholder || 'Selectioner une option'}</span>;
 }
 
-export interface Props<Value = unknown> extends FieldComponentProps<Value> {
+export interface Props<V = unknown> extends FieldComponentProps<V | undefined> {
   label?: string;
-  options?: Option<Value>[];
-  placeholder?: ReactElement | string;
+  options?: SelectOption<V>[];
+  canReset?: boolean;
   instructions?: ReactElement | string;
 }
 
-export default function Select<Value = unknown>({
+export default function Select<V = unknown>({
   value,
   error,
   warning,
   isActive,
   onFocus,
+  onBlur,
   name,
   onChange,
-  onBlur,
-  label = undefined,
+  label,
   options = [],
-  placeholder = undefined,
-  instructions = undefined,
-}: Props<Value>): ReactElement {
-  const [classNames, setClassNames] = useState<(string | undefined)[]>([
-    'cezembre-ui-fields-select',
-    isActive ? 'isActive' : undefined,
-    error ? 'error' : undefined,
-    warning ? 'warning' : undefined,
-  ]);
-
-  useEffect(() => {
-    const nextClassNames = ['cezembre-ui-fields-select'];
+  canReset,
+  instructions,
+}: Props<V>): ReactElement {
+  const className = useMemo<string>(() => {
+    let res = 'cezembre-ui-select';
 
     if (isActive) {
-      nextClassNames.push('active');
+      res += ' active';
     }
 
     if (error) {
-      nextClassNames.push('error');
+      res += ' error';
     }
 
     if (warning) {
-      nextClassNames.push('warning');
+      res += ' warning';
     }
-    setClassNames(nextClassNames);
+    return res;
   }, [error, isActive, warning]);
-
-  const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | undefined>();
-
-  useEffect(() => {
-    const i = _.findIndex(options, (option) => _.isEqual(option.value, value));
-    setSelectedOptionIndex(i !== -1 ? i : undefined);
-  }, [value, options]);
 
   const toggleFocus = useCallback(() => {
     if (!isActive) {
@@ -98,8 +79,7 @@ export default function Select<Value = unknown>({
   }, [isActive, onBlur, onFocus]);
 
   const selectOption = useCallback(
-    (index, _value) => {
-      setSelectedOptionIndex(index);
+    (_value: V) => {
       onChange(_value);
       onBlur();
     },
@@ -117,28 +97,33 @@ export default function Select<Value = unknown>({
   useClickOutside(selectRef, clickOutside);
 
   return (
-    <div className={classNames.filter(String).join(' ')} ref={selectRef}>
+    <div className={className}>
       {label && <label htmlFor={name}>{label}</label>}
 
       <div className="container">
-        <button onClick={toggleFocus} type="button">
-          <OptionComponent
-            option={selectedOptionIndex !== undefined ? options[selectedOptionIndex] : undefined}
-            placeholder={placeholder}
-          />
+        <button onClick={toggleFocus} type="button" className="selector">
+          <SelectOptionComponent<V> option={{ value }} />
           <Icon name="chevron-down" />
         </button>
-
         <div className="options">
           {options?.map((option, index) => (
             <button
-              key={option.key || index}
               type="button"
-              className={`option${selectedOptionIndex === index ? ' active' : ''}`}
-              onClick={() => selectOption(index, option.value)}>
-              <OptionComponent option={option} />
+              key={
+                typeof option.value === 'string' || typeof option.value === 'number'
+                  ? option.value
+                  : index
+              }
+              onClick={() => selectOption(option.value)}
+              className={`option${_.isEqual(option.value, value) ? ' active' : ''}`}>
+              <SelectOptionComponent<V> option={option} />
             </button>
           ))}
+          {canReset ? (
+            <button type="button" className="reset" onClick={() => onChange(undefined)}>
+              <Icon name="x" />
+            </button>
+          ) : null}
         </div>
       </div>
 

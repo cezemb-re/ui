@@ -1,4 +1,4 @@
-@use "~@cezembre/fronts/dist/layouts";
+@use '~@cezembre/fronts/dist/layouts';
 
 .cezembre-ui-overlay {
   @include layouts.modal();
@@ -16,10 +16,10 @@
   animation-fill-mode: forwards;
 
   &.visible {
-    animation-name: fade-in;
+    animation-name: width-in;
   }
 
   &.closed {
-    animation-name: fade-out;
+    animation-name: width-out;
   }
 }

@@ -1,16 +1,11 @@
-import { ReactElement, useCallback, useRef, useState } from 'react';
-import { FieldComponentProps } from '@cezembre/forms';
+import { ReactElement, useMemo, useRef, useState } from 'react';
 import { DateTime } from 'luxon';
 import { formatRelativeDateTime, useClickOutside } from '@cezembre/fronts';
-import DatePicker from './datePicker';
+import DatePicker, { Props as DatePickerProps } from './datePicker';
 import TimePicker from './timePicker';
 import Button from '../general/button';
 
-export interface Props extends FieldComponentProps<DateTime | null> {
-  placeholder?: string;
-  format?: string | ((value: DateTime | null) => string);
-  expanded?: boolean;
-}
+export type Props = DatePickerProps;
 
 export default function DateTimePicker({
   value,
@@ -29,29 +24,45 @@ export default function DateTimePicker({
   visited,
   placeholder,
   format,
+  buttonIcon = 'calendar',
   expanded = false,
+  disablePast = false,
+  disableToday = false,
+  disableFuture = false,
+  disableBefore,
+  disableAfter,
+  disabledDays,
+  disabledPeriods,
 }: Props): ReactElement {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const picker = useRef<HTMLDivElement>(null);
 
   useClickOutside(picker, () => setIsExpanded(false));
 
-  const getLabel = useCallback(() => {
-    if (!value) {
-      return placeholder || 'Chosissez une date';
+  const resolvedValue = useMemo<DateTime | undefined>(() => {
+    return typeof value === 'string' ? DateTime.fromISO(value) : value;
+  }, [value]);
+
+  const actionLabel = useMemo<string>(() => {
+    if (!resolvedValue) {
+      return placeholder || 'Choisissez une date';
     }
     if (format && typeof format === 'string') {
-      return value.toFormat(format);
+      return resolvedValue.toFormat(format);
     }
     if (format && typeof format === 'function') {
-      return format(value);
+      return format(resolvedValue);
     }
-    return formatRelativeDateTime(value);
-  }, [format, placeholder, value]);
+    return formatRelativeDateTime(resolvedValue);
+  }, [format, placeholder, resolvedValue]);
 
   return (
-    <div ref={picker} className="cezembre-ui-fields-date-time-picker">
-      {!expanded ? <Button onClick={() => setIsExpanded(true)}>{getLabel()}</Button> : null}
+    <div ref={picker} className="cezembre-ui-date-time-picker">
+      {!expanded ? (
+        <Button onClick={() => setIsExpanded(true)} shape="filled" leftIcon={buttonIcon}>
+          {actionLabel}
+        </Button>
+      ) : null}
 
       <div className={`picker${!expanded ? ' expandable' : ''}${isExpanded ? ' expanded' : ''}`}>
         <div className="date">
@@ -71,6 +82,13 @@ export default function DateTimePicker({
             name={name}
             visited={visited}
             expanded
+            disablePast={disablePast}
+            disableToday={disableToday}
+            disableFuture={disableFuture}
+            disableBefore={disableBefore}
+            disableAfter={disableAfter}
+            disabledDays={disabledDays}
+            disabledPeriods={disabledPeriods}
           />
         </div>
 

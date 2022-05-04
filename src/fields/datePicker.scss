@@ -3,10 +3,12 @@
 @use '../styles/fonts';
 @use "../styles/forms";
 
-.cezembre-ui-fields-date-picker {
+.cezembre-ui-date-picker {
   position: relative;
+  box-sizing: border-box;
 
   > .picker {
+    box-sizing: border-box;
     height: 300px;
     width: 265px;
     padding: 10px;
@@ -16,11 +18,13 @@
     justify-content: space-between;
 
     &.expandable {
-      @include layouts.popup();
-      border: solid rgba(colors.$lead, .1) 1px;
-      box-shadow: 0 0 10px rgba(colors.$lead, .2);
+      @include layouts.popup;
+      overflow: hidden;
+      border: solid rgba(colors.$text, .15) 1px;
+      box-shadow: 0 0 10px rgba(colors.$text, .1);
+      border-radius: 10px;
       position: absolute;
-      background: colors.$lead-light;
+      background: white;
       top: calc(100% + 5px);
       left: 0;
       opacity: 0;
@@ -74,6 +78,7 @@
 
       > .day {
         @include fonts.JetBrainsMono(.9em);
+        border-radius: 5px;
         background: none;
         border: none;
         outline: none;
@@ -85,7 +90,7 @@
         height: 35px;
 
         &:hover {
-          background: rgba(colors.$lead, .1);
+          background: rgba(colors.$text, .1);
         }
 
         &:disabled {

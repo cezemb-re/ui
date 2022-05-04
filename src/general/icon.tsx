@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import FeatherIcons from 'react-feather';
+import * as FeatherIcons from 'react-feather';
 import IconProps from '../icons/props';
 
 export type IconName =

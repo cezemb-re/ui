@@ -1,124 +1,90 @@
-import {
-  ReactElement,
-  MouseEvent,
-  FocusEvent,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
-import { NavLink } from 'react-router-dom';
+import { ReactElement, MouseEvent, ReactNode, useCallback, useState, useMemo } from 'react';
+import { Wrapper, WrapperProps } from '@cezembre/fronts';
 import Loader from './loader';
 import Icon, { IconName } from './icon';
 
-export interface Props {
+export type ButtonSize = 'small' | 'medium' | 'large';
+
+export type ButtonShape = 'text' | 'filled';
+
+export type ButtonTheme =
+  | 'default'
+  | 'light'
+  | 'darker'
+  | 'lighter'
+  | 'submit'
+  | 'action'
+  | 'action-discreet';
+
+export interface Props extends WrapperProps {
   children?: ReactNode;
-  href?: string;
-  to?: string;
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => Promise<void> | void;
-  onFocus?: (event: FocusEvent<HTMLElement>) => void;
-  type?: 'submit' | 'reset' | 'button';
-  shape?: 'rounded' | 'square' | 'round';
-  size?: 'small' | 'medium' | 'large';
-  styleType?: 'filled' | 'outlined' | 'text' | 'link' | 'namespace';
-  theme?: 'default' | 'lead' | 'alert';
-  fullWidth?: boolean;
-  centered?: boolean;
-  paddingLeft?: number;
+  size?: ButtonSize;
+  shape?: ButtonShape;
+  theme?: ButtonTheme;
   disabled?: boolean;
   pending?: boolean;
   active?: boolean;
   success?: boolean;
   errored?: boolean;
   leftIcon?: IconName;
-  leftIconSize?: number;
   rightIcon?: IconName;
-  rightIconSize?: number;
 }
 
-function Wrapper({
+export default function Button({
   children,
   href,
   to,
   onClick,
   onFocus,
-  shape = 'rounded',
+  onBlur,
   size = 'medium',
-  styleType = 'filled',
-  theme = 'default',
-  fullWidth,
-  centered,
-  paddingLeft,
+  shape = 'text',
   type = 'button',
-  disabled,
-  pending,
-  active,
-  success,
-  errored,
+  theme = 'default',
+  active = false,
+  pending = false,
+  success = false,
+  errored = false,
+  disabled = false,
+  leftIcon,
+  rightIcon,
 }: Props): ReactElement {
   const [autoPending, setAutoPending] = useState<boolean>(false);
+  const [autoSuccess, setAutoSuccess] = useState<boolean>(false);
   const [autoErrored, setAutoErrored] = useState<boolean>(false);
-  const [className, setClassName] = useState<(string | undefined)[]>([
-    'cezembre-ui-button',
-    shape,
-    size,
-    styleType,
-    theme,
-    active ? 'active' : undefined,
-    success ? 'success' : undefined,
-    pending || autoPending ? 'pending' : undefined,
-    errored || autoErrored ? 'errored' : undefined,
-    disabled ? 'disabled' : undefined,
-    fullWidth ? 'full-width' : undefined,
-    centered ? 'centered' : undefined,
-  ]);
 
-  useEffect(() => {
-    const nextClasses = ['cezembre-ui-button', shape, size, styleType, theme];
+  const className = useMemo<string>(() => {
+    let res = `cezembre-ui-button ${size} ${shape} ${theme}`;
 
     if (active) {
-      nextClasses.push('active');
+      res += ' active';
     }
-
-    if (success) {
-      nextClasses.push('success');
-    }
-
     if (pending || autoPending) {
-      nextClasses.push('pending');
+      res += ' pending';
     }
-
+    if (success || autoSuccess) {
+      res += ' success';
+    }
     if (errored || autoErrored) {
-      nextClasses.push('errored');
+      res += ' errored';
     }
-
     if (disabled) {
-      nextClasses.push('disabled');
+      res += ' disabled';
     }
 
-    if (fullWidth) {
-      nextClasses.push('full-width');
-    }
-
-    if (centered) {
-      nextClasses.push('centered');
-    }
-
-    setClassName(nextClasses);
+    return res;
   }, [
     active,
-    success,
-    errored,
+    autoErrored,
+    autoPending,
+    autoSuccess,
     disabled,
+    errored,
+    pending,
     shape,
     size,
-    styleType,
-    pending,
-    autoPending,
-    autoErrored,
+    success,
     theme,
-    fullWidth,
-    centered,
   ]);
 
   const onButtonClick = useCallback(
@@ -126,18 +92,12 @@ function Wrapper({
       if (onClick) {
         const response = onClick(event);
 
-        if (
-          typeof response === 'object' &&
-          response !== undefined &&
-          response !== null &&
-          'then' in response &&
-          response.then &&
-          typeof response.then === 'function'
-        ) {
+        if (typeof response === 'object' && response?.then && typeof response.then === 'function') {
           setAutoPending(true);
           try {
             await response;
             setAutoPending(false);
+            setAutoSuccess(true);
           } catch (e) {
             setAutoPending(false);
             setAutoErrored(true);
@@ -148,101 +108,41 @@ function Wrapper({
     [onClick],
   );
 
-  if (!disabled && !pending && !autoPending && href && href.length) {
-    return (
-      <a className={className.join(' ')} href={href} onFocus={onFocus} style={{ paddingLeft }}>
-        {children}
-      </a>
-    );
-  }
-
-  if (!disabled && !pending && !autoPending && to && to.length) {
-    return (
-      <NavLink className={className.join(' ')} to={to} onFocus={onFocus} style={{ paddingLeft }}>
-        {children}
-      </NavLink>
-    );
-  }
-
-  return (
-    <button
-      className={className.filter(String).join(' ')}
-      onClick={onButtonClick}
-      onFocus={onFocus}
-      type={type}
-      disabled={disabled || pending || autoPending}
-      style={{ paddingLeft }}>
-      {children}
-    </button>
-  );
-}
-
-export default function Button({
-  children,
-  href,
-  to,
-  onClick,
-  shape = 'rounded',
-  size = 'medium',
-  styleType = 'filled',
-  type = 'button',
-  theme = 'default',
-  fullWidth,
-  centered,
-  paddingLeft,
-  active,
-  pending,
-  success,
-  errored,
-  disabled,
-  leftIcon,
-  leftIconSize = 15,
-  rightIcon,
-  rightIconSize = 15,
-}: Props): ReactElement {
   return (
     <Wrapper
       href={href}
       to={to}
-      onClick={onClick}
-      pending={pending}
-      disabled={disabled}
+      onClick={onButtonClick}
+      disabled={disabled || pending || autoPending}
       type={type}
-      shape={shape}
-      size={size}
-      theme={theme}
-      fullWidth={fullWidth}
-      centered={centered}
-      paddingLeft={paddingLeft}
-      active={active}
-      success={success}
-      errored={errored}
-      styleType={styleType}>
+      onFocus={onFocus}
+      onBlur={onBlur}
+      className={className}>
       <div className="container">
         <div className="body">
           {leftIcon ? (
             <div className="left-icon">
-              <Icon name={leftIcon} size={leftIconSize} />
+              <Icon name={leftIcon} />
             </div>
           ) : null}
 
-          {children ? <span>{children}</span> : null}
+          {typeof children === 'string' ? (
+            <span className="label">{children}</span>
+          ) : (
+            <div className="component">{children}</div>
+          )}
         </div>
 
         {rightIcon ? (
           <div className="right-icon">
-            <Icon name={rightIcon} size={rightIconSize} />
+            <Icon name={rightIcon} />
           </div>
         ) : null}
       </div>
 
       <div className="pending">
-        <Loader size={15} />
+        <Loader theme="light" />
       </div>
-
-      {/* <div className="error"> */}
-      {/*  <Icon type={IconType.ALERT} color="white" size={20} /> */}
-      {/* </div> */}
     </Wrapper>
   );
 }

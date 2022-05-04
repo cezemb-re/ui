@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useEffect, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import Model from './model';
 import Cell, { Type } from './cell';
 import Icon from '../general/icon';
@@ -42,24 +42,19 @@ export default function Table<M extends Model = Model>({
   defaultSelection = undefined,
   itemActions = undefined,
 }: Props<M>): ReactElement {
-  const [classNames, setClassNames] = useState<(string | undefined)[]>([
-    'cezembre-ui-data-table',
-    onSelectItem || selectionMode ? 'clickable' : undefined,
-    selectionMode ? 'selectable' : undefined,
-  ]);
-  const [selection, setSelection] = useState<Selection>(defaultSelection);
-  const [allSelected, setAllSelected] = useState<boolean>(false);
-
-  useEffect(() => {
-    const nextClassNames = ['cezembre-ui-data-table'];
+  const className = useMemo<string>(() => {
+    let res = 'cezembre-ui-data-table';
     if (onSelectItem || selectionMode) {
-      nextClassNames.push('clickable');
+      res += ' clickable';
     }
     if (selectionMode) {
-      nextClassNames.push('selectable');
+      res += 'selectable';
     }
-    setClassNames(nextClassNames);
+    return res;
   }, [onSelectItem, selectionMode]);
+
+  const [selection, setSelection] = useState<Selection>(defaultSelection);
+  const [allSelected, setAllSelected] = useState<boolean>(false);
 
   const selectItem = useCallback(
     (id: string) => {
@@ -158,7 +153,7 @@ export default function Table<M extends Model = Model>({
   }
 
   return (
-    <div className={classNames.filter(String).join(' ')}>
+    <div className={className}>
       <div className="header">
         {/* <div className="search"></div> */}
 
@@ -179,20 +174,14 @@ export default function Table<M extends Model = Model>({
                       type={action.type}
                       shape={action.shape}
                       size={action.size}
-                      styleType={action.styleType}
                       theme={action.theme}
-                      fullWidth={action.fullWidth}
-                      centered={action.centered}
-                      paddingLeft={action.paddingLeft}
                       disabled={action.disabled}
                       pending={action.pending}
                       active={action.active}
                       success={action.success}
                       errored={action.errored}
                       leftIcon={action.leftIcon}
-                      leftIconSize={action.leftIconSize}
-                      rightIcon={action.rightIcon}
-                      rightIconSize={action.rightIconSize}>
+                      rightIcon={action.rightIcon}>
                       {action.children}
                     </Button>
                   </div>

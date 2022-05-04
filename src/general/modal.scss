@@ -1,0 +1,30 @@
+@use '~@cezembre/fronts/dist/containers';
+@use '~@cezembre/fronts/dist/layouts';
+@use '../styles/colors';
+@use '../styles/fonts';
+
+.cezembre-ui-modal {
+  @include layouts.modal;
+  transition: opacity linear 100ms, visibility linear 100ms;
+
+  &.full {
+    box-sizing: border-box;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(colors.$lead, .5);
+    overflow-y: auto;
+
+    > .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 100%;
+    }
+  }
+}

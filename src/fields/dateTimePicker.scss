@@ -3,8 +3,9 @@
 @use '../styles/fonts';
 @use "../styles/forms";
 
-.cezembre-ui-fields-date-time-picker {
+.cezembre-ui-date-time-picker {
   position: relative;
+  box-sizing: border-box;
 
   > .label {
     background: none;
@@ -38,7 +39,7 @@
 
   > .picker {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     justify-content: flex-start;
 
     > .time {
@@ -46,11 +47,13 @@
     }
 
     &.expandable {
-      @include layouts.popup();
-      border: solid rgba(colors.$lead, .1) 1px;
-      box-shadow: 0 0 10px rgba(colors.$lead, .2);
+      @include layouts.popup;
+      overflow: hidden;
+      border: solid rgba(colors.$text, .15) 1px;
+      box-shadow: 0 0 10px rgba(colors.$text, .1);
+      border-radius: 10px;
       position: absolute;
-      background: colors.$lead-light;
+      background: white;
       top: calc(100% + 5px);
       left: 0;
       opacity: 0;
@@ -65,10 +68,10 @@
   }
 
   >.error {
-    @include forms.error();
+    @include forms.error;
   }
 
   > .warning {
-    @include forms.warning();
+    @include forms.warning;
   }
 }

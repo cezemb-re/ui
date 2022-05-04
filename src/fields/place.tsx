@@ -6,10 +6,10 @@ import {
   usePlaceDetailsGetter,
   usePlacePredictions,
 } from '@cezembre/fronts';
-import Input, { Adapter, Resolver, Theme } from './input';
+import Input, { Adapter, Resolver, Suggestion } from './input';
 import poweredByGoogle from '../assets/poweredByGoogle.png';
 
-type AutocompletePrediction = google.maps.places.AutocompletePrediction;
+type AutocompleteSuggestion = Suggestion<google.maps.places.AutocompletePrediction>;
 type GeocoderAddressComponent = google.maps.GeocoderAddressComponent;
 
 type Value = Place | null | undefined;
@@ -31,14 +31,16 @@ const resolver: Resolver<Value> = (value: Value): string => {
 };
 
 export interface PredictionProps {
-  suggestion: AutocompletePrediction;
+  suggestion: AutocompleteSuggestion;
 }
 
 function Prediction({ suggestion }: PredictionProps): ReactElement {
   return (
     <p className="cezembre-ui-place-prediction">
-      {suggestion.structured_formatting.main_text}
-      <span className="secondary-text">, {suggestion.structured_formatting.secondary_text}</span>
+      {suggestion.value.structured_formatting.main_text}
+      <span className="secondary-text">
+        , {suggestion.value.structured_formatting.secondary_text}
+      </span>
     </p>
   );
 }
@@ -53,7 +55,6 @@ function PredictionsFooter(): ReactElement {
 
 export interface Props extends FieldComponentProps<Value> {
   predictionTypes?: PlacePredictionType[];
-  theme?: Theme;
   label?: string;
   placeholder?: string;
   instructions?: string;
@@ -84,22 +85,22 @@ export default function PlaceField({
   onSelectSuggestion,
   leftIcon = null,
 }: Props): ReactElement {
-  const predictions: AutocompletePrediction[] = usePlacePredictions(
+  const suggestions: AutocompleteSuggestion[] = usePlacePredictions(
     resolver(value),
     predictionTypes,
-  );
+  ).map((prediction) => ({ value: prediction }));
   const placeDetailsGetter = usePlaceDetailsGetter();
 
   const selectPrediction = useCallback(
-    async (prediction: AutocompletePrediction) => {
+    async (suggestion: AutocompleteSuggestion) => {
       try {
-        const placeDetails = await placeDetailsGetter(prediction.place_id);
+        const placeDetails = await placeDetailsGetter(suggestion.value.place_id);
 
         const nextValue: Place = {
-          value: `${prediction.structured_formatting.main_text}, ${prediction.structured_formatting.secondary_text}`,
-          google_id: prediction.place_id,
-          types: prediction.types,
-          is_address: prediction.types.includes('street_address'),
+          value: `${suggestion.value.structured_formatting.main_text}, ${suggestion.value.structured_formatting.secondary_text}`,
+          google_id: suggestion.value.place_id,
+          types: suggestion.value.types,
+          is_address: suggestion.value.types.includes('street_address'),
           name: placeDetails.name,
         };
 
@@ -133,7 +134,7 @@ export default function PlaceField({
 
   return (
     <div className="cezembre-ui-place">
-      <Input<Value, AutocompletePrediction>
+      <Input<Value, AutocompleteSuggestion>
         name={name}
         value={value}
         onFocus={onFocus}
@@ -145,9 +146,9 @@ export default function PlaceField({
         autoComplete="off"
         adapter={adapter}
         resolver={resolver}
-        suggestions={predictions}
+        suggestions={suggestions}
         SuggestionItem={Prediction}
-        suggestionsKeyExtractor={(suggestion: AutocompletePrediction) => suggestion.place_id}
+        suggestionsKeyExtractor={(suggestion: AutocompleteSuggestion) => suggestion.value.place_id}
         suggestionsFooter={<PredictionsFooter />}
         onSelectSuggestion={selectPrediction}
         leftIcon={leftIcon}

@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DateTime } from 'luxon';
 import { FieldComponentProps } from '@cezembre/forms';
 import { formatRelativeDate, useClickOutside } from '@cezembre/fronts';
@@ -7,9 +7,9 @@ import Button from '../general/button';
 
 export type DisabledDay = DateTime | string;
 
-export interface Props extends FieldComponentProps<DateTime | null> {
+export interface Props extends FieldComponentProps<DateTime | string> {
   placeholder?: string;
-  format?: string | ((value: DateTime | null | undefined) => string);
+  format?: string | ((value?: DateTime | string) => string);
   expanded?: boolean;
   buttonIcon?: IconName;
   disablePast?: boolean;
@@ -27,7 +27,7 @@ interface Cell {
   disabled?: boolean;
 }
 
-export default function DatePickerField({
+export default function DatePicker({
   value,
   onChange,
   expanded = false,
@@ -45,21 +45,16 @@ export default function DatePickerField({
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const picker = useRef<HTMLDivElement>(null);
 
-  const [now, setNow] = useState<DateTime>(DateTime.now());
-
+  const [today, setToday] = useState<DateTime>(DateTime.now());
   const [month, setMonth] = useState<DateTime>(
-    (value && typeof value === 'object' ? value : now).startOf('month'),
+    (value && typeof value === 'object' ? value : today).startOf('month'),
   );
-  const [daysInMonth, setDaysInMonth] = useState<number>(30);
-  const [weekOffset, setWeekOffset] = useState<number>(0);
-
-  const [cells, setCells] = useState<(Cell | null)[]>(new Array(42).fill(null));
 
   useClickOutside(picker, () => setIsExpanded(false));
 
   useEffect(() => {
     const ticker = setInterval(() => {
-      setNow(DateTime.now());
+      setToday(DateTime.now());
     }, 60000);
     return () => clearInterval(ticker);
   }, []);
@@ -72,135 +67,140 @@ export default function DatePickerField({
     setMonth((_month: DateTime) => _month.plus({ months: 1 }));
   }, []);
 
-  useEffect(() => {
-    setDaysInMonth(month.daysInMonth);
-    setWeekOffset(month.startOf('month').weekday - 1);
-  }, [month]);
+  const resolvedValue = useMemo<DateTime | undefined>(() => {
+    return typeof value === 'string' ? DateTime.fromISO(value) : value;
+  }, [value]);
+
+  const daysInMonth = useMemo<number>(() => month.daysInMonth, [month.daysInMonth]);
+  const weekOffset = useMemo<number>(() => month.startOf('month').weekday - 1, [month]);
 
   const selectDay = useCallback(
     (day: number) => {
-      let nextValue: DateTime;
-
-      if (!value) {
-        nextValue = DateTime.fromObject({
-          year: month.year,
-          month: month.month,
-          day,
-        });
+      if (!resolvedValue) {
+        onChange(
+          DateTime.fromObject({
+            year: month.year,
+            month: month.month,
+            day,
+          }),
+        );
       } else {
-        nextValue = DateTime.fromObject({
-          year: month.year,
-          month: month.month,
-          day,
-          hour: value.hour,
-          minute: value.minute,
-          second: value.second,
-          millisecond: value.millisecond,
+        onChange(
+          DateTime.fromObject({
+            year: month.year,
+            month: month.month,
+            day,
+            hour: resolvedValue.hour,
+            minute: resolvedValue.minute,
+            second: resolvedValue.second,
+            millisecond: resolvedValue.millisecond,
+          }),
+        );
+      }
+    },
+    [month.month, month.year, onChange, resolvedValue],
+  );
+
+  const resolvedDisabledDays = useMemo<DateTime[] | undefined>(
+    () =>
+      disabledDays?.map((disabledDay) =>
+        typeof disabledDay === 'string' ? DateTime.fromISO(disabledDay) : disabledDay,
+      ),
+    [disabledDays],
+  );
+
+  const cells = useMemo<(Cell | null)[]>(() => {
+    return new Array(42).fill(null).map((cell: Cell | null, index) => {
+      const day = index - weekOffset + 1;
+
+      if (day <= 0 || day > daysInMonth) {
+        return null;
+      }
+
+      const selected = !!(
+        value &&
+        typeof value === 'object' &&
+        value.hasSame(month, 'year') &&
+        value.hasSame(month, 'month') &&
+        value.day === day
+      );
+
+      let disabled = false;
+
+      let notBefore: DateTime | undefined;
+
+      if (disablePast) {
+        notBefore = today;
+      }
+
+      if (disableBefore && (!notBefore || notBefore < disableBefore)) {
+        notBefore = disableBefore;
+      }
+
+      if (notBefore) {
+        if (month < notBefore.startOf('month')) {
+          disabled = true;
+        } else if (month.hasSame(notBefore, 'month') && notBefore.day > day) {
+          disabled = true;
+        }
+      }
+
+      if (disableToday && today.hasSame(month, 'month') && day === today.day) {
+        disabled = true;
+      }
+
+      let notAfter: DateTime | undefined;
+
+      if (disableFuture) {
+        notAfter = today;
+      }
+
+      if (disableAfter && (!notAfter || notAfter < disableAfter)) {
+        notAfter = disableAfter;
+      }
+
+      if (notAfter) {
+        if (month > notAfter.startOf('month')) {
+          disabled = true;
+        } else if (month.hasSame(notAfter, 'month') && notAfter.day < day) {
+          disabled = true;
+        }
+      }
+
+      if (resolvedDisabledDays) {
+        resolvedDisabledDays.forEach((disabledDay: DateTime) => {
+          if (disabledDay.hasSame(month, 'month') && disabledDay.day === day) {
+            disabled = true;
+          }
         });
       }
 
-      onChange(nextValue);
-    },
-    [month, onChange, value],
-  );
+      if (disabledPeriods) {
+        disabledPeriods.forEach((disabledPeriod: DisabledDay[]) => {
+          if (disabledPeriod.length !== 2) {
+            return;
+          }
+          let [from, to] = disabledPeriod;
 
-  useEffect(() => {
-    setCells((c) =>
-      c.map((cell: Cell | null, index) => {
-        const day = index - weekOffset + 1;
+          if (typeof from === 'string') {
+            from = DateTime.fromISO(from);
+          }
 
-        if (day <= 0 || day > daysInMonth) {
-          return null;
-        }
+          if (typeof to === 'string') {
+            to = DateTime.fromISO(to);
+          }
 
-        const selected = !!(
-          value &&
-          typeof value === 'object' &&
-          value.hasSame(month, 'year') &&
-          value.hasSame(month, 'month') &&
-          value.day === day
-        );
-
-        let disabled = false;
-
-        let notBefore: DateTime | undefined;
-
-        if (disablePast) {
-          notBefore = now;
-        }
-
-        if (disableBefore && (!notBefore || notBefore < disableBefore)) {
-          notBefore = disableBefore;
-        }
-
-        if (notBefore) {
-          if (month < notBefore.startOf('month')) {
-            disabled = true;
-          } else if (month.hasSame(notBefore, 'month') && notBefore.day > day) {
+          if (
+            (from < month || (from.hasSame(month, 'month') && from.day <= day)) &&
+            (to > month.endOf('month') || (to.hasSame(month, 'month') && to.day >= day))
+          ) {
             disabled = true;
           }
-        }
+        });
+      }
 
-        if (disableToday && now.hasSame(month, 'month') && day === now.day) {
-          disabled = true;
-        }
-
-        let notAfter: DateTime | undefined;
-
-        if (disableFuture) {
-          notAfter = now;
-        }
-
-        if (disableAfter && (!notAfter || notAfter < disableAfter)) {
-          notAfter = disableAfter;
-        }
-
-        if (notAfter) {
-          if (month > notAfter.startOf('month')) {
-            disabled = true;
-          } else if (month.hasSame(notAfter, 'month') && notAfter.day < day) {
-            disabled = true;
-          }
-        }
-
-        if (disabledDays) {
-          disabledDays.forEach((disabledDay: DisabledDay) => {
-            if (typeof disabledDay === 'string') {
-              disabledDay = DateTime.fromISO(disabledDay);
-            }
-            if (disabledDay.hasSame(month, 'month') && disabledDay.day === day) {
-              disabled = true;
-            }
-          });
-        }
-
-        if (disabledPeriods) {
-          disabledPeriods.forEach((disabledPeriod: DisabledDay[]) => {
-            if (disabledPeriod.length !== 2) {
-              return;
-            }
-            let [from, to] = disabledPeriod;
-
-            if (typeof from === 'string') {
-              from = DateTime.fromISO(from);
-            }
-
-            if (typeof to === 'string') {
-              to = DateTime.fromISO(to);
-            }
-
-            if (
-              (from < month || (from.hasSame(month, 'month') && from.day <= day)) &&
-              (to > month.endOf('month') || (to.hasSame(month, 'month') && to.day >= day))
-            ) {
-              disabled = true;
-            }
-          });
-        }
-
-        return { day, selected, disabled };
-      }),
-    );
+      return { day, selected, disabled };
+    });
   }, [
     daysInMonth,
     disableAfter,
@@ -208,36 +208,32 @@ export default function DatePickerField({
     disableFuture,
     disablePast,
     disableToday,
-    disabledDays,
     disabledPeriods,
     month,
-    now,
+    resolvedDisabledDays,
+    today,
     value,
     weekOffset,
   ]);
 
-  const getLabel = useCallback(() => {
-    if (!value) {
-      return placeholder || 'Chosissez une date';
+  const actionLabel = useMemo<string>(() => {
+    if (!resolvedValue) {
+      return placeholder || 'Choisissez une date';
     }
     if (format && typeof format === 'string') {
-      return value.toFormat(format);
+      return resolvedValue.toFormat(format);
     }
     if (format && typeof format === 'function') {
-      return format(value);
+      return format(resolvedValue);
     }
-    return formatRelativeDate(value);
-  }, [format, placeholder, value]);
+    return formatRelativeDate(resolvedValue);
+  }, [format, placeholder, resolvedValue]);
 
   return (
-    <div ref={picker} className="cezembre-ui-fields-date-picker">
+    <div ref={picker} className="cezembre-ui-date-picker">
       {!expanded ? (
-        <Button
-          type="button"
-          styleType="outlined"
-          onClick={() => setIsExpanded(true)}
-          leftIcon={buttonIcon}>
-          {getLabel()}
+        <Button onClick={() => setIsExpanded(true)} leftIcon={buttonIcon} shape="filled">
+          {actionLabel}
         </Button>
       ) : null}
 
@@ -270,7 +266,7 @@ export default function DatePickerField({
               return (
                 <button
                   type="button"
-                  key={index.toString()}
+                  key={cell.day}
                   onClick={() => selectDay(cell.day)}
                   disabled={cell.disabled}
                   className={`day${cell.selected ? ' selected' : ''}`}>

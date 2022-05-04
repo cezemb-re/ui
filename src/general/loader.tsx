@@ -1,20 +1,21 @@
 import { ReactElement } from 'react';
 
+export type LoaderTheme = 'default' | 'light';
+
 export interface Props {
+  theme?: LoaderTheme;
   size?: number;
   thickness?: number;
-  loaderStyle?: 'light' | 'dark';
 }
 
 export default function Loader({
+  theme = 'default',
   size = 20,
-  thickness = 2,
-  loaderStyle = 'light',
+  thickness = 3,
 }: Props): ReactElement {
   return (
-    <div
-      className={`cezembre-ui-loader ${loaderStyle}`}
-      style={{ width: size, height: size, borderWidth: thickness }}
-    />
+    <div className={`cezembre-ui-loader ${theme}`} style={{ width: size, height: size }}>
+      <div style={{ borderWidth: thickness }} />
+    </div>
   );
 }
