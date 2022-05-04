@@ -72,7 +72,7 @@ export type AutoComplete =
 
 export type InputShape = 'square' | 'round';
 
-export type InputTheme = 'default' | 'darker' | 'lighter' | 'dark';
+export type InputTheme = 'default' | 'inline';
 
 export type Adapter<V = string> = (value: string) => V;
 export type Resolver<V = string> = (value?: V) => string | number;
@@ -97,7 +97,7 @@ function DefaultSuggestion<V = string, S extends Suggestion<V> = Suggestion<V>>(
     suggestion?.value &&
     (typeof suggestion.value === 'string' || typeof suggestion.value === 'number')
   ) {
-    return <span className="friday-ui-input-suggestion">{suggestion.value}</span>;
+    return <span className="cezembre-ui-input-suggestion">{suggestion.value}</span>;
   }
   return null;
 }
@@ -172,16 +172,16 @@ export default function Input<V = string, S extends Suggestion<V> = Suggestion<V
       res += ' visited';
     }
     if (isActive) {
-      res += 'active';
+      res += ' active';
     }
     if (suggestions?.length && suggestionsActive) {
-      res += 'suggestions-active';
+      res += ' suggestions-active';
     }
     if ((visited || submitted) && !isActive && error) {
-      res += 'error';
+      res += ' error';
     }
     if (warning) {
-      res += 'warning';
+      res += ' warning';
     }
     return res;
   }, [
@@ -313,7 +313,7 @@ export default function Input<V = string, S extends Suggestion<V> = Suggestion<V
     <div className={className}>
       {label ? <label htmlFor={name}>{label}</label> : null}
 
-      <div className="container">
+      <div className={`container${isActive ? ' active' : ''}`}>
         {leftComponent ? <div className="left-component">{leftComponent}</div> : null}
 
         <input

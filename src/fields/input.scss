@@ -8,10 +8,11 @@
   width: 100%;
 
   > label {
-    @include forms.label();
+    @include forms.label;
   }
 
   > .container {
+    @include forms.input;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -22,7 +23,6 @@
     }
 
     > input {
-      @include fonts.JetBrainsMono();
       flex: 1;
       padding: 8px 12px;
 
@@ -40,6 +40,7 @@
     }
 
     > .suggestions {
+      @include layouts.modal;
       overflow: hidden;
       visibility: hidden;
       opacity: 0;
@@ -48,7 +49,6 @@
       width: 100%;
       top: 100%;
       transition: opacity linear 100ms;
-      @include layouts.modal();
 
       > .suggestion {
         display: block;
@@ -85,20 +85,16 @@
   }
 
   > .instructions {
-    @include forms.instructions();
+    @include forms.instructions;
 
   }
 
   >.error {
-    @include forms.error();
+    @include forms.error;
   }
 
   > .warning {
-    @include forms.warning();
-  }
-
-  &.field > .container {
-    @include forms.input();
+    @include forms.warning;
   }
 
   &.inline > .container > input::placeholder {
