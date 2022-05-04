@@ -7,9 +7,9 @@ import Button from '../general/button';
 
 export type DisabledDay = DateTime | string;
 
-export interface Props extends FieldComponentProps<DateTime | string> {
+export interface Props extends FieldComponentProps<DateTime | string | null> {
   placeholder?: string;
-  format?: string | ((value?: DateTime | string) => string);
+  format?: string | ((value?: DateTime | string | null) => string);
   expanded?: boolean;
   buttonIcon?: IconName;
   disablePast?: boolean;
@@ -67,7 +67,7 @@ export default function DatePicker({
     setMonth((_month: DateTime) => _month.plus({ months: 1 }));
   }, []);
 
-  const resolvedValue = useMemo<DateTime | undefined>(() => {
+  const resolvedValue = useMemo<DateTime | null | undefined>(() => {
     return typeof value === 'string' ? DateTime.fromISO(value) : value;
   }, [value]);
 

@@ -2,14 +2,14 @@ import { ReactElement, useCallback, useMemo } from 'react';
 import { DateTime } from 'luxon';
 import { FieldComponentProps } from '@cezembre/forms';
 
-export type Props = FieldComponentProps<DateTime | string>;
+export type Props = FieldComponentProps<DateTime | string | null>;
 
 const hours = Array<null>(24).fill(null);
 const minutes = Array<null>(60).fill(null);
 // const seconds = Array<null>(60).fill(null);
 
 export default function TimePickerField({ value, onChange }: Props): ReactElement {
-  const resolvedValue = useMemo<DateTime | undefined>(() => {
+  const resolvedValue = useMemo<DateTime | null | undefined>(() => {
     return typeof value === 'string' ? DateTime.fromISO(value) : value;
   }, [value]);
 

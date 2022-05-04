@@ -39,7 +39,7 @@ export default function DateTimePicker({
 
   useClickOutside(picker, () => setIsExpanded(false));
 
-  const resolvedValue = useMemo<DateTime | undefined>(() => {
+  const resolvedValue = useMemo<DateTime | null | undefined>(() => {
     return typeof value === 'string' ? DateTime.fromISO(value) : value;
   }, [value]);
 
