@@ -271,7 +271,7 @@ export default function DatePicker({
               return (
                 <button
                   type="button"
-                  key={cell.day}
+                  key={index}
                   onClick={() => selectDay(cell.day)}
                   disabled={cell.disabled}
                   className={`day${cell.selected ? ' selected' : ''}`}>
@@ -279,7 +279,7 @@ export default function DatePicker({
                 </button>
               );
             }
-            return <div className="placeholder" key={index.toString()} />;
+            return <div className="placeholder" key={index} />;
           })}
         </div>
       </div>
