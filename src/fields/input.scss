@@ -23,6 +23,7 @@
     }
 
     > input {
+      @include fonts.JetBrainsMono(.9em);
       flex: 1;
       padding: 8px 12px;
 
