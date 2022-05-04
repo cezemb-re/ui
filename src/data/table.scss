@@ -120,7 +120,7 @@
             opacity: 0;
           }
 
-          > p {
+          > span {
             @include fonts.JetBrainsMono(.8em, colors.$text);
             text-overflow: ellipsis;
             white-space: nowrap;
