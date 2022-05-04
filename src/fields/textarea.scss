@@ -11,8 +11,8 @@
   }
 
   > textarea {
-    @include fonts.JetBrainsMono();
-    @include forms.input();
+    @include fonts.JetBrainsMono(.9em);
+    @include forms.input;
     display: block;
     flex: 1;
     padding: 8px 12px;
