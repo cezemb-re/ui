@@ -36,12 +36,12 @@ export interface PredictionProps {
 
 function Prediction({ suggestion }: PredictionProps): ReactElement {
   return (
-    <p className="cezembre-ui-place-prediction">
+    <span className="cezembre-ui-place-prediction">
       {suggestion.value.structured_formatting.main_text}
       <span className="secondary-text">
         , {suggestion.value.structured_formatting.secondary_text}
       </span>
-    </p>
+    </span>
   );
 }
 

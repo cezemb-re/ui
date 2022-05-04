@@ -87,10 +87,10 @@ export default function Cell({ value, type = 'auto' }: Props): ReactElement | nu
       } else {
         return null;
       }
-      return <p className="text">{text}</p>;
+      return <span className="text">{text}</span>;
 
     case 'number':
-      return <p className="number">{value as number}</p>;
+      return <span className="number">{value as number}</span>;
 
     case 'date':
     case 'relative-date':
@@ -126,9 +126,9 @@ export default function Cell({ value, type = 'auto' }: Props): ReactElement | nu
 
     case 'boolean':
       return (
-        <p className="boolean">
+        <span className="boolean">
           {value ? <Icon name="check" size={15} /> : <Icon name="x" size={15} />}
-        </p>
+        </span>
       );
 
     default:

@@ -146,7 +146,7 @@ export default function Table<M extends Model = Model>({
       EmptyPlaceholder || (
         <div className="cezembre-ui-data-empty-table">
           <Icon name="inbox" size={50} width={1} />
-          <p className="label">{emptyLabel || 'Aucune donnée'}</p>
+          <span className="label">{emptyLabel || 'Aucune donnée'}</span>
         </div>
       )
     );
@@ -187,7 +187,7 @@ export default function Table<M extends Model = Model>({
                   </div>
                 ))}
               {Array.isArray(selection) && selection.length > 1 ? (
-                <p className="count-selection">{selection.length} selectionnés</p>
+                <span className="count-selection">{selection.length} selectionnés</span>
               ) : null}
             </div>
           ) : null}
