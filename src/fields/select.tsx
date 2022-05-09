@@ -29,14 +29,23 @@ function SelectOptionComponent<V = unknown>({
     return <span>{option.value}</span>;
   }
 
-  return <span className="placeholder">{placeholder || 'Selectioner une option'}</span>;
+  return (
+    <>
+      <span className="placeholder">{placeholder || 'Selectioner une option'}</span>
+      <Icon name="chevron-down" />
+    </>
+  );
 }
+
+export type SelectType = 'default' | 'flat';
 
 export interface Props<V = unknown> extends FieldComponentProps<V | undefined> {
   label?: string;
   options?: SelectOption<V>[];
-  canReset?: boolean;
+  canCancel?: boolean;
+  type?: SelectType;
   instructions?: ReactElement | string;
+  fullWidth?: boolean;
 }
 
 export default function Select<V = unknown>({
@@ -50,11 +59,13 @@ export default function Select<V = unknown>({
   onChange,
   label,
   options = [],
-  canReset,
+  canCancel,
   instructions,
+  type = 'default',
+  fullWidth,
 }: Props<V>): ReactElement {
   const className = useMemo<string>(() => {
-    let res = 'cezembre-ui-select';
+    let res = `cezembre-ui-select ${type}`;
 
     if (isActive) {
       res += ' active';
@@ -67,8 +78,12 @@ export default function Select<V = unknown>({
     if (warning) {
       res += ' warning';
     }
+
+    if (fullWidth) {
+      res += ' full-width';
+    }
     return res;
-  }, [error, isActive, warning]);
+  }, [error, fullWidth, isActive, type, warning]);
 
   const toggleFocus = useCallback(() => {
     if (!isActive) {
@@ -96,15 +111,31 @@ export default function Select<V = unknown>({
 
   useClickOutside(selectRef, clickOutside);
 
+  const selectedOption = useMemo<SelectOption<V> | undefined>(() => {
+    if (value) {
+      return options?.find((option) => _.isEqual(option.value, value));
+    }
+    return undefined;
+  }, [options, value]);
+
   return (
     <div className={className}>
       {label && <label htmlFor={name}>{label}</label>}
 
       <div className="container">
-        <button onClick={toggleFocus} type="button" className="selector">
-          <SelectOptionComponent<V> option={{ value }} />
-          <Icon name="chevron-down" />
-        </button>
+        {selectedOption || type === 'default' ? (
+          <div className="selector">
+            <button onClick={toggleFocus} type="button" className="selected">
+              <SelectOptionComponent<V> option={selectedOption} />
+            </button>
+            {selectedOption && canCancel ? (
+              <button type="button" className="cancel" onClick={() => onChange(undefined)}>
+                <Icon name="x" />
+              </button>
+            ) : null}
+          </div>
+        ) : null}
+
         <div className="options">
           {options?.map((option, index) => (
             <button
@@ -119,11 +150,6 @@ export default function Select<V = unknown>({
               <SelectOptionComponent<V> option={option} />
             </button>
           ))}
-          {canReset ? (
-            <button type="button" className="reset" onClick={() => onChange(undefined)}>
-              <Icon name="x" />
-            </button>
-          ) : null}
         </div>
       </div>
 

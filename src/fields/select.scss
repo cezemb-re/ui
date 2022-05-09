@@ -6,6 +6,11 @@
 
 .cezembre-ui-select {
   display: inline-block;
+  min-width: 150px;
+
+  &.full-width {
+    width: 100%;
+  }
 
   > label {
     @include forms.label;
@@ -14,44 +19,68 @@
   > .container {
     position: relative;
 
-
-    > button {
-      @include forms.input;
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      box-sizing: border-box;
+    > .selector {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      cursor: pointer;
-      outline: none;
-      text-decoration: none;
-      flex-shrink: 0;
-      margin: 0;
-      padding: 0;
-      position: relative;
-      transition: background linear 100ms, border linear 100ms;
+      justify-content: space-between;
 
-      > span {
-        @include fonts.JetBrainsMono(.9em);
-        text-align: left;
-        flex: 1;
-        padding: 8px 12px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
+      > .selected {
+        @include forms.input;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        outline: none;
+        text-decoration: none;
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        position: relative;
 
-        &.placeholder {
-          color: colors.$text-medium;
+        > span {
+          @include fonts.JetBrainsMono(.9em, colors.$text, bold);
+          text-align: left;
+          flex: 1;
+          padding: 8px 12px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+
+          &.placeholder {
+            color: rgba(colors.$text, .5);
+          }
+        }
+
+        > svg[stroke] {
+          stroke: rgba(colors.$text, .5);
+          margin-right: 12px;
         }
       }
 
-      svg[stroke] {
-        stroke: colors.$text;
-        margin-right: 12px;
+      > .cancel {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        box-sizing: border-box;
+        border: none;
+        background: none;
+        border-radius: 0;
+        padding: 0;
+        margin-left: 15px;
+        cursor: pointer;
+
+        > svg[stroke] {
+          stroke: rgba(colors.$text, .2);
+          margin-right: 12px;
+        }
       }
     }
 
@@ -61,7 +90,8 @@
       padding: 4px 0;
       max-height: 300px;
       overflow: auto;
-      box-shadow: 0 0 5px rgba(colors.$lead-dark, .15);
+      box-shadow: 0 0 5px rgba(colors.$text, .1);
+      border: solid rgba(colors.$text, .2) 1px;
       visibility: hidden;
       width: 100%;
       position: absolute;
@@ -70,7 +100,7 @@
       opacity: 0;
       transition: opacity linear 100ms;
 
-      > button.option {
+      > .option {
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -87,11 +117,11 @@
         cursor: pointer;
 
         &:hover, &.active {
-          background: colors.$background;
+          background: rgba(colors.$text, .1);
         }
 
         > span {
-          @include fonts.JetBrainsMono;
+          @include fonts.JetBrainsMono();
           display: block;
           text-align: left;
           padding: 8px 12px;
@@ -100,14 +130,55 @@
     }
   }
 
-  > .instructions {
-    @include fonts.JetBrainsMono(.9em, colors.$text-medium);
-    margin-top: 10px;
-  }
-
   &.active > .container > .options {
     visibility: visible;
     opacity: 1;
+  }
+
+  &.flat > .container {
+    > .selector {
+      border-bottom: solid rgba(colors.$text, .1) 1px;
+      padding: 5px 10px;
+
+      > .selected {
+        border-radius: 0;
+        border: none;
+        background: none;
+
+        &:hover {
+          box-shadow: none;
+        }
+      }
+    }
+
+    > .options {
+      @include layouts.page;
+      visibility: visible;
+      opacity: 1;
+      position: relative;
+      background: none;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      top: auto;
+      padding: 5px 0 20px;
+
+      > .option {
+        padding: 5px 10px;
+        border-radius: 5px;
+        display: block;
+        margin-top: 5px;
+
+        &:first-child {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  > .instructions {
+    @include fonts.JetBrainsMono(.9em, colors.$text);
+    margin-top: 10px;
   }
 
   >.error {

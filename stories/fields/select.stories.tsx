@@ -22,12 +22,15 @@ export default {
 const options: SelectOption[] = [
   {
     value: 'Toto',
+    element: <span>Teszt</span>,
   },
   {
     value: 'Titi',
+    element: <span>Teffst</span>,
   },
   {
     value: 'Tata',
+    element: <span>Tezqdst</span>,
   },
 ];
 
