@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactElement, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, ReactElement, useEffect, useMemo, useRef, useState } from 'react';
 import { AspectRatio, Orientation, Img } from '@cezembre/fronts';
 import { Property } from 'csstype';
 import Loader from '../general/loader';
@@ -78,28 +78,27 @@ export default function UploadImage({
     }
   }
 
-  const [classNames, setClassNames] = useState<string[]>(['cezembre-ui-upload-image']);
-
-  useEffect(() => {
-    const nextClassNames = ['cezembre-ui-upload-image'];
+  const className = useMemo<string>(() => {
+    let res = 'cezembre-ui-upload-image';
 
     if (pending || error) {
-      nextClassNames.push('active');
+      res += ' active';
     }
 
     if (!imageSrc) {
-      nextClassNames.push('empty');
+      res += ' empty';
     }
 
-    setClassNames(nextClassNames);
+    return res;
   }, [error, imageSrc, pending]);
 
   return (
-    <div className={classNames.join(' ')} tabIndex={tabIndex}>
+    <div className={className} tabIndex={tabIndex}>
       {label ? <p className="label">{label}</p> : null}
 
       <button
         onClick={() => (input.current ? input.current.click() : null)}
+        type="button"
         style={{ width, height }}>
         <input type="file" onChange={onChange} ref={input} />
 
