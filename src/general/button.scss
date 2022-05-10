@@ -268,7 +268,7 @@
 
         > .body > .label {
           color: colors.$lead-light;
-          background: linear-gradient(90deg, colors.$lead 0%, colors.$alternative 100%);
+          background: colors.$lead;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
@@ -385,7 +385,7 @@
     }
 
     &.submit {
-      background: linear-gradient(90deg, colors.$lead 0%, colors.$alternative 100%);
+      background: colors.$lead;
 
       > .container {
         svg[stroke] {
