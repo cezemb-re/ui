@@ -24,8 +24,9 @@
       align-items: center;
       justify-content: space-between;
 
-      > .selected {
+      > button.selected {
         @include forms.input;
+        font-size: 1em;
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -100,7 +101,8 @@
       opacity: 0;
       transition: opacity linear 100ms;
 
-      > .option {
+      > button.option {
+        font-size: 1em;
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -121,7 +123,8 @@
         }
 
         > span {
-          @include fonts.JetBrainsMono();
+          @include fonts.JetBrainsMono;
+          white-space: nowrap;
           display: block;
           text-align: left;
           padding: 8px 12px;
