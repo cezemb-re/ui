@@ -18,6 +18,7 @@ export interface Column<M extends Model = Model> {
 export type Selection = string | string[] | undefined;
 
 export interface ItemAction extends ButtonProps {
+  key: string;
   onlySingle?: boolean;
 }
 
@@ -35,12 +36,12 @@ export interface Props<M extends Model = Model> {
 export default function Table<M extends Model = Model>({
   columns,
   data = [],
-  EmptyPlaceholder = undefined,
-  emptyLabel = undefined,
-  onSelectItem = undefined,
-  selectionMode = undefined,
-  defaultSelection = undefined,
-  itemActions = undefined,
+  EmptyPlaceholder,
+  emptyLabel,
+  onSelectItem,
+  selectionMode,
+  defaultSelection,
+  itemActions,
 }: Props<M>): ReactElement {
   const className = useMemo<string>(() => {
     let res = 'cezembre-ui-data-table';
@@ -48,7 +49,7 @@ export default function Table<M extends Model = Model>({
       res += ' clickable';
     }
     if (selectionMode) {
-      res += 'selectable';
+      res += ' selectable';
     }
     return res;
   }, [onSelectItem, selectionMode]);
@@ -164,8 +165,8 @@ export default function Table<M extends Model = Model>({
                 .filter((action) =>
                   Array.isArray(selection) && selection.length > 1 ? !action.onlySingle : true,
                 )
-                .map((action: ItemAction, index) => (
-                  <div key={index.toString()} className="action">
+                .map((action: ItemAction) => (
+                  <div key={action.key} className="action">
                     <Button
                       href={action.href}
                       to={action.to}

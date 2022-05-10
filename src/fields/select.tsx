@@ -29,12 +29,7 @@ function SelectOptionComponent<V = unknown>({
     return <span>{option.value}</span>;
   }
 
-  return (
-    <>
-      <span className="placeholder">{placeholder || 'Selectioner une option'}</span>
-      <Icon name="chevron-down" />
-    </>
-  );
+  return <span className="placeholder">{placeholder || 'Selectioner une option'}</span>;
 }
 
 export type SelectType = 'default' | 'flat';
@@ -122,11 +117,12 @@ export default function Select<V = unknown>({
     <div className={className}>
       {label && <label htmlFor={name}>{label}</label>}
 
-      <div className="container">
+      <div className="container" ref={selectRef}>
         {selectedOption || type === 'default' ? (
           <div className="selector">
             <button onClick={toggleFocus} type="button" className="selected">
               <SelectOptionComponent<V> option={selectedOption} />
+              {type === 'default' ? <Icon name="chevron-down" /> : null}
             </button>
             {selectedOption && canCancel ? (
               <button type="button" className="cancel" onClick={() => onChange(undefined)}>
