@@ -26,7 +26,7 @@ const options: SelectOption[] = [
   },
   {
     value: 'Titi',
-    element: <span>Teffst</span>,
+    element: <span>Teffst uiqehd isuehdius hefish fiuseh </span>,
   },
   {
     value: 'Tata',

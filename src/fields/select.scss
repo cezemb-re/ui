@@ -6,7 +6,6 @@
 
 .cezembre-ui-select {
   display: inline-block;
-  min-width: 150px;
 
   &.full-width {
     width: 100%;
@@ -93,15 +92,15 @@
       overflow: auto;
       box-shadow: 0 0 5px rgba(colors.$text, .1);
       border: solid rgba(colors.$text, .2) 1px;
+      opacity: 0;
       visibility: hidden;
-      width: 100%;
       position: absolute;
       top: calc(100% + 4px);
       background: white;
-      opacity: 0;
       transition: opacity linear 100ms;
 
       > button.option {
+        width: 100%;
         font-size: 1em;
         -webkit-touch-callout: none;
         -webkit-user-select: none;
@@ -112,7 +111,6 @@
         border: none;
         outline: none;
         background: transparent;
-        width: 100%;
         text-align: left;
         margin: 0;
         padding: 0;
