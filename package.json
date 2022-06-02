@@ -38,7 +38,7 @@
     "@cezembre/fronts": ">=0.6.11",
     "draft-js": ">=0.11.7",
     "luxon": ">=2.1.0",
-    "react": ">= 16.8.6 < 18",
+    "react": ">= 16.8.6",
     "react-router": ">=6.0.0",
     "react-router-dom": ">=6.0.0"
   },
